@@ -1,4 +1,4 @@
-/* Reset & base layout */
+/* Reset and base styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,27 +10,25 @@ body {
   background-color: #fff;
   color: #111;
   line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
+  padding: 40px;
 }
 
-/* Navigation centered */
-nav {
-  width: 100%;
-  max-width: 900px;
-  text-align: center;
-  margin-bottom: 30px;
+/* Page wrapper for width control */
+.page-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
+/* Nav bar */
 nav ul {
   list-style: none;
+  text-align: right;
+  margin-bottom: 30px;
 }
 
 nav ul li {
   display: inline-block;
-  margin: 0 15px;
+  margin-left: 20px;
 }
 
 nav ul li a {
@@ -40,36 +38,31 @@ nav ul li a {
   letter-spacing: 1px;
 }
 
-/* Header */
+/* Name */
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   letter-spacing: 3px;
-  text-align: center;
   margin-bottom: 30px;
 }
 
-/* Main content container */
+/* Main content */
 .container {
   display: flex;
-  justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 900px;
-  width: 100%;
   gap: 40px;
 }
 
-/* Image styling */
+/* Profile image */
 .photo img {
-  width: 250px;
+  width: 220px;
   border-radius: 8px;
 }
 
-/* Bio content */
+/* Bio */
 .bio {
   flex: 1;
-  max-width: 550px;
+  max-width: 600px;
 }
 
 .bio p {
