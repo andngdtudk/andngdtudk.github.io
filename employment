@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employment – Dang Viet Anh Nguyen</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header-bar">
+      <h1 class="site-title"><a href="index.html">DANG VIET ANH NGUYEN</a></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">EMPLOYMENT</a></li>
+          <li><a href="publications.html">PUBLICATIONS</a></li>
+          <li><a href="#">PROFESSIONAL SERVICES</a></li>
+          <li><a href="#">NOTES</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
+
+    <main class="bio">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <strong>PhD Student in Intelligent Transportation Systems</strong><br>
+          Technical University of Denmark (DTU), 2023 – Present<br>
+          Project: Proactive traffic control through AI and Big Data<br>
+          Supervisors: Filipe Rodrigues, Carlos Lima Azevedo
+        </li>
+        <li>
+          <strong>MSc. Supply Chain and Logistics</strong><br>
+          Nanyang Technological University (NTU), 2021 – 2022<br>
+          Thesis: Two-echelon Vehicle Routing Problem for Post-disaster Aid<br>
+          Advisor: Assoc. Prof. Rajesh Piplani
+        </li>
+        <li>
+          <strong>BE in Transportation Engineering</strong><br>
+          Hanoi University of Civil Engineering (HUCE), 2015 – 2020<br>
+          Awards: Third Prize, Vietnam Olympiad on Mechanics; Student with Five Good Merits (National Level)
+        </li>
+      </ul>
+
+      <h2 style="margin-top: 30px;">Employment</h2>
+      <ul>
+        <li>
+          <strong>Research Engineer – Intelligent Systems and Optimization</strong><br>
+          Singapore Management University (SMU), 2022 – 2023<br>
+          Project: “E-waste must never be wasted: Vehicle Route Planning Optimization for E-Waste Collection”
+        </li>
+        <li>
+          <strong>Research Assistant – Transportation and Traffic Simulation Lab (TTS)</strong><br>
+          Hanoi University of Civil Engineering (HUCE), 2020 – 2021<br>
+          Project: Optimization Models for Urban Freight Distribution
+        </li>
+      </ul>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        © 2025 Dang Viet Anh Nguyen · 
+        <a href="https://orcid.org/0009-0000-6208-0876" target="_blank" rel="noopener noreferrer">ORCID: 0009-0000-6208-0876</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
