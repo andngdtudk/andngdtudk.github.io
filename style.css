@@ -40,9 +40,9 @@ nav ul li a {
 
 /* Name */
 h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 36px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   margin-bottom: 30px;
 }
 
@@ -63,6 +63,7 @@ h1 {
 .bio {
   flex: 1;
   max-width: 600px;
+  font-family: 'EB Garamond', serif;
 }
 
 .bio p {
