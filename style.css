@@ -1,60 +1,82 @@
-body {
-  font-family: 'Open Sans', sans-serif;
-  color: #111;
-  background-color: #fff;
-  line-height: 1.6;
+/* Reset & base layout */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+  color: #111;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px 20px;
 }
 
+/* Navigation centered */
 nav {
   width: 100%;
   max-width: 900px;
-  margin-top: 40px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 nav ul {
   list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 0;
 }
 
 nav ul li {
-  display: inline;
-  margin: 0 20px;
+  display: inline-block;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
   font-size: 14px;
   letter-spacing: 1px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 40px;
-  max-width: 900px;
-  width: 100%;
-  padding: 0 20px;
-  gap: 40px;
-}
-
-.photo img {
-  width: 250px;
-  height: auto;
-  border-radius: 8px;
-}
-
-.bio {
-  max-width: 600px;
-}
-
+/* Header */
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   letter-spacing: 3px;
-  margin-top: 40px;
   text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Main content container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 900px;
+  width: 100%;
+  gap: 40px;
+}
+
+/* Image styling */
+.photo img {
+  width: 250px;
+  border-radius: 8px;
+}
+
+/* Bio content */
+.bio {
+  flex: 1;
+  max-width: 550px;
+}
+
+.bio p {
+  margin-bottom: 16px;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
 }
