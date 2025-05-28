@@ -126,3 +126,28 @@ a {
 .publications .note {
   font-style: italic;
 }
+
+.site-title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.site-title a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+  border-top: 1px solid #ddd;
+  width: 100%;
+}
+
+.site-footer a {
+  color: #000;
+  text-decoration: underline;
+}
+
