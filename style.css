@@ -10,40 +10,39 @@ body {
   background-color: #fff;
   color: #111;
   line-height: 1.6;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
 }
 
-/* Wrapper for page content */
+/* Page width constraint */
 .page-wrapper {
   max-width: 1100px;
   width: 100%;
 }
 
-/* Unified header bar: name left, nav right */
+/* Header bar */
 .header-bar {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 40px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-/* Left-aligned name */
+/* Name left */
 .site-title {
   font-family: 'EB Garamond', serif;
   font-size: 36px;
   font-weight: normal;
   letter-spacing: 2px;
   text-align: left;
-  flex: 1;
 }
 
-/* Right-aligned navigation */
+/* Nav right */
 .header-bar nav {
-  flex: 1;
   text-align: right;
 }
 
@@ -65,27 +64,26 @@ body {
   letter-spacing: 1px;
 }
 
-/* Main content container */
+/* Align image + bio with header */
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  max-width: 1100px;
   width: 100%;
   gap: 40px;
 }
 
-/* Image styling */
+/* Profile image */
 .photo img {
   width: 250px;
   border-radius: 8px;
 }
 
-/* Bio content */
+/* Bio section */
 .bio {
   flex: 1;
-  max-width: 600px;
+  max-width: 700px;
   font-family: 'EB Garamond', serif;
 }
 
