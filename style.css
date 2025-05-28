@@ -10,13 +10,15 @@ body {
   background-color: #fff;
   color: #111;
   line-height: 1.6;
-  padding: 40px;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Page wrapper for width control */
 .page-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
 }
 
 /* Nav bar */
@@ -45,11 +47,13 @@ h1 {
   font-weight: normal;
   letter-spacing: 2px;
   margin-bottom: 30px;
+  text-align: left;
 }
 
 /* Main content */
 .container {
   display: flex;
+  justify-content: center;
   align-items: flex-start;
   gap: 40px;
 }
