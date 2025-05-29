@@ -20,6 +20,10 @@ body {
 .page-wrapper {
   max-width: 1100px;
   width: 100%;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 /* Header bar */
@@ -30,18 +34,17 @@ body {
   margin-bottom: 40px;
   flex-wrap: wrap;
   width: 100%;
-  padding-left: 20px; /* ✅ aligns left side */
-  padding-right: 20px;
-  box-sizing: border-box;
+  padding: 0; /* removed padding here */
 }
 
+/* Site title */
 .site-title {
   font-family: 'EB Garamond', serif;
   font-size: 36px;
   font-weight: normal;
   letter-spacing: 2px;
   text-align: left;
-  margin: 0; /* ✅ removes default spacing */
+  margin: 0;
 }
 
 .site-title a {
@@ -76,7 +79,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* Hamburger menu (hidden on desktop) */
+/* Hamburger menu (mobile only) */
 .menu-toggle {
   display: none;
   background: none;
@@ -86,7 +89,7 @@ body {
   margin-left: auto;
 }
 
-/* Container & bio */
+/* Main container (bio + photo) */
 .container {
   display: flex;
   justify-content: space-between;
@@ -96,11 +99,14 @@ body {
   gap: 40px;
 }
 
+/* Profile image */
 .photo img {
   width: 250px;
   border-radius: 8px;
+  display: block;
 }
 
+/* Bio content */
 .bio {
   flex: 1;
   max-width: 700px;
@@ -116,7 +122,7 @@ a {
   text-decoration: underline;
 }
 
-/* Publications & Projects shared styling */
+/* Publications & Projects */
 .publications, .projects {
   font-family: 'EB Garamond', serif;
   max-width: 1100px;
@@ -161,7 +167,7 @@ a {
   text-decoration: underline;
 }
 
-/* Responsive Styling */
+/* Responsive (Mobile) */
 @media (max-width: 768px) {
   .header-bar {
     flex-direction: column;
