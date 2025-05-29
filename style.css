@@ -38,6 +38,8 @@ body {
   font-weight: normal;
   letter-spacing: 2px;
   text-align: left;
+  display: inline-block; /* ensures border only matches text width */
+  padding-bottom: 5px;
 }
 
 .site-title a {
