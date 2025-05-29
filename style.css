@@ -175,14 +175,15 @@ a {
 
 /* Responsive (Mobile) */
 @media (max-width: 768px) {
-  .header-bar nav {
-  width: 100%;              /* ✅ Full width for alignment */
-  display: flex;            /* ✅ Flex to enable content control */
-  justify-content: flex-end; /* ✅ Push menu to right side */
-}
+  .header-bar {
+    flex-direction: column-reverse; /* ☰ above title */
+    align-items: stretch;
+    gap: 10px;
+  }
 
   .site-title {
     font-size: 28px;
+    text-align: left;
   }
 
   .menu-toggle {
@@ -192,19 +193,22 @@ a {
     border: none;
     cursor: pointer;
     padding: 5px 10px;
-    margin-left: auto;
+    align-self: flex-end; /* ✅ Push ☰ to right */
+  }
+
+  .header-bar nav {
+    width: 100%;
   }
 
   .header-bar nav ul {
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-  padding-left: 0;
-  align-items: flex-end; /* ✅ Right-align the items */
-  text-align: right;     /* ✅ Align link text to right */
-  width: 100%;           /* Ensures right edge alignment */
-}
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding-left: 0;
+    align-items: flex-end; /* ✅ Right align links */
+    text-align: right;
+  }
 
   .header-bar nav ul.show {
     display: flex;
