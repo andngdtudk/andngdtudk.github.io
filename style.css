@@ -207,19 +207,25 @@ a {
 
 /* Hamburger button - hidden on desktop */
 .menu-toggle {
-  display: none;
+  display: block;
   font-size: 26px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 5px 10px;
+  margin-left: auto; /* ✅ This moves it to the right */
 }
 
 /* Responsive nav toggle */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
-    align-self: flex-end;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: auto; /* ✅ Pushes it to the right */
   }
 
   .header-bar {
