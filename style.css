@@ -175,11 +175,11 @@ a {
 
 /* Responsive (Mobile) */
 @media (max-width: 768px) {
-  .header-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+  .header-bar nav {
+  width: 100%;              /* ✅ Full width for alignment */
+  display: flex;            /* ✅ Flex to enable content control */
+  justify-content: flex-end; /* ✅ Push menu to right side */
+}
 
   .site-title {
     font-size: 28px;
