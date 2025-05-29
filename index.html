@@ -10,18 +10,19 @@
 <body>
   <div class="page-wrapper">
     <header class="header-bar">
-      <h1 class="site-title">DANG VIET ANH NGUYEN</h1>
+    <div class="header-top">
+      <h1 class="site-title"><a href="index.html">DANG VIET ANH NGUYEN</a></h1>
       <link rel="icon" type="image/x-icon" href="andng.ico.ico" />
-      <nav>
-        <ul>
-          <li><a href="employment.html">EMPLOYMENT</a></li>
-          <li><a href="publications.html">PUBLICATIONS</a></li>
-          <li><a href="professional.html">PROFESSIONAL SERVICES</a></li>
-          <li><a href="notes.html">NOTES</a></li>
-        </ul>
-      </nav>
-    </header>
-
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">EMPLOYMENT</a></li>
+        <li><a href="publications.html">PUBLICATIONS</a></li>
+        <li><a href="professional.html">PROFESSIONAL SERVICES</a></li>
+        <li><a href="notes.html">NOTES</a></li>
+      </ul>
+    </nav>
     <main class="container">
       <div class="photo">
         <img src="IMG_9925.jpeg" alt="Dang Viet Anh Nguyen" />
