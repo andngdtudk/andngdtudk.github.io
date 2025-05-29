@@ -30,6 +30,9 @@ body {
   margin-bottom: 40px;
   flex-wrap: wrap;
   width: 100%;
+  padding-left: 20px; /* ✅ aligns left side */
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .site-title {
@@ -38,8 +41,7 @@ body {
   font-weight: normal;
   letter-spacing: 2px;
   text-align: left;
-  display: inline-block; /* ensures border only matches text width */
-  padding-bottom: 5px;
+  margin: 0; /* ✅ removes default spacing */
 }
 
 .site-title a {
@@ -53,7 +55,7 @@ body {
 
 /* Navigation */
 .header-bar nav {
-  text-align: right;
+  text-align: left;
 }
 
 .header-bar nav ul {
