@@ -16,7 +16,7 @@ body {
   align-items: center;
 }
 
-/* Page width constraint */
+/* Page wrapper */
 .page-wrapper {
   max-width: 1100px;
   width: 100%;
@@ -32,7 +32,6 @@ body {
   width: 100%;
 }
 
-/* Name left */
 .site-title {
   font-family: 'EB Garamond', serif;
   font-size: 36px;
@@ -41,7 +40,16 @@ body {
   text-align: left;
 }
 
-/* Nav right */
+.site-title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.site-title a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
 .header-bar nav {
   text-align: right;
 }
@@ -64,7 +72,17 @@ body {
   letter-spacing: 1px;
 }
 
-/* Align image + bio with header */
+/* Hamburger menu (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Container & bio */
 .container {
   display: flex;
   justify-content: space-between;
@@ -74,13 +92,11 @@ body {
   gap: 40px;
 }
 
-/* Profile image */
 .photo img {
   width: 250px;
   border-radius: 8px;
 }
 
-/* Bio section */
 .bio {
   flex: 1;
   max-width: 700px;
@@ -96,10 +112,8 @@ a {
   text-decoration: underline;
 }
 
-/* ------------------------------
-   Publications Page Styling
------------------------------- */
-.publications {
+/* Publications & Projects shared styling */
+.publications, .projects {
   font-family: 'EB Garamond', serif;
   max-width: 1100px;
   width: 100%;
@@ -107,35 +121,27 @@ a {
   padding: 10px 0;
 }
 
-.publications h2 {
+.publications h2, .projects h2 {
   font-size: 20px;
   margin-bottom: 15px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
 }
 
-.publications ul {
+.publications ul, .projects ul {
   list-style-type: disc;
   padding-left: 20px;
 }
 
-.publications li {
+.publications li, .projects li {
   margin-bottom: 20px;
 }
 
-.publications .note {
+.publications .note, .projects .note {
   font-style: italic;
 }
 
-.site-title a {
-  color: #000;
-  text-decoration: none;
-}
-
-.site-title a:hover {
-  text-decoration: underline;
-}
-
+/* Footer */
 .site-footer {
   margin-top: 60px;
   padding-top: 20px;
@@ -151,10 +157,7 @@ a {
   text-decoration: underline;
 }
 
-
-/* ------------------------------
-   Mobile Responsive Styling
------------------------------- */
+/* Responsive Styling */
 @media (max-width: 768px) {
   .header-bar {
     flex-direction: column;
@@ -163,17 +166,29 @@ a {
   }
 
   .site-title {
-    text-align: left;
     font-size: 28px;
   }
 
-  .header-bar nav {
-    text-align: left;
-    width: 100%;
+  .menu-toggle {
+    display: block;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: auto;
   }
 
   .header-bar nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
     padding-left: 0;
+  }
+
+  .header-bar nav ul.show {
+    display: flex;
   }
 
   .container {
@@ -201,47 +216,4 @@ a {
     font-size: 13px;
     padding: 20px 10px 0;
   }
-
-  
 }
-
-/* Hamburger button - hidden on desktop */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-/* Responsive nav toggle */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    font-size: 26px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px 10px;
-    margin-left: auto; /* ✅ Pushes it to the right */
-  }
-
-  .header-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header-bar nav ul {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 0;
-    margin-top: 10px;
-  }
-
-  .header-bar nav ul.show {
-    display: flex;
-  }
-}
-
