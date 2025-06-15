@@ -2,20 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vietanh.eu/</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://vietanh.eu/employment.html</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://vietanh.eu/publications.html</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://vietanh.eu/projects.html</loc>
+    <lastmod>2025-05-20</lastmod>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://vietanh.eu/professional.html</loc>
+    <lastmod>2025-04-15</lastmod>
+    <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://vietanh.eu/notes.html</loc>
+    <lastmod>2025-06-08</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>
