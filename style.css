@@ -234,16 +234,6 @@ a {
     font-size: 13px;
     padding: 20px 10px 0;
   }
-  .site-footer a img {
-    max-height: 10px;
-  }
-
-  .footer-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
 }
 
 /* Hover effect for footer logos only */
