@@ -111,6 +111,7 @@ body {
   max-width: 700px;
   font-family: 'adobe-garamond-pro', serif;
   text-align: justify;
+  hyphens: auto;                /* Enable hyphenation */
 }
 
 .bio p {
@@ -224,6 +225,7 @@ a {
     max-width: 100%;
     padding-top: 20px;
     text-align: justify;
+    hyphens: auto;                /* Enable hyphenation */
   }
 
   .bio p {
