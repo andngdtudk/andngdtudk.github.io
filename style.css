@@ -119,7 +119,7 @@ body {
 }
 
 /* Drop cap using span for precise 2-line alignment */
-.dropcap {
+.drop-cap {
   float: left;
   font-family: 'adobe-garamond-pro', serif;
   font-size: 400%;
