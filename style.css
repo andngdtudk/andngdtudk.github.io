@@ -38,7 +38,7 @@ body {
 
 /* Site title */
 .site-title {
-  font-family: 'Adobe Garamond', serif;
+  font-family: 'adobe-garamond-pro', serif;
   font-size: 36px;
   font-weight: normal;
   letter-spacing: 2px;
@@ -109,7 +109,7 @@ body {
 .bio {
   flex: 1;
   max-width: 700px;
-  font-family: 'Adobe Garamond', serif;
+  font-family: 'adobe-garamond-pro', serif;
 }
 
 .bio p {
@@ -123,7 +123,7 @@ a {
 
 /* Publications & Projects */
 .publications, .projects {
-  font-family: 'Adobe Garamond', serif;
+  font-family: 'adobe-garamond-pro', serif;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
