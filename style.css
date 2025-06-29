@@ -118,15 +118,28 @@ body {
   margin-bottom: 16px;
 }
 
-/* Drop cap styling for first paragraph in .bio */
-.bio p:first-of-type::first-letter {
+/* Drop cap using span for precise 2-line alignment */
+.drop-cap {
   float: left;
-  font-size: 3.2em;
-  line-height: 1.0;
-  padding-right: 6px;
   font-family: 'adobe-garamond-pro', serif;
-  font-weight: normal;
-  vertical-align: top;
+  font-size: 3.6em;
+  line-height: 1;
+  padding-right: 8px;
+  padding-top: 4px;
+  height: 2.2em;
+  margin-bottom: -0.4em;
+}
+
+/* Responsive disable for drop cap */
+@media (max-width: 768px) {
+  .drop-cap {
+    float: none;
+    font-size: inherit;
+    padding-right: 0;
+    padding-top: 0;
+    height: auto;
+    margin-bottom: 0;
+  }
 }
 
 a {
@@ -243,13 +256,6 @@ a {
     font-size: 16px;
     line-height: 1.7;
     padding: 0 10px;
-  }
-
-  /* Disable drop cap on mobile for better layout */
-  .bio p:first-of-type::first-letter {
-    float: none;
-    font-size: inherit;
-    padding-right: 0;
   }
 
   .site-footer {
