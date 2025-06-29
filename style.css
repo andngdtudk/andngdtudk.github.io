@@ -122,9 +122,9 @@ body {
 .dropcap {
   float: left;
   font-family: 'adobe-garamond-pro', serif;
-  font-size: 400%;        /* large enough for 2 lines */
+  font-size: 400%;
   line-height: 1;
-  margin-top: 14px;       /* nudges top to align with first line */
+  margin-top: 14px;
   margin-right: 6px;
 }
 
