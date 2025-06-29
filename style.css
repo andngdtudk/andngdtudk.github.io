@@ -118,6 +118,17 @@ body {
   margin-bottom: 16px;
 }
 
+/* Drop cap styling for first paragraph in .bio */
+.bio p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 1;
+  padding-right: 6px;
+  font-family: 'adobe-garamond-pro', serif;
+  font-weight: normal;
+  vertical-align: top;
+}
+
 a {
   color: #13343B;
   text-decoration: underline;
@@ -232,6 +243,13 @@ a {
     font-size: 16px;
     line-height: 1.7;
     padding: 0 10px;
+  }
+
+  /* Disable drop cap on mobile for better layout */
+  .bio p:first-of-type::first-letter {
+    float: none;
+    font-size: inherit;
+    padding-right: 0;
   }
 
   .site-footer {
