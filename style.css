@@ -1,3 +1,12 @@
+/* Font face for Editorial New – update the URL path as needed */
+@font-face {
+  font-family: 'Editorial New';
+  src: url('/fonts/EditorialNew-Regular.woff2') format('woff2'),
+       url('/fonts/EditorialNew-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Reset & base layout */
 * {
   box-sizing: border-box;
@@ -38,7 +47,7 @@ body {
 
 /* Site title */
 .site-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Editorial New', serif;
   font-size: 36px;
   font-weight: normal;
   letter-spacing: 2px;
@@ -109,7 +118,7 @@ body {
 .bio {
   flex: 1;
   max-width: 700px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Editorial New', serif;
 }
 
 .bio p {
@@ -123,7 +132,7 @@ a {
 
 /* Publications & Projects */
 .publications, .projects {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Editorial New', serif;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
