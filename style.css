@@ -110,6 +110,7 @@ body {
   flex: 1;
   max-width: 700px;
   font-family: 'adobe-garamond-pro', serif;
+  text-align: justify;
 }
 
 .bio p {
@@ -222,6 +223,7 @@ a {
   .bio {
     max-width: 100%;
     padding-top: 20px;
+    text-align: justify;
   }
 
   .bio p {
