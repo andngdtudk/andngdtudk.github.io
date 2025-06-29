@@ -119,15 +119,13 @@ body {
 }
 
 /* Drop cap using span for precise 2-line alignment */
-.drop-cap {
+.dropcap {
   float: left;
   font-family: 'adobe-garamond-pro', serif;
-  font-size: 3.6em;
+  font-size: 400%;        /* large enough for 2 lines */
   line-height: 1;
-  padding-right: 8px;
-  padding-top: 4px;
-  height: 2.2em;
-  margin-bottom: -0.4em;
+  margin-top: 14px;       /* nudges top to align with first line */
+  margin-right: 6px;
 }
 
 /* Responsive disable for drop cap */
