@@ -68,7 +68,7 @@ body {
 
 .header-bar nav ul li {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 .header-bar nav ul li a {
