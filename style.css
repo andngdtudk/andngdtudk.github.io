@@ -68,7 +68,12 @@ body {
 
 .header-bar nav ul li {
   display: inline-block;
-  margin-left: 0px;
+  margin-left: 20px;
+}
+
+/* Remove left margin for the first item */
+.header-bar nav ul li:first-child {
+  margin-left: 0;
 }
 
 .header-bar nav ul li a {
