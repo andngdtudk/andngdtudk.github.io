@@ -112,6 +112,8 @@ body {
   font-family: 'adobe-garamond-pro', serif;
   text-align: justify;
   hyphens: auto;
+  line-height: 1.6; /* set line-height explicitly */
+  font-size: 18px;   /* fixed base font size for alignment */
 }
 
 .bio p {
@@ -122,13 +124,14 @@ body {
 .drop-cap {
   float: left;
   font-family: 'adobe-garamond-pro', serif;
-  font-size: 3.6em;
+  font-size: 2.8em;         /* scaled to match two 1.6 line-heights */
   line-height: 1;
-  padding-right: 8px;
-  padding-top: 4px;
-  height: 2.2em;
-  margin-bottom: -0.4em;
+  height: calc(1.6em * 2);  /* exactly 2 lines */
+  padding-right: 10px;
+  margin-top: 2px;
+  margin-bottom: -4px;      /* pulls bottom up to end at line 2 */
 }
+
 
 /* Responsive disable for drop cap */
 @media (max-width: 768px) {
