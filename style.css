@@ -146,12 +146,13 @@ body {
 .blog-image-container {
   flex: 0 0 120px;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; /* aligns inside itself */
+  padding-top: 4px; /* adjust this if needed for better alignment */
 }
 
 .blog-thumbnail {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 4px;
   display: block;
@@ -176,7 +177,7 @@ body {
   text-align: justify;
   text-align-last: left;
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
   position: relative;
 }
@@ -184,7 +185,7 @@ body {
 .blog-see-more {
   margin-top: 6px;
   display: inline-block;
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
   color: #13343B;
   text-decoration: underline;
