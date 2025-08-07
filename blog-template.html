@@ -78,7 +78,7 @@
     if (!postName) {
       document.getElementById("post-content").innerHTML = "<p>Post not found.</p>";
     } else {
-      const filePath = `blog-posts/${postName}.md`;
+      const filePath = `/blog-posts/${postName}.md`;
       fetchWithRetry(filePath, 3, 500)
         .then(markdown => {
           const html = marked.parse(markdown);
