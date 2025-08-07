@@ -164,7 +164,9 @@ body {
 }
 
 .blog-content h3 {
-  margin-bottom: 8px;
+  margin: 0 5 10px 0; /* TOP RIGHT BOTTOM LEFT */
+  padding: 0;          /* Ensure no extra spacing */
+  line-height: 1.2;    /* Optional: tweak text height */
 }
 
 .blog-summary-container {
