@@ -31,16 +31,23 @@
       font-size: 28px;
       margin-bottom: 20px;
       line-height: 1.2;
+      text-align: justify;
+    }
+
+    .blog-post h2,
+    .blog-post h3,
+    .blog-post li {
+      text-align: justify;
     }
 
     .blog-post p {
       margin-bottom: 16px;
+      text-align: justify;
     }
 
     .blog-post a {
       color: #13343B;
       text-decoration: underline;
-      text-align: justify; /* ✅ Add this line */
     }
 
     .back-link {
@@ -51,6 +58,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="page-wrapper">
     <main class="blog-post">
@@ -84,7 +92,9 @@
         .then(markdown => {
           const html = marked.parse(markdown);
           document.getElementById("post-content").innerHTML = html;
-          if (window.MathJax) MathJax.typeset();
+          if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise();
+          }
         })
         .catch(error => {
           document.getElementById("post-content").innerHTML = "<p>Error loading post.</p>";
