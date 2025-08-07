@@ -1,4 +1,4 @@
-<!-- image: control-room.jpg -->
+<!-- image: control-room.webp -->
 
 # Control Theory: Foundation and Practice
 
