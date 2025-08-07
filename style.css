@@ -176,14 +176,14 @@ body {
   text-align: justify;
   text-align-last: left;
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
   position: relative;
 }
 
 .blog-see-more {
   display: inline-block;
-  font-size: 14px;
+  font-size: 15px;
   margin-left: 6px;
   white-space: nowrap;
   color: #13343B;
