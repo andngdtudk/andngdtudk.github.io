@@ -147,7 +147,8 @@ body {
   flex: 0 0 120px;
   display: flex;
   align-items: flex-start; /* aligns inside itself */
-  padding-top: 4px; /* adjust this if needed for better alignment */
+  padding-top: 4px; /* optional tweak */
+  margin-top: 4px;   /* this helps align with the first line of heading */
 }
 
 .blog-thumbnail {
@@ -156,6 +157,7 @@ body {
   object-fit: cover;
   border-radius: 4px;
   display: block;
+  margin-top: 0.2em; /* Adjust to align better with text baseline */
 }
 
 .blog-content {
