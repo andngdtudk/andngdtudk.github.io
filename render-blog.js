@@ -1,6 +1,6 @@
 const posts = [
   'control-theory.md',
-  // Add more posts here
+  // Add more blog files here
 ];
 
 const blogList = document.getElementById('blog-list');
@@ -9,10 +9,13 @@ posts.forEach(post => {
   fetch(`blog-posts/${post}`)
     .then(res => res.text())
     .then(text => {
-      const titleMatch = text.match(/^# (.+)/);
+      const titleMatch = text.match(/^#\s+(.+)/m); // More robust title detection
       const imageMatch = text.match(/<!--\s*image:\s*(.*?)\s*-->/);
       const title = titleMatch ? titleMatch[1] : 'Untitled';
-      const summary = text.split('\n').slice(1, 5).join(' ');
+
+      const summaryLines = text.split('\n').slice(1, 5).join(' ');
+      const summaryHTML = marked.parseInline(summaryLines);
+
       const postSlug = post.replace('.md', '');
       const imageURL = imageMatch ? imageMatch[1].trim() : '';
       const imageHTML = imageURL
@@ -26,7 +29,7 @@ posts.forEach(post => {
           </div>
           <div style="flex: 1;">
             <h3 style="margin-bottom: 10px;"><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-            <p style="font-size: 15px; line-height: 1.5;">${summary}... <a href="blog-template.html?post=${postSlug}">See more</a></p>
+            <p style="font-size: 15px; line-height: 1.5;">${summaryHTML}... <a href="blog-template.html?post=${postSlug}">See more</a></p>
           </div>
         </div>
       `;
