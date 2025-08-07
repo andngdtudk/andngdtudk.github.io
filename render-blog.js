@@ -6,41 +6,47 @@ const posts = [
 
 const blogList = document.getElementById('blog-list');
 
-posts.forEach(post => {
-  fetch(`/blog-posts/${post}`)
-    .then(res => res.text())
-    .then(text => {
-      const titleMatch = text.match(/^#\s+(.+)/m);
-      const imageMatch = text.match(/<!--\s*image:\s*(.*?)\s*-->/);
-      const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
+Promise.all(posts.map(post =>
+  fetch(`/blog-posts/${post}`).then(res => res.text())
+)).then(allTexts => {
+  let allBlogHTML = '';
 
-      const lines = text.split('\n');
-      const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
-      const summaryLines = contentLines.slice(0, 12).join(' ').trim();
+  allTexts.forEach((text, i) => {
+    const post = posts[i];
 
-      // ✅ Apply drop-cap to first letter
-      const firstLetter = summaryLines.charAt(0);
-      const rest = summaryLines.slice(1);
-      const summaryWithDropCap = `<span class="drop-cap">${firstLetter}</span>${rest}`;
-      const summaryHTML = marked.parseInline(summaryWithDropCap);
+    const titleMatch = text.match(/^#\s+(.+)/m);
+    const imageMatch = text.match(/<!--\s*image:\s*(.*?)\s*-->/);
+    const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
 
-      const postSlug = post.replace('.md', '');
-      const imageURL = imageMatch ? imageMatch[1].trim() : '';
-      const imageHTML = imageURL
-        ? `<img src="${imageURL}" alt="Thumbnail" class="blog-thumbnail" />`
-        : '';
+    const lines = text.split('\n');
+    const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
+    const summaryLines = contentLines.slice(0, 12).join(' ').trim();
 
-      const blogHTML = `
-        <div class="blog-card">
-          <div class="blog-image-container">${imageHTML}</div>
-          <div class="blog-content">
-            <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-            <div class="blog-summary-container">${summaryHTML}</div>
-            <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
-          </div>
+    // ✅ Apply drop-cap to first letter
+    const firstLetter = summaryLines.charAt(0);
+    const rest = summaryLines.slice(1);
+    const summaryWithDropCap = `<span class="drop-cap">${firstLetter}</span>${rest}`;
+    const summaryHTML = marked.parseInline(summaryWithDropCap);
+
+    const postSlug = post.replace('.md', '');
+    const imageURL = imageMatch ? imageMatch[1].trim() : '';
+    const imageHTML = imageURL
+      ? `<img src="${imageURL}" alt="Thumbnail" class="blog-thumbnail" />`
+      : '';
+
+    const blogHTML = `
+      <div class="blog-card">
+        <div class="blog-image-container">${imageHTML}</div>
+        <div class="blog-content">
+          <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
+          <div class="blog-summary-container">${summaryHTML}</div>
+          <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
         </div>
-      `;
+      </div>
+    `;
 
-      blogList.innerHTML += blogHTML;
-    });
+    allBlogHTML += blogHTML;
+  });
+
+  blogList.innerHTML = allBlogHTML;
 });
