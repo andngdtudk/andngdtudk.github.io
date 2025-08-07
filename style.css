@@ -140,15 +140,13 @@ body {
   margin-bottom: 20px;
   border-radius: 6px;
   gap: 20px;
-  align-items: flex-start; /* Align top of image and text */
+  align-items: center; /* Align top of image and text */
 }
 
 .blog-image-container {
   flex: 0 0 120px;
   display: flex;
   align-items: flex-start; /* aligns inside itself */
-  padding-top: 4px; /* optional tweak */
-  margin-top: 6px;   /* this helps align with the first line of heading */
 }
 
 .blog-thumbnail {
