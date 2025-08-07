@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes – Dang Viet Anh Nguyen</title>
+
+  <meta name="description" content="Blog notes and academic writing by Dang Viet Anh Nguyen" />
+  <meta name="keywords" content="Nguyen Dang Viet Anh, Control Theory, Machine Learning, AI, Optimization" />
+  <meta name="author" content="Dang Viet Anh Nguyen" />
+
+  <meta property="og:title" content="Notes – Dang Viet Anh Nguyen" />
+  <meta property="og:description" content="Theory notes, equations, and academic blogs." />
+  <meta property="og:url" content="https://andngdtudk.github.io/notes.html" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="and.ico.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/btt0uyl.css">
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header-bar">
+      <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
+      <h1 class="site-title"><a href="index.html">DANG VIET ANH NGUYEN</a></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">ABOUT</a></li>
+          <li><a href="employment.html">EMPLOYMENT</a></li>
+          <li><a href="publications.html">PUBLICATIONS</a></li>
+          <li><a href="projects.html">RESEARCH PROJECTS</a></li>
+          <li><a href="professional.html">PROFESSIONAL SERVICES</a></li>
+          <li><a href="notes.html">NOTES</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
+
+    <main class="publications">
+      <blockquote style="font-style: italic; font-family: 'EB Garamond', serif; text-align: left; margin-bottom: 40px;">
+        "Ideas thus made up of several simple ones put together, I call Complex; such as are Beauty, Gratitude, a Man, an Army, the Universe."<br />
+        — <span style="font-style: normal;">John Locke</span>, <em>An Essay Concerning Human Understanding</em>
+      </blockquote>
+
+      <!-- Blog preview list -->
+      <div id="blog-list"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <span>© 2025 Dang Viet Anh Nguyen</span>
+        <a href="https://orcid.org/0009-0000-6208-0876" target="_blank" rel="noopener noreferrer">
+          <img src="orcid_logo.png" alt="ORCID" style="height:15px;">
+        </a>
+        <a href="https://www.webofscience.com/wos/author/record/JJG-2771-2023" target="_blank" rel="noopener noreferrer">
+          <img src="WoS_logo.png" alt="Web of Science" style="height:13px;">
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Load blog previews -->
+  <script src="render-blog.js"></script>
+</body>
+</html>
