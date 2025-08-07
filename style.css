@@ -170,7 +170,7 @@ body {
 
 .blog-summary-container {
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Show only 4 lines */
+  -webkit-line-clamp: 5; /* Show only 4 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: justify;
