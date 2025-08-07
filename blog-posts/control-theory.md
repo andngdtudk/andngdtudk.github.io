@@ -24,17 +24,17 @@ These models can be linear or nonlinear, continuous or discrete.
 
 Control theory is used in many areas:
 
-- **Robotics** – controlling joint positions and torques
-- **Aerospace** – stabilizing aircraft and spacecraft
-- **Automotive** – adaptive cruise control and stability
-- **Biology** – modeling population dynamics
-- **Economics** – predicting feedback in economic systems
+- **Robotics** – controlling joint positions and torques  
+- **Aerospace** – stabilizing aircraft and spacecraft  
+- **Automotive** – adaptive cruise control and stability  
+- **Biology** – modeling population dynamics  
+- **Economics** – predicting feedback in economic systems  
 
 ## Closing Thoughts
 
 In future posts, we’ll dive deeper into:
-- PID control
-- Model Predictive Control (MPC)
-- Optimal control
+- PID control  
+- Model Predictive Control (MPC)  
+- Optimal control  
 
 Stay tuned!
