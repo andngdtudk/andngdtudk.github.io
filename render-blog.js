@@ -17,7 +17,17 @@ posts.forEach(post => {
       const lines = text.split('\n');
       const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
       const summaryLines = contentLines.slice(0, 12).join(' ');
-      const summaryHTML = marked.parseInline(summaryLines);
+
+      // ✅ Apply drop-cap to first word
+      const firstWordMatch = summaryLines.trim().match(/^\s*(\S+)(.*)/s);
+      let summaryWithDropCap = summaryLines;
+      if (firstWordMatch) {
+        const firstWord = firstWordMatch[1];
+        const rest = firstWordMatch[2];
+        summaryWithDropCap = `<span class="drop-cap">${firstWord}</span>${rest}`;
+      }
+
+      const summaryHTML = marked.parseInline(summaryWithDropCap);
 
       const postSlug = post.replace('.md', '');
       const imageURL = imageMatch ? imageMatch[1].trim() : '';
@@ -26,16 +36,15 @@ posts.forEach(post => {
         : '';
 
       const blogHTML = `
-      <div class="blog-card">
-        <div class="blog-image-container">${imageHTML}</div>
-        <div class="blog-content">
-          <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-          <div class="blog-summary-container">${summaryHTML}</div>
-          <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
+        <div class="blog-card">
+          <div class="blog-image-container">${imageHTML}</div>
+          <div class="blog-content">
+            <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
+            <div class="blog-summary-container">${summaryHTML}</div>
+            <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
+          </div>
         </div>
-      </div>
-    `;
-      
+      `;
 
       blogList.innerHTML += blogHTML;
     });
