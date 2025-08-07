@@ -103,9 +103,16 @@
       const filePath = `/blog-posts/${postName}.md`;
       fetchWithRetry(filePath, 3, 500)
         .then(markdown => {
+          marked.setOptions({
+            breaks: true,
+            gfm: true
+          });
+        
           const html = marked.parse(markdown);
           document.getElementById("post-content").innerHTML = html;
+        
           if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetClear?.();
             MathJax.typesetPromise();
           }
         })
