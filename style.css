@@ -140,7 +140,7 @@ body {
   margin-bottom: 20px;
   border-radius: 6px;
   gap: 20px;
-  align-items: center; /* Align top of image and text */
+  align-items: flex-start; /* 👈 force image and text to align at top */
 }
 
 .blog-image-container {
