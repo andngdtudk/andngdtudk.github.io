@@ -183,6 +183,20 @@ body {
   font-size: 14px;
 }
 
+.blog-summary-inline {
+  display: inline;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.blog-see-more-inline {
+  margin-left: 4px;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #13343B;
+  text-decoration: underline;
+}
+
 /* Responsive disable for drop cap */
 @media (max-width: 768px) {
   .drop-cap {
