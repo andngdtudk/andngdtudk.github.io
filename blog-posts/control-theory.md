@@ -2,7 +2,7 @@
 
 # Control Theory: Foundation and Practice (Demo)
 
-Control theory is a field of engineering and mathematics that focuses on how to influence the behavior of dynamic systems through inputs, often called control signals.
+Control theory is a branch of engineering and mathematics that focuses on modeling, analyzing, and designing systems whose behavior can be influenced by external inputs. It aims to determine how to manipulate a system's inputs—called control signals—to produce desired outputs or behaviors over time. Control theory is widely used in various fields, including robotics, aerospace, automotive engineering, economics, and biology. At its core, it involves understanding the dynamics of a system (how it evolves with time), measuring its performance, and designing feedback mechanisms that automatically adjust the system's behavior to meet performance goals such as stability, speed, accuracy, and robustness to disturbances or uncertainties.
 
 In a typical system, such as a car cruise control or robotic arm, we want the output (like speed or position) to follow a desired reference value. Control theory helps us model the system dynamics and design controllers to achieve that behavior.
 
