@@ -6,7 +6,7 @@ const posts = [
 const blogList = document.getElementById('blog-list');
 
 posts.forEach(post => {
-  fetch(`blog-posts/${post}`)
+  fetch(`/blog-posts/${post}`)
     .then(res => res.text())
     .then(text => {
       const titleMatch = text.match(/^#\s+(.+)/m);
