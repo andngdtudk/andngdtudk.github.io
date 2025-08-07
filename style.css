@@ -185,19 +185,22 @@ body {
 
 .blog-summary-inline {
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Show only 4 lines */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   text-align: justify;
-  text-align-last: left;
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
 }
 
 .blog-see-more-inline {
-  margin-left: 4px;
   white-space: nowrap;
   font-weight: bold;
   color: #13343B;
   text-decoration: underline;
+  margin-left: 6px;
 }
 
 /* Responsive disable for drop cap */
