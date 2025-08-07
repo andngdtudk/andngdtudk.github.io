@@ -152,6 +152,20 @@ body {
   overflow: hidden;
 }
 
+.blog-summary-container {
+  max-height: 9.5em; /* Approx. 6 lines — adjust as needed */
+  overflow: hidden;
+  position: relative;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.blog-see-more {
+  margin-top: 6px;
+  display: inline-block;
+  font-size: 14px;
+}
+
 /* Responsive disable for drop cap */
 @media (max-width: 768px) {
   .drop-cap {
