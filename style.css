@@ -154,7 +154,8 @@ body {
   object-fit: cover;
   border-radius: 4px;
   display: block;
-  margin-top: 20px; /* ✅ Fine-tuning alignment */
+  margin-top: 25px; /* ✅ Fine-tuning alignment */
+  margin-bottom: 20px;
 }
 
 .blog-content {
@@ -164,6 +165,7 @@ body {
   justify-content: flex-start;
   margin-top: 0px; /* ✅ Lift text slightly to match image */
   padding-right: 20px; /* or adjust the value as needed */
+  margin-bottom: 20px;
 }
 
 .blog-content h3 {
