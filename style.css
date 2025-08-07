@@ -140,28 +140,27 @@ body {
   margin-bottom: 20px;
   border-radius: 6px;
   gap: 20px;
-  align-items: flex-start; /* Important: Align top of image and text */
+  align-items: flex-start; /* Align top of image and text */
 }
 
 .blog-image-container {
-  flex: 0 0 160px;
-  margin-top: 0; /* Remove any default spacing */
+  flex: 0 0 120px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .blog-thumbnail {
-  width: 160px;
-  height: auto;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 4px;
   display: block;
-  margin-top: 0; /* Ensure no top margin */
 }
 
 .blog-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .blog-content h3 {
@@ -170,33 +169,22 @@ body {
 
 .blog-summary-container {
   display: -webkit-box;
-  -webkit-line-clamp: 5; /* Show only 4 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-align: justify;
-  text-align-last: left;
-}
-
-.blog-see-more {
-  margin-top: 6px;
-  display: inline-block;
-  font-size: 14px;
-}
-
-.blog-summary-inline {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 4; /* Limit to 4 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: justify;
+  text-align-last: left;
   line-height: 1.6;
   font-size: 14px;
   margin: 0;
   position: relative;
 }
 
-.blog-see-more-inline a {
+.blog-see-more {
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 6px;
   white-space: nowrap;
   color: #13343B;
   text-decoration: underline;
