@@ -1,6 +1,6 @@
 const posts = [
   'control-theory.md',
-  // Add more here
+  // Add more posts here
 ];
 
 const blogList = document.getElementById('blog-list');
@@ -15,18 +15,18 @@ posts.forEach(post => {
 
       const lines = text.split('\n');
       const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
-      const summaryLines = contentLines.slice(0, 3).join(' ');
+      const summaryLines = contentLines.slice(0, 7).join(' ');
       const summaryHTML = marked.parseInline(summaryLines);
 
       const postSlug = post.replace('.md', '');
       const imageURL = imageMatch ? imageMatch[1].trim() : '';
       const imageHTML = imageURL
-        ? `<img src="${imageURL}" alt="Thumbnail" style="width: 120px; height: 90px; object-fit: cover; border-radius: 4px;" />`
+        ? `<img src="${imageURL}" alt="Thumbnail" style="width: 160px; height: 160px; object-fit: cover; border-radius: 4px;" />`
         : '';
 
       const blogHTML = `
         <div class="blog-card" style="display: flex; align-items: flex-start; background: #eee; padding: 20px; margin-bottom: 20px; border-radius: 6px;">
-          <div style="flex: 0 0 120px; margin-right: 20px;">
+          <div style="flex: 0 0 160px; margin-right: 20px;">
             ${imageHTML}
           </div>
           <div style="flex: 1;">
