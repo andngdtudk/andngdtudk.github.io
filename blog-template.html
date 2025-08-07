@@ -105,10 +105,24 @@
         .then(markdown => {
           marked.setOptions({
             breaks: true,
-            gfm: true
+            gfm: true,
+            headerIds: false
           });
         
-          const html = marked.parse(markdown);
+          // 1. Protect $$...$$ math blocks before markdown parsing
+          const protectedMarkdown = markdown
+            .replace(/\$\$\s*([\s\S]*?)\s*\$\$/g, (_, math) => `%%%MATH_BLOCK%%%${btoa(math)}%%%END%%%`)
+            .replace(/\$(.+?)\$/g, (_, math) => `%%%MATH_INLINE%%%${btoa(math)}%%%END%%%`);
+        
+          // 2. Let marked parse everything else
+          let html = marked.parse(protectedMarkdown);
+        
+          // 3. Restore math blocks (decoded from base64)
+          html = html
+            .replace(/%%%MATH_BLOCK%%%(.+?)%%%END%%%/g, (_, encoded) => `$$${atob(encoded)}$$`)
+            .replace(/%%%MATH_INLINE%%%(.+?)%%%END%%%/g, (_, encoded) => `\\(${atob(encoded)}\\)`);
+        
+          // 4. Set the inner HTML and call MathJax
           document.getElementById("post-content").innerHTML = html;
         
           if (window.MathJax && MathJax.typesetPromise) {
