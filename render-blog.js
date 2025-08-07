@@ -1,6 +1,6 @@
 const posts = [
   'control-theory.md',
-  // Add more markdown files here, e.g., 'mpc-intro.md'
+  // Add more posts here
 ];
 
 const blogList = document.getElementById('blog-list');
@@ -14,8 +14,9 @@ posts.forEach(post => {
       const title = titleMatch ? titleMatch[1] : 'Untitled';
       const summary = text.split('\n').slice(1, 5).join(' ');
       const postSlug = post.replace('.md', '');
-      const imageHTML = imageMatch
-        ? `<img src="images/${imageMatch[1]}" alt="Thumbnail" style="width: 120px; border-radius: 4px;" />`
+      const imageURL = imageMatch ? imageMatch[1].trim() : '';
+      const imageHTML = imageURL
+        ? `<img src="${imageURL}" alt="Thumbnail" style="width: 120px; border-radius: 4px;" />`
         : '';
 
       const blogHTML = `
