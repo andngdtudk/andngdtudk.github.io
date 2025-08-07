@@ -16,17 +16,12 @@ posts.forEach(post => {
 
       const lines = text.split('\n');
       const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
-      const summaryLines = contentLines.slice(0, 12).join(' ');
+      const summaryLines = contentLines.slice(0, 12).join(' ').trim();
 
-      // ✅ Apply drop-cap to first word
-      const firstWordMatch = summaryLines.trim().match(/^\s*(\S+)(.*)/s);
-      let summaryWithDropCap = summaryLines;
-      if (firstWordMatch) {
-        const firstWord = firstWordMatch[1];
-        const rest = firstWordMatch[2];
-        summaryWithDropCap = `<span class="drop-cap">${firstWord}</span>${rest}`;
-      }
-
+      // ✅ Apply drop-cap to first letter
+      const firstLetter = summaryLines.charAt(0);
+      const rest = summaryLines.slice(1);
+      const summaryWithDropCap = `<span class="drop-cap">${firstLetter}</span>${rest}`;
       const summaryHTML = marked.parseInline(summaryWithDropCap);
 
       const postSlug = post.replace('.md', '');
