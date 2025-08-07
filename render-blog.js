@@ -40,7 +40,7 @@ Promise.all(posts.map(post =>
         <div class="blog-content">
           <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
           <div class="blog-summary-container">${summaryHTML}</div>
-          <a href="blog-template.html?post=${postSlug}" class="blog-see-more">View article</a>
+          <a href="blog-template.html?post=${postSlug}" class="blog-see-more">Continue reading</a>
         </div>
       </div>
     `;
