@@ -8,10 +8,10 @@ In a typical system, such as a car cruise control or robotic arm, we want the ou
 
 The mathematical foundation of control systems often starts with state-space models:
 
-<p>$$\begin{aligned}
+$$\begin{aligned}
 \dot{x}(t) &= Ax(t) + Bu(t) \\
 y(t) &= Cx(t) + Du(t)
-\end{aligned}$$</p>
+\end{aligned}$$
 
 Here,  
 -  $x(t)$: state vector  
