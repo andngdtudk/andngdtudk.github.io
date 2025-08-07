@@ -136,7 +136,7 @@ body {
 .blog-card {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 40px;
   padding: 12px 20px;
   border-radius: 6px;
   background: #eee;
