@@ -29,9 +29,8 @@ posts.forEach(post => {
         <div class="blog-image-container">${imageHTML}</div>
         <div class="blog-content">
           <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-          <p class="blog-summary-container">
-            ${summaryHTML}<a href="blog-template.html?post=${postSlug}" class="blog-see-more"> See more</a>
-          </p>
+          <div class="blog-summary-container">${summaryHTML}</div>
+          <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
         </div>
       </div>
     `;
