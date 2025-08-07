@@ -13,8 +13,13 @@ posts.forEach(post => {
       const imageMatch = text.match(/<!--\s*image:\s*(.*?)\s*-->/);
       const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
 
+      // Extract the first few lines of content that aren't titles or comments
       const lines = text.split('\n');
-      const contentLines = lines.filter(line => !line.trim().startsWith('#') && !line.trim().startsWith('<!--'));
+      const contentLines = lines.filter(line =>
+        !line.trim().startsWith('#') &&
+        !line.trim().startsWith('<!--') &&
+        line.trim() !== ''
+      );
       const summaryLines = contentLines.slice(0, 7).join(' ');
       const summaryHTML = marked.parseInline(summaryLines);
 
@@ -35,8 +40,10 @@ posts.forEach(post => {
             ${imageHTML}
           </div>
           <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-            <h3 style="margin-bottom: 10px;"><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-            <p style="font-size: 15px; line-height: 1.5;">${summaryHTML}... <a href="blog-template.html?post=${postSlug}">See more</a></p>
+            <h3 style="margin-bottom: 10px;">
+              <a href="blog-template.html?post=${postSlug}">${title}</a>
+            </h3>
+            <p class="blog-summary">${summaryHTML}... <a href="blog-template.html?post=${postSlug}">See more</a></p>
           </div>
         </div>
       `;
