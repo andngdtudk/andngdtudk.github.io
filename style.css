@@ -140,18 +140,21 @@ body {
   margin-bottom: 20px;
   border-radius: 6px;
   gap: 20px;
-  align-items: flex-start; /* ✅ This is correct and already present */
+  align-items: flex-start; /* Important: Align top of image and text */
 }
 
 .blog-image-container {
   flex: 0 0 160px;
+  margin-top: 0; /* Remove any default spacing */
 }
 
 .blog-thumbnail {
   width: 160px;
-  height: auto; /* Let height be determined by image aspect ratio */
+  height: auto;
   object-fit: cover;
   border-radius: 4px;
+  display: block;
+  margin-top: 0; /* Ensure no top margin */
 }
 
 .blog-content {
