@@ -169,22 +169,22 @@ body {
 
 .blog-summary-container {
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Limit to 4 lines */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: justify;
   text-align-last: left;
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 14px;
   margin: 0;
   position: relative;
 }
 
 .blog-see-more {
+  margin-top: 6px;
   display: inline-block;
-  font-size: 15px;
-  margin-left: 6px;
+  font-size: 14px;
   white-space: nowrap;
   color: #13343B;
   text-decoration: underline;
