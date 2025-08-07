@@ -163,6 +163,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 0px; /* ✅ Lift text slightly to match image */
+  padding-right: 20px; /* or adjust the value as needed */
 }
 
 .blog-content h3 {
@@ -180,7 +181,7 @@ body {
   text-overflow: ellipsis;
   text-align: justify;
   text-align-last: left;
-  line-height: 1.6;
+  line-height: 1.3;
   font-size: 15px;
   margin: 0;
   position: relative;
