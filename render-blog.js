@@ -25,16 +25,16 @@ posts.forEach(post => {
         : '';
 
       const blogHTML = `
-        <div class="blog-card">
-          <div class="blog-image-container">${imageHTML}</div>
-          <div class="blog-content">
-            <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-            <p class="blog-summary-inline">
-            ${summaryHTML}<span class="blog-see-more-inline"><a href="blog-template.html?post=${postSlug}"> See more</a></span>
+      <div class="blog-card">
+        <div class="blog-image-container">${imageHTML}</div>
+        <div class="blog-content">
+          <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
+          <p class="blog-summary-container">
+            ${summaryHTML}<a href="blog-template.html?post=${postSlug}" class="blog-see-more"> See more</a>
           </p>
-          </div>
         </div>
-      `;
+      </div>
+    `;
       
 
       blogList.innerHTML += blogHTML;
