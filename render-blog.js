@@ -29,13 +29,14 @@ posts.forEach(post => {
           <div class="blog-image-container">${imageHTML}</div>
           <div class="blog-content">
             <h3><a href="blog-template.html?post=${postSlug}">${title}</a></h3>
-            <div class="blog-summary-container">
-              <p>${summaryHTML}</p>
-            </div>
-            <a href="blog-template.html?post=${postSlug}" class="blog-see-more">See more</a>
+            <p class="blog-summary-inline">
+              ${summaryHTML}
+              <a href="blog-template.html?post=${postSlug}" class="blog-see-more-inline">See more</a>
+            </p>
           </div>
         </div>
       `;
+      
 
       blogList.innerHTML += blogHTML;
     });
