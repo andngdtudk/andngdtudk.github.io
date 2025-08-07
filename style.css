@@ -154,7 +154,7 @@ body {
   object-fit: cover;
   border-radius: 4px;
   display: block;
-  margin-top: 4px; /* ✅ Fine-tuning alignment */
+  margin-top: 20px; /* ✅ Fine-tuning alignment */
 }
 
 .blog-content {
