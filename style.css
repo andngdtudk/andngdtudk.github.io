@@ -133,6 +133,14 @@ body {
   margin-right: 6px;
 }
 
+.blog-card p {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: justify;
+  text-align-last: left;
+  margin: 0;
+}
+
 /* Responsive disable for drop cap */
 @media (max-width: 768px) {
   .drop-cap {
