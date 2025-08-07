@@ -1,7 +1,5 @@
 <!-- image: control-room.webp -->
 
-<img src="images/control-room.webp" />
-
 # Control Theory: Foundation and Practice
 
 Control theory is a field of engineering and mathematics that focuses on how to influence the behavior of dynamic systems through inputs, often called **control signals**.
