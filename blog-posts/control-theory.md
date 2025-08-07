@@ -14,9 +14,9 @@ y(t) = Cx(t) + Du(t)
 $$
 
 Here,  
-- \( x(t) \): state vector  
-- \( u(t) \): control input  
-- \( y(t) \): measured output
+-  $x(t)$: state vector  
+- $u(t)$: control input  
+- $y(t)$: measured output
 
 These models can be linear or nonlinear, continuous or discrete.
 
