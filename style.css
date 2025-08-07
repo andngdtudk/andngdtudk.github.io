@@ -139,18 +139,17 @@ body {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 6px;
-  align-items: flex-start;
   gap: 20px;
+  align-items: flex-start; /* ✅ This is correct and already present */
 }
 
 .blog-image-container {
   flex: 0 0 160px;
-  height: 100%;
 }
 
 .blog-thumbnail {
   width: 160px;
-  height: 100%;
+  height: auto; /* Let height be determined by image aspect ratio */
   object-fit: cover;
   border-radius: 4px;
 }
@@ -167,7 +166,9 @@ body {
 }
 
 .blog-summary-container {
-  max-height: 9.5em; /* approx. 6 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Show only 4 lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: justify;
   text-align-last: left;
