@@ -8,15 +8,15 @@ In a typical system, such as a car cruise control or robotic arm, we want the ou
 
 The mathematical foundation of control systems often starts with state-space models:
 
-\[
+$$
 \dot{x}(t) = Ax(t) + Bu(t) \\
 y(t) = Cx(t) + Du(t)
-\]
+$$
 
 Here,  
--  \(x(t)\): state vector  
-- \(u(t)\): control input  
-- \(y(t)\): measured output
+-  $x(t)$: state vector  
+- $u(t)$: control input  
+- $y(t)$: measured output
 
 These models can be linear or nonlinear, continuous or discrete.
 
