@@ -1,4 +1,4 @@
-<!-- image: control-room.webp -->
+<!-- image: https://andngdtudk.github.io/images/control-room.webp -->
 
 # Control Theory: Foundation and Practice
 
