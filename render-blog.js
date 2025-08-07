@@ -1,6 +1,6 @@
 const posts = [
   'control-theory.md',
-  // Add more blog files here
+  // Add more blog files herea
 ];
 
 const blogList = document.getElementById('blog-list');
