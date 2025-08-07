@@ -162,7 +162,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 20px; /* ✅ Lift text slightly to match image */
+  margin-top: 0px; /* ✅ Lift text slightly to match image */
   padding-right: 20px; /* or adjust the value as needed */
 }
 
