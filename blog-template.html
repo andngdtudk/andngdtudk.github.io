@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog Post – Dang Viet Anh Nguyen</title>
+
+  <meta name="author" content="Dang Viet Anh Nguyen" />
+  <meta name="description" content="Blog post by Dang Viet Anh Nguyen" />
+
+  <!-- Load your global CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/btt0uyl.css">
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax for LaTeX equations -->
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .blog-post {
+      font-family: 'adobe-garamond-pro', serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #ffffff;
+    }
+
+    .blog-post h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .blog-post p {
+      margin-bottom: 16px;
+    }
+
+    .blog-post a {
+      color: #13343B;
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #13343B;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <main class="blog-post">
+      <a class="back-link" href="notes.html">← Back to Notes</a>
+      <div id="post-content">Loading...</div>
+    </main>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const postName = params.get("post");
+
+    if (!postName) {
+      document.getElementById("post-content").innerHTML = "<p>Post not found.</p>";
+    } else {
+      fetch(`blog-posts/${postName}.md`)
+        .then(response => {
+          if (!response.ok) throw new Error("Post not found");
+          return response.text();
+        })
+        .then(markdown => {
+          const html = marked.parse(markdown);
+          document.getElementById("post-content").innerHTML = html;
+          MathJax.typeset(); // Render LaTeX
+        })
+        .catch(error => {
+          document.getElementById("post-content").innerHTML = "<p>Error loading post.</p>";
+          console.error(error);
+        });
+    }
+  </script>
+</body>
+</html>
