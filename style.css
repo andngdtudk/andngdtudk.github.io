@@ -147,6 +147,7 @@ body {
   flex: 0 0 120px;
   display: flex;
   align-items: flex-start; /* aligns inside itself */
+  padding-top: 4px; /* fine-tune this */
 }
 
 .blog-thumbnail {
