@@ -184,9 +184,12 @@ body {
 }
 
 .blog-summary-inline {
-  display: inline;
-  font-size: 16px;
-  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Show only 4 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .blog-see-more-inline {
