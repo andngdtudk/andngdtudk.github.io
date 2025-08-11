@@ -2,22 +2,21 @@
 
 # Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
-*Copenhagen*, 11st August 2025
-
 Since the dawn of civilization, humans have been system builders.
 
 Long before we had the language of mathematics or the science of engineering, we were already intervening in the natural world to shape it for our survival and prosperity. Early hunter–gatherer societies learned to manage the timing and location of hunts (Ember, 2020). Agricultural communities developed irrigation networks to bring water to their crops, terraced hillsides to maximize arable land, and domesticated animals to share labor. These interventions were not random; they were purposeful manipulations of natural systems to create stability and predictability (Ozdogan, 2020).
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
-
+<div style="text-align: center; margin: 20px 0;">
 <figure>
     <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="50%">
     <figcaption>
         Figure 1: Leonardo da Vinci’s sketches illustrating early system designs for water-lifting mechanisms. These interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.  
-        Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>.
+        (Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>.)
     </figcaption>
 </figure>
+</div>
 
 # From Natural to Engineered Systems
 
@@ -29,6 +28,7 @@ The late 20th century brought another transformation with the digitization of sy
 
 Then came the era of artificial intelligence. Machine learning allowed systems to adapt based on data rather than solely on pre-programmed instructions. Reinforcement learning enabled them to learn optimal behaviors through interaction. And in many domains — transportation, energy, manufacturing — we began to see multi-agent systems emerge, where many decision-making entities operate and interact within the same environment (Sutton, 1998).
 
+<div style="text-align: center; margin: 20px 0;">
 <figure>
     <img src="images/enigma-01.png" alt="The Enigma machine used during World War II" width="70%">
     <figcaption>
@@ -36,6 +36,7 @@ Then came the era of artificial intelligence. Machine learning allowed systems t
         Source: <a href="https://www.dtu.dk/english/newsarchive/2023/01/krypteringstidslinje">DTU — Encryption Timeline</a>.
     </figcaption>
 </figure>
+</div>
 
 # Enter Physical AI
 
