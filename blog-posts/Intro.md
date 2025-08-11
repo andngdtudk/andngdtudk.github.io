@@ -8,22 +8,22 @@ Long before we had the language of mathematics or the science of engineering, we
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
-<div style="text-align: center; margin: 20px 0;">
-<figure>
-    <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="50%">
-    <figcaption>
-        Figure 1: Leonardo da Vinci’s sketches of water-lifting devices
-        <br>
-        <span style="font-size: 0.9em;">
-            Illustrating early system designs for water-lifting mechanisms, these interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.
-        </span>
-        <br>
-        <span style="font-size: 0.8em; font-style: italic;">
-            Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>
-        </span>
-    </figcaption>
-</figure>
-</div>
+<p align="center">
+    <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" style="display: block; margin: auto; width: 50%;">
+</p>
+
+<figcaption style="text-align: center;">
+    Figure 1. Leonardo da Vinci’s sketches of water-lifting devices
+    <br>
+    <span style="font-size: 0.9em;">
+        Illustrating early system designs for water-lifting mechanisms, these interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.
+    </span>
+    <br>
+    <span style="font-size: 0.8em; font-style: italic;">
+        Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>
+    </span>
+</figcaption>
+
 
 
 ## From Natural to Engineered Systems
@@ -41,7 +41,7 @@ Then came the era of artificial intelligence. Machine learning allowed systems t
 </p>
 
 <figcaption style="text-align: center;">
-    Figure 2: The Enigma machine
+    Figure 2. The Enigma machine
     <br>
     <span style="font-size: 0.9em;">
          An electro-mechanical cipher device used by Nazi Germany during World War II to encrypt military communications. Its complexity and adaptability made it a formidable cryptographic system until Allied codebreakers, most notably at Bletchley Park, successfully deciphered its codes — a breakthrough that significantly influenced the outcome of the war.  
