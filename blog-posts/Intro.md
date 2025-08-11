@@ -70,22 +70,6 @@ I work at the intersection of machine learning, operations research, and control
 
 This blog series is my attempt to explore that bigger picture. We will start with the foundations — what a system is and how we model it — and move toward modern methods for decision-making in dynamic, uncertain, multi-agent environments. Along the way, we will touch on complexity science, game theory, optimization, control theory, reinforcement learning, model-based approaches, AlphaZero, and the emerging fields of Agentic and Physical AI, with applications in transportation and logistics.
 
-<p align="center">
-    <img src="images/CAVs-01.png" alt="Connected and Autonomous Vehicles (CAVs) network visualization" style="display: block; margin: auto; width: 70%;">
-</p>
-
-<figcaption style="text-align: center;">
-    Figure 3: Connected and Autonomous Vehicles (CAVs)
-    <br>
-    <span style="font-size: 0.9em;">
-        Vehicles and infrastructure communicate in real time—via vehicle-to-vehicle (V2V) and vehicle-to-infrastructure (V2I) systems—to enable coordinated decision-making, enhanced safety, and smoother traffic flow. It exemplifies the evolution toward intelligent transportation networks grounded in system thinking.
-    </span>
-    <br>
-    <span style="font-size: 0.8em; font-style: italic;">
-        Source: <a href="https://www.naco.org/resources/featured/connected-autonomous-vehicles-toolkit">National Association of Counties — CAVs Toolkit</a>
-    </span>
-</figcaption>
-
 
 ## Closing Thoughts
 
