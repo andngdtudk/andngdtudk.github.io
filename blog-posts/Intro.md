@@ -12,8 +12,11 @@ Over time, these localized interventions scaled into infrastructures that suppor
 
 
 <figure>
-    <img src="/images/davinci-01.png" alt="System components diagram" width="400">
-    <figcaption>Figure 1: A simple diagram showing system components and their interactions.</figcaption>
+    <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="70%">
+    <figcaption>
+        Figure 1: Leonardo da Vinci’s sketches illustrating early system designs for water-lifting mechanisms. These interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.  
+        Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>.
+    </figcaption>
 </figure>
 
 # From Natural to Engineered Systems
