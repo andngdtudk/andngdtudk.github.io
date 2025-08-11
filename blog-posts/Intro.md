@@ -8,6 +8,22 @@ Long before we had the language of mathematics or the science of engineering, we
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
+<div style="text-align: center; margin: 20px 0;">
+<figure>
+    <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="50%">
+    <figcaption>
+        Leonardo da Vinci’s sketches of water-lifting devices
+        <br>
+        <span style="font-size: 0.9em;">
+            Illustrating early system designs for water-lifting mechanisms, these interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.
+        </span>
+        <br>
+        <span style="font-size: 0.8em; font-style: italic;">
+            Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>
+        </span>
+    </figcaption>
+</figure>
+</div>
 
 
 ## From Natural to Engineered Systems
