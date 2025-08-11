@@ -8,6 +8,8 @@ Long before we had the language of mathematics or the science of engineering, we
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
+![This is the description (caption)](/images/davinci.png)
+
 # From Natural to Engineered Systems
 
 The Industrial Revolution marked a profound shift. Our interventions were no longer limited to adapting natural systems; we began to design artificial systems from the ground up. Steam engines, railways, power grids, and mass production lines created a level of complexity and interdependence never before seen. With industrialization came new control challenges: how to maintain stability in mechanical systems, how to synchronize operations, and how to coordinate supply and demand at scale. This period saw the birth of control theory, operations research, and the mathematical study of systems — disciplines that would later form the foundation for managing much more complex, dynamic networks (Andrei, 2006).
