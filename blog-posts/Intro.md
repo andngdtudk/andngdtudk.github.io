@@ -20,6 +20,22 @@ The late 20th century brought another transformation with the digitization of sy
 
 Then came the era of artificial intelligence. Machine learning allowed systems to adapt based on data rather than solely on pre-programmed instructions. Reinforcement learning enabled them to learn optimal behaviors through interaction. And in many domains — transportation, energy, manufacturing — we began to see multi-agent systems emerge, where many decision-making entities operate and interact within the same environment (Sutton, 1998).
 
+<p align="center">
+    <img src="images/enigma-01.png" alt="The Enigma machine" style="display: block; margin: auto; width: 70%;">
+</p>
+
+<figcaption style="text-align: center;">
+    The Enigma machine
+    <br>
+    <span style="font-size: 0.9em;">
+         An electro-mechanical cipher device used by Nazi Germany during World War II to encrypt military communications. Its complexity and adaptability made it a formidable cryptographic system until Allied codebreakers, most notably at Bletchley Park, successfully deciphered its codes — a breakthrough that significantly influenced the outcome of the war.  
+    </span>
+    <br>
+    <span style="font-size: 0.8em; font-style: italic;">
+        Source: <a href="https://www.dtu.dk/english/newsarchive/2023/01/krypteringstidslinje">DTU — Encryption Timeline</a>
+    </span>
+</figcaption>
+
 ## Enter Physical AI
 
 We have now entered a stage where intelligent systems interact with the physical world — what is often called _Physical AI_. These systems perceive the world through sensors, make decisions based on learned or optimized policies, act in ways that change their environment, and adapt to uncertainty, disturbances, and changing objectives. Autonomous vehicles navigating city streets, drones delivering packages, robotic warehouses organizing inventory, and AI-driven traffic control systems managing urban congestion are all examples of Physical AI in action (NVIDIA Corporation, n.d.).
