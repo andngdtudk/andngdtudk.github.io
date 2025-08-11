@@ -12,7 +12,7 @@ Over time, these localized interventions scaled into infrastructures that suppor
 
 
 <figure>
-    <img src="/images/davinci-01.png" alt="System components diagram" width="200">
+    <img src="/images/davinci-01.png" alt="System components diagram" width="400">
     <figcaption>Figure 1: A simple diagram showing system components and their interactions.</figcaption>
 </figure>
 
