@@ -70,6 +70,23 @@ I work at the intersection of machine learning, operations research, and control
 
 This blog series is my attempt to explore that bigger picture. We will start with the foundations — what a system is and how we model it — and move toward modern methods for decision-making in dynamic, uncertain, multi-agent environments. Along the way, we will touch on complexity science, game theory, optimization, control theory, reinforcement learning, model-based approaches, AlphaZero, and the emerging fields of Agentic and Physical AI, with applications in transportation and logistics.
 
+<p align="center">
+    <img src="images/AlphaZero-01.png" alt="AlphaZero's multi-game learning capabilities" style="display: block; margin: auto; width: 70%;">
+</p>
+
+<figcaption style="text-align: center;">
+    Figure 3. AlphaZero’s multi-game learning capabilities
+    <br>
+    <span style="font-size: 0.9em;">
+        AlphaZero, developed by DeepMind, is a groundbreaking reinforcement learning system capable of mastering multiple complex games—such as Chess, Shogi, and Go—without human guidance. By combining deep neural networks with Monte Carlo Tree Search (MCTS), AlphaZero learns entirely from self-play, demonstrating a form of general intelligence in strategic reasoning that transcends any single game.
+    </span>
+    <br>
+    <span style="font-size: 0.8em; font-style: italic;">
+        Source: DeepMind (Image by Somers — <a href="https://www.deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go">AlphaZero Blog</a>)
+    </span>
+</figcaption>
+
+
 
 ## Closing Thoughts
 
