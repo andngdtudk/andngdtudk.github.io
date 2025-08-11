@@ -71,7 +71,7 @@ I work at the intersection of machine learning, operations research, and control
 This blog series is my attempt to explore that bigger picture. We will start with the foundations — what a system is and how we model it — and move toward modern methods for decision-making in dynamic, uncertain, multi-agent environments. Along the way, we will touch on complexity science, game theory, optimization, control theory, reinforcement learning, model-based approaches, AlphaZero, and the emerging fields of Agentic and Physical AI, with applications in transportation and logistics.
 
 <p align="center">
-    <img src="images/AlphaZero-01.png" alt="AlphaZero's multi-game learning capabilities" style="display: block; margin: auto; width: 70%;">
+    <img src="images/AlphaZero-01.png" alt="AlphaZero's multi-game learning capabilities" style="display: block; margin: auto; width: 50%;">
 </p>
 
 <figcaption style="text-align: center;">
