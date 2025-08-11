@@ -1,5 +1,5 @@
 const posts = [
-  'intro.md',
+  'Intro.md',
   'control-theory.md',
   'operations-research.md',
   // Add more blog files here
