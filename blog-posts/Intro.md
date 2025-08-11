@@ -1,6 +1,6 @@
 <!-- image: https://andngdtudk.github.io/images/davinci-01.png -->
 
-# An Introduction to Intelligence, Control, and Mobility
+# Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
 Since the dawn of civilization, humans have been system builders.
 
@@ -8,15 +8,7 @@ Long before we had the language of mathematics or the science of engineering, we
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
-<div style="text-align: center; margin: 20px 0;">
-<figure>
-    <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="50%">
-    <figcaption>
-        Figure 1: Leonardo da Vinci’s sketches illustrating early system designs for water-lifting mechanisms. These interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.  
-        (Source: <a href="https://www.incose-cc.org/blog/systems-engineering-now-more-than-ever">INCOSE-CC Blog</a>.)
-    </figcaption>
-</figure>
-</div>
+
 
 ## From Natural to Engineered Systems
 
@@ -27,16 +19,6 @@ The Industrial Revolution marked a profound shift. Our interventions were no lon
 The late 20th century brought another transformation with the digitization of systems. Information could now flow faster than goods or people, and networks became as much about signals as about physical materials. Logistics chains, financial markets, and communication infrastructures were increasingly automated. Decision-making rules were embedded directly into machines, from autopilot systems in aircraft to traffic signal controllers in cities.
 
 Then came the era of artificial intelligence. Machine learning allowed systems to adapt based on data rather than solely on pre-programmed instructions. Reinforcement learning enabled them to learn optimal behaviors through interaction. And in many domains — transportation, energy, manufacturing — we began to see multi-agent systems emerge, where many decision-making entities operate and interact within the same environment (Sutton, 1998).
-
-<div style="text-align: center; margin: 20px 0;">
-<figure>
-    <img src="images/enigma-01.png" alt="The Enigma machine used during World War II" width="70%">
-    <figcaption>
-        Figure 2: The Enigma machine, an electro-mechanical cipher device used by Nazi Germany during World War II to encrypt military communications. Its complexity and adaptability made it a formidable cryptographic system until Allied codebreakers, most notably at Bletchley Park, successfully deciphered its codes — a breakthrough that significantly influenced the outcome of the war.  
-        Source: <a href="https://www.dtu.dk/english/newsarchive/2023/01/krypteringstidslinje">DTU — Encryption Timeline</a>.
-    </figcaption>
-</figure>
-</div>
 
 ## Enter Physical AI
 
