@@ -8,7 +8,7 @@ Long before we had the language of mathematics or the science of engineering, we
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
-![This is the description (caption)](/images/davinci.png)
+![This is the description (caption)](/images/davinci-01.png)
 
 # From Natural to Engineered Systems
 
