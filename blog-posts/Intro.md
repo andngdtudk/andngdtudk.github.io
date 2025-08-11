@@ -42,16 +42,16 @@ From our earliest interventions in nature to today’s autonomous systems, the a
 
 In the next post, we will return to the foundation: **What exactly is a system — and why does that question matter for the future of AI and mobility?**
 
-**Andrei, N.** (2006). Modern control theory: A historical perspective. _Studies in Informatics and Control, 10_(1), 51–62. [https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf](https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf)
+Andrei, N. (2006). Modern control theory: A historical perspective. _Studies in Informatics and Control, 10_(1), 51–62. [https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf](https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf)
 
-**Dalgaard, C.-J., Kaarsen, N., Olsson, O., & Selaya, P.** (2018). Roman roads to prosperity: Persistence and non-persistence of public infrastructure. _The Economic Journal, 128_(616), 1394–1426. [https://doi.org/10.1111/ecoj.12482](https://doi.org/10.1111/ecoj.12482)  
+Dalgaard, C.-J., Kaarsen, N., Olsson, O., & Selaya, P. (2018). Roman roads to prosperity: Persistence and non-persistence of public infrastructure. _The Economic Journal, 128_(616), 1394–1426. [https://doi.org/10.1111/ecoj.12482](https://doi.org/10.1111/ecoj.12482)  
 
-**Ember, C. R.** (2020). Hunter-gatherers (foragers). In _Explaining human culture_ (pp. 1–19). Human Relations Area Files. [https://hraf.yale.edu/ehc/summaries/hunter-gatherers](https://hraf.yale.edu/ehc/summaries/hunter-gatherers)
+Ember, C. R. (2020). Hunter-gatherers (foragers). In _Explaining human culture_ (pp. 1–19). Human Relations Area Files. [https://hraf.yale.edu/ehc/summaries/hunter-gatherers](https://hraf.yale.edu/ehc/summaries/hunter-gatherers)
 
-**Ozdogan, M., & Rodell, M.** (2020). Irrigation of world agricultural lands: Evolution through the millennia. _Water, 12_(5), 1285. [https://doi.org/10.3390/w12051285](https://doi.org/10.3390/w12051285)
+Ozdogan, M., & Rodell, M. (2020). Irrigation of world agricultural lands: Evolution through the millennia. _Water, 12_(5), 1285. [https://doi.org/10.3390/w12051285](https://doi.org/10.3390/w12051285)
 
-**NVIDIA Corporation.** (n.d.). _What is physical AI?_ NVIDIA. [https://www.nvidia.com/en-us/glossary/generative-physical-ai/](https://www.nvidia.com/en-us/glossary/generative-physical-ai/)
+NVIDIA Corporation. (n.d.). _What is physical AI?_ NVIDIA. [https://www.nvidia.com/en-us/glossary/generative-physical-ai/](https://www.nvidia.com/en-us/glossary/generative-physical-ai/)
 
-**Mobus, G. E.** (2022). Principles of systems science. In _Systems science: Theory, analysis, modeling, and design_ (pp. 41–87). Springer International Publishing. [https://doi.org/10.1007/978-3-030-97559-0_2](https://doi.org/10.1007/978-3-030-97559-0_2)
+Mobus, G. E. (2022). Principles of systems science. In _Systems science: Theory, analysis, modeling, and design_ (pp. 41–87). Springer International Publishing. [https://doi.org/10.1007/978-3-030-97559-0_2](https://doi.org/10.1007/978-3-030-97559-0_2)
 
-**Sutton, R. S., & Barto, A. G.** (2018). _Reinforcement learning: An introduction_ (2nd ed.). MIT Press. [http://incompleteideas.net/book/the-book-2nd.html](http://incompleteideas.net/book/the-book-2nd.html)
+Sutton, R. S., & Barto, A. G. (2018). _Reinforcement learning: An introduction_ (2nd ed.). MIT Press. [http://incompleteideas.net/book/the-book-2nd.html](http://incompleteideas.net/book/the-book-2nd.html)
