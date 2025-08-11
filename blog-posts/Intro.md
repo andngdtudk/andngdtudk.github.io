@@ -12,7 +12,7 @@ Over time, these localized interventions scaled into infrastructures that suppor
 <figure>
     <img src="images/davinci-01.png" alt="Leonardo da Vinci's sketches of water-lifting devices" width="50%">
     <figcaption>
-        Leonardo da Vinci’s sketches of water-lifting devices
+        Figure 1: Leonardo da Vinci’s sketches of water-lifting devices
         <br>
         <span style="font-size: 0.9em;">
             Illustrating early system designs for water-lifting mechanisms, these interconnected mechanical components exemplify how humans have long engineered solutions to control and manipulate natural resources — an early form of systems thinking.
