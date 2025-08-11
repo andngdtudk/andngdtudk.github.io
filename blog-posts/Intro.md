@@ -1,3 +1,5 @@
+<!-- image: https://andngdtudk.github.io/images/davinci-01.png -->
+
 # Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
 *Copenhagen*, 11st August 2025
