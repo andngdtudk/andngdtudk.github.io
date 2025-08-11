@@ -25,7 +25,7 @@ Then came the era of artificial intelligence. Machine learning allowed systems t
 </p>
 
 <figcaption style="text-align: center;">
-    The Enigma machine
+    Figure 2: The Enigma machine
     <br>
     <span style="font-size: 0.9em;">
          An electro-mechanical cipher device used by Nazi Germany during World War II to encrypt military communications. Its complexity and adaptability made it a formidable cryptographic system until Allied codebreakers, most notably at Bletchley Park, successfully deciphered its codes — a breakthrough that significantly influenced the outcome of the war.  
