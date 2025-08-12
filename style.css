@@ -339,8 +339,16 @@ a {
 
   /* Full article page (blog-template.html) */
   .blog-post {
-    padding: 12px 8px;           /* was 40px 20px */
-    max-width: 100%;
+    /* expand beyond the wrapper's mobile padding (10px per side in your CSS) */
+    margin-left: -10px;
+    margin-right: -10px;
+
+    /* keep comfy inner padding */
+    padding-left: 12px;
+    padding-right: 12px;
+
+    max-width: none; /* ensure no extra constraint */
+    width: 100%;
   }
 
   .back-link {
