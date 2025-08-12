@@ -336,9 +336,7 @@ a {
     font-size: 13px;
     padding: 20px 10px 0;
   }
-}
-
-/* Tighten global padding on phones */
+  /* Tighten global padding on phones */
   body {
     padding: 20px 10px;           /* was 40px 20px */
   }
@@ -403,6 +401,8 @@ a {
     line-height: inherit;
     display: inline;
   }
+}
+
 
 /* Hover effect for footer logos only */
 .site-footer a img:hover {
