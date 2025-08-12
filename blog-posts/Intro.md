@@ -4,7 +4,7 @@
 
 Since the dawn of civilization, humans have been system builders.
 
-Long before we had the language of mathematics or the science of engineering, we were already intervening in the natural world to shape it for our survival and prosperity. Early hunter–gatherer societies learned to manage the timing and location of hunts (Ember, 2020). Agricultural communities developed irrigation networks to bring water to their crops, terraced hillsides to maximize arable land, and domesticated animals to share labor. These interventions were not random; they were purposeful manipulations of natural systems to create stability and predictability (Ozdogan, 2020).
+Long before we had the language of mathematics or the science of engineering, we were already intervening in the natural world to shape it for our survival and prosperity. Early hunter–gatherer societies learned to manage the timing and location of hunts (Ember, 2020). Agricultural communities developed irrigation networks to bring water to their crops, terraced hillsides to maximize arable land, and domesticated animals to share labor. These interventions were not random; they were purposeful manipulations of natural systems to create stability and predictability (Sojka, Bjorneberg, & Entry, 2002).
 
 Over time, these localized interventions scaled into infrastructures that supported entire civilizations. We constructed roads to connect cities, ports to facilitate trade, and governance systems to coordinate collective action. The development of writing itself can be seen as a systemic intervention — a way to store, transmit, and manage information beyond the limits of human memory (Dalgaard, 2021).
 
@@ -100,10 +100,10 @@ Dalgaard, C.-J., Kaarsen, N., Olsson, O., & Selaya, P. (2018). Roman roads to p
 
 Ember, C. R. (2020). Hunter-gatherers (foragers). In _Explaining human culture_ (pp. 1–19). Human Relations Area Files. [https://hraf.yale.edu/ehc/summaries/hunter-gatherers](https://hraf.yale.edu/ehc/summaries/hunter-gatherers)
 
-Ozdogan, M., & Rodell, M. (2020). Irrigation of world agricultural lands: Evolution through the millennia. _Water, 12_(5), 1285. [https://doi.org/10.3390/w12051285](https://doi.org/10.3390/w12051285)
-
 NVIDIA Corporation. (n.d.). _What is physical AI?_ NVIDIA. [https://www.nvidia.com/en-us/glossary/generative-physical-ai/](https://www.nvidia.com/en-us/glossary/generative-physical-ai/)
 
 Mobus, G. E. (2022). Principles of systems science. In _Systems science: Theory, analysis, modeling, and design_ (pp. 41–87). Springer International Publishing. [https://doi.org/10.1007/978-3-030-97559-0_2](https://doi.org/10.1007/978-3-030-97559-0_2)
 
 Sutton, R. S., & Barto, A. G. (2018). _Reinforcement learning: An introduction_ (2nd ed.). MIT Press. [http://incompleteideas.net/book/the-book-2nd.html](http://incompleteideas.net/book/the-book-2nd.html)
+
+Sojka, R. E., Bjorneberg, D. L., & Entry, J. A. (2002). Irrigation: An historical perspective. In _R. Lal (Ed.), Encyclopedia of soil science_ (1st ed.). Marcel Dekker. [https://eprints.nwisrl.ars.usda.gov/815/1/1070.pdf](https://eprints.nwisrl.ars.usda.gov/815/1/1070.pdf)
