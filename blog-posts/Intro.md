@@ -30,7 +30,7 @@ Over time, these localized interventions scaled into infrastructures that suppor
 
 The Industrial Revolution marked a profound shift. Our interventions were no longer limited to adapting natural systems; we began to design artificial systems from the ground up. Steam engines, railways, power grids, and mass production lines created a level of complexity and interdependence never before seen. With industrialization came new control challenges: how to maintain stability in mechanical systems, how to synchronize operations, and how to coordinate supply and demand at scale. This period saw the birth of control theory, operations research, and the mathematical study of systems — disciplines that would later form the foundation for managing much more complex, dynamic networks (Andrei, 2006).
 
-## The Information Age and the Rise of Intelligent Systems
+### The Information Age and the Rise of Intelligent Systems
 
 The late 20th century brought another transformation with the digitization of systems. Information could now flow faster than goods or people, and networks became as much about signals as about physical materials. Logistics chains, financial markets, and communication infrastructures were increasingly automated. Decision-making rules were embedded directly into machines, from autopilot systems in aircraft to traffic signal controllers in cities.
 
@@ -52,19 +52,19 @@ Then came the era of artificial intelligence. Machine learning allowed systems t
     </span>
 </figcaption>
 
-## Enter Physical AI
+### Enter Physical AI
 
 We have now entered a stage where intelligent systems interact with the physical world — what is often called _Physical AI_. These systems perceive the world through sensors, make decisions based on learned or optimized policies, act in ways that change their environment, and adapt to uncertainty, disturbances, and changing objectives. Autonomous vehicles navigating city streets, drones delivering packages, robotic warehouses organizing inventory, and AI-driven traffic control systems managing urban congestion are all examples of Physical AI in action (NVIDIA Corporation, n.d.).
 
 With this capability comes new complexity. We must ask how to ensure safety and reliability when decisions are made autonomously, how to model and predict the behavior of a system made up of many interacting intelligent agents, and how to design control mechanisms that remain effective under uncertainty and incomplete information. These are the kinds of questions that drive my own research.
 
-## Why Start with Systems Thinking?
+### Why Start with Systems Thinking?
 
 All of these examples — from ancient irrigation channels to modern autonomous vehicles — share one thing: they are systems. A system is more than a collection of parts. It is a set of elements connected by relationships, operating within a boundary, and serving a purpose. Understanding systems requires identifying their components, studying how they influence one another, tracing feedback loops, and recognizing the emergence of new patterns from these interactions (Mobus, 2022). 
 
 Systems thinking is the lens that lets us connect concepts from different disciplines. Whether it is a biological ecosystem, a transportation network, or a fleet of autonomous robots, the fundamental challenges of stability, adaptability, efficiency, and resilience are shared.
 
-## Why This Blog Series?
+### Why This Blog Series?
 
 I work at the intersection of machine learning, operations research, and control, with a focus on applying reinforcement learning to optimize large-scale, multi-agent systems in transportation and logistics. In this space, I have noticed that seemingly unrelated fields often address the same underlying problems from different perspectives. Complex, real-world problems demand a cross-disciplinary approach, and understanding why certain methods work requires stepping back and seeing the bigger picture.
 
@@ -88,7 +88,7 @@ This blog series is my attempt to explore that bigger picture. We will start wit
 
 
 
-## Closing Thoughts
+### Closing Thoughts
 
 From our earliest interventions in nature to today’s autonomous systems, the arc of human innovation has been one of system design, control, and adaptation. We have moved from shaping landscapes to shaping flows of data, decisions, and actions. As our systems become more intelligent, our responsibility to understand them grows.
 
