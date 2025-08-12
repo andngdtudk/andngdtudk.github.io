@@ -73,6 +73,28 @@
       color: #13343B;
       font-size: 14px;
     }
+
+    @media (max-width: 768px) {
+    /* Let the wrapper breathe to the edges on blog pages */
+    .page-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    /* Make the article use the full phone width with lighter padding */
+    .blog-post {
+      max-width: none;
+      width: 100%;
+      padding: 14px 12px; /* try 12–16px per side for comfort */
+      margin: 0;          /* ensure no extra margins sneak in */
+    }
+  
+    /* Optional: tighten the back-link spacing a bit */
+    .back-link {
+      margin-bottom: 16px;
+      padding: 0 12px;
+    }
+  }
   </style>
 </head>
 
