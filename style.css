@@ -336,16 +336,6 @@ a {
     font-size: 13px;
     padding: 20px 10px 0;
   }
-  /* Tighten global padding on phones */
-  body {
-    padding: 20px 10px;           /* was 40px 20px */
-  }
-
-  .page-wrapper {
-    padding-left: 10px;           /* was 20px */
-    padding-right: 10px;          /* was 20px */
-    max-width: 100%;
-  }
 
   /* Full article page (blog-template.html) */
   .blog-post {
