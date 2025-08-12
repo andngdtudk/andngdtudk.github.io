@@ -339,7 +339,7 @@ a {
 
   /* Full article page (blog-template.html) */
   .blog-post {
-    padding: 20px 12px;           /* was 40px 20px */
+    padding: 12px 8px;           /* was 40px 20px */
     max-width: 100%;
   }
 
