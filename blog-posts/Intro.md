@@ -2,9 +2,7 @@
 
 # Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
-<span style="font-size: 0.8em; font-style: italic;">
-        Copenhagen, 11th August 2025
-    </span>
+*Copenhagen, 11th August 2025*
 
 Since the dawn of civilization, humans have been system builders.
 
