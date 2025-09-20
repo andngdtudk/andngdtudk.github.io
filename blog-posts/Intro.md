@@ -2,6 +2,10 @@
 
 # Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
+<span style="font-size: 0.8em; font-style: italic;">
+        Copenhagen, 11th August 2025
+    </span>
+
 Since the dawn of civilization, humans have been system builders.
 
 Long before we had the language of mathematics or the science of engineering, we were already intervening in the natural world to shape it for our survival and prosperity. Early hunter–gatherer societies learned to manage the timing and location of hunts (Ember, 2020). Agricultural communities developed irrigation networks to bring water to their crops, terraced hillsides to maximize arable land, and domesticated animals to share labor. These interventions were not random; they were purposeful manipulations of natural systems to create stability and predictability (Sojka, Bjorneberg, & Entry, 2002).
