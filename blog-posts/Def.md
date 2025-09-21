@@ -1,3 +1,5 @@
+<!-- image: https://andngdtudk.github.io/images/computer.jpg -->
+
 # What Is a System? — Definitions, Characteristics, and Classifications
 
 _Copenhagen_, 25th August 2025
@@ -70,3 +72,4 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
