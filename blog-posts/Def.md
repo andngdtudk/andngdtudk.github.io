@@ -54,15 +54,15 @@ All systems, from biological ecosystems to transportation networks to multi-agen
 
 Not all systems are created equal, and understanding different types of systems helps us choose appropriate modeling and control approaches.
 
-**Simple systems** have few components with straightforward interactions — a pendulum or a basic feedback controller is an example. **Complex systems** have many components with nonlinear interactions that can produce surprising behaviors, like urban transportation networks or large-scale AI systems.
+**Simple vs. Complex Systems**: Simple systems have few components with straightforward interactions — a pendulum or a basic feedback controller is an example. Complex systems have many components with nonlinear interactions that can produce surprising behaviors, like urban transportation networks or large-scale AI systems.
 
-**Static systems** do not change over time, while **dynamic systems** evolve. Most interesting real-world systems are dynamic — an autonomous vehicle's perception of its environment is constantly updating.
+**Static vs. Dynamic Systems**: Static systems do not change over time, while dynamic systems evolve. Most interesting real-world systems are dynamic — an autonomous vehicle's perception of its environment is constantly updating.
 
-**Deterministic systems** produce predictable outputs given specific inputs, while **stochastic systems** involve randomness or uncertainty. Real-world systems almost always have stochastic components: sensor noise, unpredictable human behavior, or environmental variation.
+**Deterministic vs. Stochastic Systems**: Deterministic systems produce predictable outputs given specific inputs, while stochastic systems involve randomness or uncertainty. Real-world systems almost always have stochastic components: sensor noise, unpredictable human behavior, or environmental variation.
 
-**Closed systems** do not exchange anything with their environment, while **open systems** do — and most practical systems are open, receiving inputs and sending outputs.
+**Open vs. Closed Systems**: Closed systems do not exchange anything with their environment, while open systems do — and most practical systems are open, receiving inputs and sending outputs.
 
-**Centralized systems** have a single point of control, while **distributed systems** spread decision-making across multiple nodes or agents. Modern AI and mobility applications increasingly rely on distributed approaches — think of a smart city where traffic optimization is handled locally at intersections that coordinate with one another.
+**Centralized vs. Distributed Systems**: Centralized systems have a single point of control, while distributed systems spread decision-making across multiple nodes or agents. Modern AI and mobility applications increasingly rely on distributed approaches — think of a smart city where traffic optimization is handled locally at intersections that coordinate with one another.
 
 ## Why These Distinctions Matter for AI and Mobility
 
@@ -88,6 +88,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
