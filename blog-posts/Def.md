@@ -8,6 +8,22 @@ In my previous post, I traced humanity's journey from ancient irrigation network
 
 Consider these scenarios: A flock of birds suddenly changes direction mid-flight. A traffic jam forms on an empty highway for no apparent reason. A supply chain disruption in one region causes shortages thousands of miles away. An autonomous vehicle fleet learns to coordinate without explicit communication. What connects these seemingly disparate phenomena? They are all examples of systems in action — collections of interacting parts that produce behaviors and outcomes that none of the individual parts could achieve alone.
 
+<p align="center">
+    <img src="images/bird_flock-01.png" alt="Flock of birds in coordinated motion" style="display: block; margin: auto; width: 75%;">
+</p>
+
+<figcaption style="text-align: center;">
+    Figure 1: A murmuration of starlings forming complex, fluid patterns in the sky. 
+    <br>
+    <span style="font-size: 0.9em;">
+        This emergent behavior arises from simple local rules followed by each bird — aligning with neighbors, avoiding collisions, and staying close — producing a collective motion that appears highly coordinated at the system level.
+    </span>
+    <br>
+    <span style="font-size: 0.8em; font-style: italic;">
+        Source: <a href="https://www.howitworksdaily.com/why-do-birds-flock-together/">How it works</a>
+    </span>
+</figcaption>
+
 Understanding what makes something a "system" is crucial for anyone working with complex, dynamic environments. Whether you're designing an AI agent, optimizing a logistics network, or trying to predict emergent behaviors in multi-agent scenarios, the principles of systems thinking provide the foundational lens through which to approach these challenges.
 
 ## Defining a System: More Than the Sum of Its Parts
@@ -72,5 +88,6 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
