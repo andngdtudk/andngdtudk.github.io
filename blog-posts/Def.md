@@ -64,6 +64,8 @@ Not all systems are created equal, and understanding different types of systems 
 
 **Centralized vs. Distributed Systems**: Centralized systems have a single point of control, while distributed systems spread decision-making across multiple nodes or agents. Modern AI and mobility applications increasingly rely on distributed approaches — think of a smart city where traffic optimization is handled locally at intersections that coordinate with one another.
 
+**Single-Agent vs. Multi-Agent Systems**: Another important dimension of classification considers the number of decision-makers. A single-agent system has one entity making decisions to achieve its objectives, such as a thermostat regulating temperature or a reinforcement learning agent learning to play a video game. A multi-agent system, by contrast, consists of multiple decision-makers, each potentially with its own goals and information. Examples include fleets of autonomous vehicles, power grids with many independent participants, or social and economic systems. Multi-agent systems are inherently more complex because the environment becomes non-stationary — as each agent adapts, it changes the conditions faced by the others — often requiring coordination, negotiation, or game-theoretic reasoning.
+
 ## Why These Distinctions Matter for AI and Mobility
 
 Understanding these classifications is not just an academic exercise. It directly informs how we model, control, and optimize real-world systems. A complex, stochastic, dynamic system requires different mathematical tools than a simple, deterministic one. Centralized strategies that work in closed systems can fail in open, distributed environments. The behavior of complex systems can be fundamentally unpredictable in detail, which is why robust optimization, uncertainty quantification, and decentralized learning strategies have become central to modern research.
@@ -88,6 +90,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
