@@ -8,7 +8,7 @@ In my previous post, I traced humanity's journey from ancient irrigation network
 
 Consider these scenarios: A flock of birds suddenly changes direction mid-flight. A traffic jam forms on an empty highway for no apparent reason. A supply chain disruption in one region causes shortages thousands of miles away. An autonomous vehicle fleet learns to coordinate without explicit communication. What connects these seemingly disparate phenomena? They are all examples of systems in action — collections of interacting parts that produce behaviors and outcomes that none of the individual parts could achieve alone.
 
-<p align="center">
+<p align="center" style="margin-top: 20px; margin-bottom: 10px;">
     <img src="images/bird_flock-01.png" alt="Flock of birds in coordinated motion" style="display: block; margin: auto; width: 75%;">
 </p>
 
@@ -19,7 +19,7 @@ Consider these scenarios: A flock of birds suddenly changes direction mid-flight
         This emergent behavior arises from simple local rules followed by each bird — aligning with neighbors, avoiding collisions, and staying close — producing a collective motion that appears highly coordinated at the system level.
     </span>
     <br>
-    <span style="font-size: 0.8em; font-style: italic;">
+    <span style="font-size: 0.8em; font-style: italic; margin-bottom: 20px;">
         Source: <a href="https://www.howitworksdaily.com/why-do-birds-flock-together/">How it works</a>
     </span>
 </figcaption>
@@ -62,12 +62,12 @@ Not all systems are created equal, and understanding different types of systems 
 
 **Open vs. Closed Systems**: Closed systems do not exchange anything with their environment, while open systems do — and most practical systems are open, receiving inputs and sending outputs.
 
-<p align="center">
+<p align="center" style="margin-top: 20px; margin-bottom: 10px;">
     <img src="images/open_close_system.png" alt="Open-loop and closed-loop control systems" style="display: block; margin: auto; width: 70%;">
 </p>
 
-<figcaption style="text-align: center;">
-    Figure X: Open-loop (top) and closed-loop (bottom) control systems. 
+<figcaption style="text-align: center; margin-bottom: 20px;">
+    Figure 2: Open-loop (top) and closed-loop (bottom) control systems. 
     <span style="font-size: 0.9em;">
         In an open-loop system, the controller issues a control action based solely on the input, without considering the actual output. In contrast, a closed-loop (feedback) system continuously measures the output and uses feedback to adjust the control action, improving stability, accuracy, and robustness in the presence of disturbances.
     </span>
@@ -101,6 +101,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
