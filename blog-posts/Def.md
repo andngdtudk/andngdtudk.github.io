@@ -12,7 +12,7 @@ Understanding what makes something a "system" is crucial for anyone working with
 
 ## Defining a System: More Than the Sum of Its Parts
 
-At its most basic level, a **system** is a collection of interrelated elements that work together toward a common purpose or function. But this definition, while accurate, doesn't capture what makes systems so fascinating and challenging to work with.
+At its most basic level, a system is a collection of interrelated elements that work together toward a common purpose or function. But this definition, while accurate, doesn't capture what makes systems so fascinating and challenging to work with.
 
 Systems theorist Donella Meadows offered a more nuanced definition: "A system is an interconnected set of elements that is coherently organized in a way that achieves something" (Meadows, 2008). This definition highlights three essential components: **elements**, the individual parts or components; **interconnections**, the relationships and interactions between elements; and **purpose or function**, the overall behavior or goal that emerges from these interactions.
 
@@ -22,17 +22,17 @@ This property — where the whole exhibits characteristics that are not present 
 
 ## Core Characteristics of Systems
 
-All systems, from biological ecosystems to transportation networks to multi-agent AI systems, share certain fundamental characteristics.
+All systems, from biological ecosystems to transportation networks to multi-agent AI systems, share certain fundamental characteristics:
 
-Systems have **structure and organization** — a pattern of relationships and hierarchies that determine how information, energy, or resources flow through the system. In a logistics network, this might be the hub-and-spoke topology of distribution centers. In a reinforcement learning system, it could be the architecture of neural networks and the flow of experience data.
+**Structure and organization**: Systems have an internal structure — a pattern of relationships and hierarchies that determine how information, energy, or resources flow through the system. In a logistics network, this might be the hub-and-spoke topology of distribution centers. In a reinforcement learning system, it could be the architecture of neural networks and the flow of experience data.
 
-They have **behavior and function** — systems exist to perform some function or exhibit specific behaviors. This might be explicit (like a traffic control system designed to minimize travel time) or implicit (like the emergent coordination behaviors in a swarm of autonomous drones). Understanding a system's purpose is crucial for predicting and controlling its behavior.
+**Behavior and function**: Systems exist to perform some function or exhibit specific behaviors. This might be explicit (like a traffic control system designed to minimize travel time) or implicit (like the emergent coordination behaviors in a swarm of autonomous drones). Understanding a system's purpose is crucial for predicting and controlling its behavior.
 
-They have **boundaries and environments** that separate them from the outside world, defining what is internal versus external. For an autonomous vehicle, the boundary might include its sensors, processing units, and actuators, while the environment includes other vehicles, road infrastructure, and weather conditions. Importantly, systems are rarely completely closed — they exchange information, energy, or materials with their environment.
+**Boundaries and environment**: Every system has boundaries that separate it from its environment. These boundaries define what is "inside" the system versus what is external. For an autonomous vehicle, the boundary might include its sensors, processing units, and actuators, while the environment includes other vehicles, road infrastructure, and weather conditions. Importantly, systems are rarely completely closed — they exchange information, energy, or materials with their environment.
 
-They include **feedback loops** — mechanisms that allow them to respond to changes and maintain stability or adapt to new conditions. Negative feedback helps maintain equilibrium (like a thermostat maintaining temperature), while positive feedback can amplify changes (like traffic congestion that begets more congestion). In AI systems, feedback often comes through reward signals or performance metrics that guide learning and adaptation.
+**Feedback loops**: Systems contain feedback mechanisms that allow them to respond to changes and maintain stability or adapt to new conditions. Negative feedback helps maintain equilibrium (like a thermostat maintaining temperature), while positive feedback can amplify changes (like traffic congestion that begets more congestion). In AI systems, feedback often comes through reward signals or performance metrics that guide learning and adaptation.
 
-And finally, they have **dynamic behavior over time**. Systems are not static — they evolve, adapt, and change. This temporal dimension is what makes systems both powerful and challenging to control. A traffic network behaves differently during rush hour versus late at night. An AI system's behavior changes as it learns from new experiences.
+**Dynamic behavior over time**: Systems are not static — they evolve, adapt, and change over time. This temporal dimension is what makes systems both powerful and challenging to control. A traffic network behaves differently during rush hour versus late at night. An AI system's behavior changes as it learns from new experiences.
 
 ## Classifications of Systems
 
@@ -72,4 +72,5 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
