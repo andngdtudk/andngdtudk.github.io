@@ -94,6 +94,8 @@ This blog series is my attempt to explore that bigger picture. We will start wit
 
 From our earliest interventions in nature to today’s autonomous systems, the arc of human innovation has been one of system design, control, and adaptation. We have moved from shaping landscapes to shaping flows of data, decisions, and actions. As our systems become more intelligent, our responsibility to understand them grows.
 
+This series is partly inspired by the intellectual tradition of communities like [LessWrong](https://www.lesswrong.com/), which aim to refine the art of human rationality by thinking more clearly about decision-making, uncertainty, and the complex systems we inhabit. My hope is to bring some of that spirit into the context of transportation, logistics, and intelligent systems — combining rigorous reasoning with practical applications that shape the physical world.
+
 In the next post, we will return to the foundation: **What exactly is a system — and why does that question matter for the future of AI and mobility?**
 
 Andrei, N. (2006). Modern control theory: A historical perspective. _Studies in Informatics and Control, 10_(1), 51–62. [https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf](https://www.sic.ici.ro/wp-content/uploads/2006/200601_07.pdf)
