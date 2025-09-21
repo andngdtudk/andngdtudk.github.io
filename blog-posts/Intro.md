@@ -1,4 +1,4 @@
-<!-- image: https://andngdtudk.github.io/images/davinci-01.png -->
+<!-- image: https://andngdtudk.github.io/images/enigma-01.png -->
 
 # Thinking in Systems: An Introduction to My Research Blog Series on Intelligence, Control, and Mobility
 
