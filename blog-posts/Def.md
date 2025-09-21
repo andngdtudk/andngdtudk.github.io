@@ -67,7 +67,8 @@ Not all systems are created equal, and understanding different types of systems 
 </p>
 
 <figcaption style="text-align: center; margin-bottom: 20px;">
-    Figure 2: Open-loop (top) and closed-loop (bottom) control systems. 
+    Figure 2: Open-loop (top) and closed-loop (bottom) control systems.
+    <br>
     <span style="font-size: 0.9em;">
         In an open-loop system, the controller issues a control action based solely on the input, without considering the actual output. In contrast, a closed-loop (feedback) system continuously measures the output and uses feedback to adjust the control action, improving stability, accuracy, and robustness in the presence of disturbances.
     </span>
@@ -101,6 +102,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
