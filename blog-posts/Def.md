@@ -62,6 +62,17 @@ Not all systems are created equal, and understanding different types of systems 
 
 **Open vs. Closed Systems**: Closed systems do not exchange anything with their environment, while open systems do — and most practical systems are open, receiving inputs and sending outputs.
 
+<p align="center">
+    <img src="images/open_close_system.png" alt="Open-loop and closed-loop control systems" style="display: block; margin: auto; width: 70%;">
+</p>
+
+<figcaption style="text-align: center;">
+    Figure X: Open-loop (top) and closed-loop (bottom) control systems. 
+    <span style="font-size: 0.9em;">
+        In an open-loop system, the controller issues a control action based solely on the input, without considering the actual output. In contrast, a closed-loop (feedback) system continuously measures the output and uses feedback to adjust the control action, improving stability, accuracy, and robustness in the presence of disturbances.
+    </span>
+</figcaption>
+
 **Centralized vs. Distributed Systems**: Centralized systems have a single point of control, while distributed systems spread decision-making across multiple nodes or agents. Modern AI and mobility applications increasingly rely on distributed approaches — think of a smart city where traffic optimization is handled locally at intersections that coordinate with one another.
 
 **Single-Agent vs. Multi-Agent Systems**: Another important dimension of classification considers the number of decision-makers. A single-agent system has one entity making decisions to achieve its objectives, such as a thermostat regulating temperature or a reinforcement learning agent learning to play a video game. A multi-agent system, by contrast, consists of multiple decision-makers, each potentially with its own goals and information. Examples include fleets of autonomous vehicles, power grids with many independent participants, or social and economic systems. Multi-agent systems are inherently more complex because the environment becomes non-stationary — as each agent adapts, it changes the conditions faced by the others — often requiring coordination, negotiation, or game-theoretic reasoning.
@@ -90,6 +101,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
