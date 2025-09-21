@@ -12,14 +12,14 @@ Consider these scenarios: A flock of birds suddenly changes direction mid-flight
     <img src="images/bird_flock-01.png" alt="Flock of birds in coordinated motion" style="display: block; margin: auto; width: 75%;">
 </p>
 
-<figcaption style="text-align: center;">
+<figcaption style="text-align: center; margin-bottom: 20px;">
     Figure 1: A murmuration of starlings forming complex, fluid patterns in the sky. 
     <br>
     <span style="font-size: 0.9em;">
         This emergent behavior arises from simple local rules followed by each bird — aligning with neighbors, avoiding collisions, and staying close — producing a collective motion that appears highly coordinated at the system level.
     </span>
     <br>
-    <span style="font-size: 0.8em; font-style: italic; margin-bottom: 20px;">
+    <span style="font-size: 0.8em; font-style: italic;">
         Source: <a href="https://www.howitworksdaily.com/why-do-birds-flock-together/">How it works</a>
     </span>
 </figcaption>
@@ -101,6 +101,7 @@ Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing
 Mobus, G. E., & Kalton, M. C. (2015). *Principles of systems science*. Springer.  
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.  
 Checkland, P. (1999). *Systems thinking, systems practice*. John Wiley & Sons.
+
 
 
 
