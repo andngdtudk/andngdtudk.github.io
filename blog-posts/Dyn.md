@@ -1,7 +1,7 @@
 <!-- image: https://andngdtudk.github.io/images/radio_cambridge.jpg -->
 # Dynamic Systems: Mathematical Foundations for Time-Evolving Behavior
 
-*Copenhagen*, 8th September 2025
+*Copenhagen*, 10th October 2025
 
 In our previous post, we established that systems are more than collections of parts — they are organized wholes that exhibit emergent behaviors through the interactions of their components. But there's a crucial dimension we've only touched upon: **time**. The most interesting and challenging systems are those that evolve, adapt, and change over time. These are **dynamic systems**, and understanding them requires mathematical precision.
 
