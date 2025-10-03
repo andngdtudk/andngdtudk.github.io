@@ -1,4 +1,5 @@
 const posts = [
+  'Dyn.md',
   'Def.md',
   'Intro.md',
   'control-theory.md',
