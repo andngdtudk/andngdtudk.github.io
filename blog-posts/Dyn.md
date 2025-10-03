@@ -1,5 +1,5 @@
 <!-- image: https://andngdtudk.github.io/images/radio_cambridge.jpg -->
-# Dynamic Systems: Mathematical Foundations for Time-Evolving Behavior
+# Dynamic Systems: Mathematical Foundations for Time-Evolving Behavior (Incomplete)
 
 *Copenhagen*, 10th October 2025
 
