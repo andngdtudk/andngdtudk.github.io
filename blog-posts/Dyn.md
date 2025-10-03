@@ -1,3 +1,4 @@
+<!-- image: https://andngdtudk.github.io/images/radio_cambridge.jpg -->
 # Dynamic Systems: Mathematical Foundations for Time-Evolving Behavior
 
 *Copenhagen*, 8th September 2025
