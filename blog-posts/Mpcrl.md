@@ -6,6 +6,23 @@
 
 I recently had the privilege of attending a comprehensive fall school on Model Predictive Control (MPC) and Reinforcement Learning (RL) at the University of Freiburg, taught by **Joschka Boedecker**, **Moritz Diehl**, and **Sebastien Gros**. This intensive week-long program brought together two communities that have traditionally operated independently—control theory and machine learning—and explored how their synthesis can lead to more powerful approaches for sequential decision-making problems. In this reflection, I'll share my key takeaways from this transformative experience.
 
+<p align="center">
+    <img src="images/Mpcrl25-large_bw.jpg" alt="Group photo at the Fall School on Model Predictive Control and Reinforcement Learning, University of Freiburg, October 2025" style="display: block; margin: auto; width: 65%;">
+</p>
+
+<figcaption style="text-align: center;">
+    Figure 1. Group photo at the Fall School on Model Predictive Control and Reinforcement Learning, University of Freiburg, October 2025
+    <br>
+    <span style="font-size: 0.9em;">
+        An inspiring week of lectures, discussions, and collaboration with researchers and students from around the world, exploring how Model Predictive Control and Reinforcement Learning can jointly advance intelligent decision-making.
+    </span>
+    <br>
+    <span style="font-size: 0.8em; font-style: italic;">
+        Photo courtesy of the University of Freiburg
+    </span>
+</figcaption>
+
+
 ---
 
 ## The Fundamental Framework: MDPs as a Unifying Language
@@ -262,3 +279,4 @@ I am deeply grateful to the instructors and participants for this intellectually
 The journey from **Markov Decision Processes to modern MPC-RL synthesis** has been both challenging and inspiring, and it has strengthened my vision for advancing intelligent transportation and control systems.
 
 ---
+
