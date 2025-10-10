@@ -1,10 +1,4 @@
----
-title: "Reflection: Fall School on Model Predictive Control and Reinforcement Learning"
-date: 2025-10-10
-author: "Your Name"
-tags: ["MPC", "Reinforcement Learning", "Optimal Control", "Machine Learning", "Control Theory"]
-summary: "A comprehensive reflection on the five-day fall school at University of Freiburg covering the synthesis of Model Predictive Control and Reinforcement Learning"
----
+<!-- image: https://andngdtudk.github.io/images/unifreiburg.jpg -->
 
 # Reflection: Fall School on Model Predictive Control and Reinforcement Learning
 
@@ -444,5 +438,6 @@ Special thanks to:
 - Prof. Dr. Moritz Diehl (University of Freiburg)
 - Prof. Dr. Sebastien Gros (NTNU Trondheim)
 - Teaching assistants: Leonard Fichtner, Andrea Ghezzi, and Jasper Hoffmann
+
 
 *For those interested in diving deeper, I highly recommend checking out the lecture materials and the leap-c repository. The combination of rigorous theory and practical implementation makes this an excellent entry point into learning-based optimal control.*
