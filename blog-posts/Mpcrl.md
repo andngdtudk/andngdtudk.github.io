@@ -237,6 +237,7 @@ I'm grateful to the instructors for sharing their deep expertise and to my fello
 - **Instructors:** Joschka Boedecker, Moritz Diehl, Sebastien Gros, Dirk Reinhardt, Jasper Hoffmann, Andrea Ghezzi
 - **Duration:** October 6-10, 2025
 - **Topics Covered:** MDPs, Dynamic Programming, Model Predictive Control, Reinforcement Learning, TD Methods, Actor-Critic, Policy Gradients, MPC-RL Synthesis, Imitation Learning
-- <a href="certificates/andng_mpcrt_cert.pdf" target="_blank"> Certificate of participation </a>
+- <a href="https://andngdtudk.github.io/certificates/andng_mpcrt_cert.pdf" target="_blank"> Certificate of participation </a>
+
 
 
