@@ -30,7 +30,7 @@ Promise.all(posts.map(post =>
     const firstLetter = summaryLines.charAt(0);
     const rest = summaryLines.slice(1);
     const summaryWithDropCap = `<span class="drop-cap">${firstLetter}</span>${rest}`;
-    const summaryHTML = marked.parseInline(summaryWithDropCap);
+    const summaryHTML = marked.parse(summaryWithDropCap);
 
     const postSlug = post.replace('.md', '');
     const imageURL = imageMatch ? imageMatch[1].trim() : '';
