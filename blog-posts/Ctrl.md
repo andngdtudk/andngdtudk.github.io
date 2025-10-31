@@ -110,17 +110,13 @@ where $\boldsymbol{\lambda}(t) \in \mathbb{R}^n$ is the **costate** or **adjoint
 
 **Pontryagin's Maximum Principle** provides necessary conditions for optimality:
 
-1. **State equation:**  
-   $\dot{\mathbf{x}} = \frac{\partial H}{\partial \boldsymbol{\lambda}} = \mathbf{f}(\mathbf{x}, \mathbf{u}, t)$  
+1. **State equation**: $\dot{\mathbf{x}} = \frac{\partial H}{\partial \boldsymbol{\lambda}} = \mathbf{f}(\mathbf{x}, \mathbf{u}, t)$
 
-2. **Costate equation:**  
-   $\dot{\boldsymbol{\lambda}} = -\frac{\partial H}{\partial \mathbf{x}}$  
+2. **Costate equation**: $\dot{\boldsymbol{\lambda}} = -\frac{\partial H}{\partial \mathbf{x}}$
 
-3. **Stationarity condition:**  
-   $\frac{\partial H}{\partial \mathbf{u}} = 0$ (if $\mathbf{u}$ is unconstrained)  
+3. **Stationarity condition**: $\frac{\partial H}{\partial \mathbf{u}} = 0$ (if $\mathbf{u}$ is unconstrained)
 
-4. **Transversality condition:**  
-   $\boldsymbol{\lambda}(T) = \frac{\partial \Phi}{\partial \mathbf{x}}\bigg|_{\mathbf{x}(T)}$
+4. **Transversality condition**: $\boldsymbol{\lambda}(T) = \frac{\partial \Phi}{\partial \mathbf{x}}\bigg|_{\mathbf{x}(T)}$
 
 These conditions define a **two-point boundary value problem** (TPBVP) that must be solved to find the optimal trajectory.
 
