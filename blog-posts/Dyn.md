@@ -137,9 +137,9 @@ $$\lim_{t \to \infty} \mathbf{x}(t) = \mathbf{x}^*$$
 ### Lyapunov Functions
 
 To prove stability, we seek a **Lyapunov function** $V(\mathbf{x})$ that satisfies:
-- $V(\mathbf{x}) > 0$ for $\mathbf{x} \neq \mathbf{x}^*$ (positive definite)
-- $V(\mathbf{x}^*) = 0$
-- $\dot{V}(\mathbf{x}) = \nabla V \cdot \mathbf{f}(\mathbf{x}) \leq 0$ along trajectories
+1. $V(\mathbf{x}) > 0$ for $\mathbf{x} \neq \mathbf{x}^*$ (positive definite)
+2. $V(\mathbf{x}^*) = 0$
+3. $\dot{V}(\mathbf{x}) = \nabla V \cdot \mathbf{f}(\mathbf{x}) \leq 0$ along trajectories
 
 If such a function exists, the equilibrium is stable. If $\dot{V}(\mathbf{x}) < 0$ (except at $\mathbf{x}^*$), it's asymptotically stable.
 
