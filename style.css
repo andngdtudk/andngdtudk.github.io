@@ -180,7 +180,7 @@ body {
   font-size: 17px;
 }
 
-.blog-summary-container {
+/* .blog-summary-container {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -192,6 +192,29 @@ body {
   font-size: 15px;
   margin: 0;
   position: relative;
+} */
+
+.blog-summary-container {
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
+  position: relative;
+}
+
+/* ✅ Lists stay properly aligned */
+.blog-summary-container ol,
+.blog-summary-container ul {
+  margin: 0.5em 0 0.5em 1.5em;
+  padding-left: 1.2em;
+  list-style-position: outside;
+}
+
+.blog-summary-container li {
+  margin-bottom: 0.3em;
 }
 
 .blog-see-more {
@@ -202,36 +225,6 @@ body {
   color: #13343B;
   text-decoration: underline;
   font-weight: 500;
-}
-
-/* --- Fix numbered list alignment and truncation --- */
-.blog-summary-container {
-  text-align: justify;
-  line-height: 1.6;
-  font-size: 15px;
-  margin: 0;
-  position: relative;
-}
-
-/* ✅ Truncate text to 4 lines, but preserve list formatting */
-.summary-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ✅ Proper alignment for Markdown lists */
-.blog-summary-container ol,
-.blog-summary-container ul {
-  margin: 0.5em 0 0.5em 1.5em;
-  padding-left: 1.2em;
-  list-style-position: outside;
-}
-
-.blog-summary-container li {
-  margin-bottom: 0.3em;
 }
 
 /* Responsive disable for drop cap */
