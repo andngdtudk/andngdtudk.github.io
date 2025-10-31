@@ -1,4 +1,4 @@
-<!-- image: https://andngdtudk.github.io/images/tsc.png -->
+<!-- image: https://andngdtudk.github.io/images/tsc.PNG -->
 
 # Control Theory: Mathematical Frameworks for Shaping System Behavior
 
