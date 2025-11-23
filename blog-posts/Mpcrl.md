@@ -3,7 +3,7 @@
 
 *University of Freiburg, October 6-10, 2025*
 
-I recently had the privilege of attending a comprehensive fall school on Model Predictive Control (MPC) and Reinforcement Learning (RL) at the University of Freiburg, taught by Joschka Boedecker, Moritz Diehl, and Sebastien Gros. This intensive week-long program brought together two communities that have traditionally operated independently—control theory and machine learning—and explored how their synthesis can lead to more powerful approaches for sequential decision-making problems. In this reflection, I'll share my key takeaways from this transformative experience.
+I recently had the privilege of attending a comprehensive fall school on Model Predictive Control (MPC) and Reinforcement Learning (RL) at the University of Freiburg, taught by Joschka Boedecker, Moritz Diehl, and Sebastien Gros. This intensive week-long program brought together two communities that have traditionally operated independently, control theory and machine learning, and explored how their synthesis can lead to more powerful approaches for sequential decision-making problems. In this reflection, I'll share my key takeaways from this transformative experience.
 
 <p align="center">
     <img src="images/Mpcrl25-large_bw.jpg" alt="Group photo at the Fall School on Model Predictive Control and Reinforcement Learning, University of Freiburg, October 2025" style="display: block; margin: auto; width: 65%;">
@@ -25,7 +25,7 @@ I recently had the privilege of attending a comprehensive fall school on Model P
 
 The course began by establishing Markov Decision Processes (MDPs) as the theoretical foundation connecting both MPC and RL. An MDP is defined by a four-tuple $\langle S, A, P, r \rangle$, consisting of states, actions, transition probabilities, and rewards. What struck me most was how this seemingly simple framework provides such a general way to describe sequential decision-making problems, accommodating both the stochastic nature of RL and the deterministic planning perspective of MPC.
 
-The Markov property—that the future is independent of the past given the present—is crucial here. It allows us to make decisions based solely on the current state without needing to track the entire history of the system. The goal in an MDP is to find a policy $\pi$ that maximizes the expected discounted cumulative reward, which we express as the return:
+The Markov property, that the future is independent of the past given the present, is crucial here. It allows us to make decisions based solely on the current state without needing to track the entire history of the system. The goal in an MDP is to find a policy $\pi$ that maximizes the expected discounted cumulative reward, which we express as the return:
 
 $$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots$$
 
@@ -43,7 +43,7 @@ We learned two fundamental algorithms for solving MDPs when the dynamics are kno
 
 $$V_{k+1}(s) = \max_a \sum_{s'} P(s'|s,a)[r(s,a) + \gamma V_k(s')]$$
 
-What fascinated me was how these algorithms, despite their conceptual simplicity, suffer from the "curse of dimensionality"—a phrase coined by Richard Bellman himself. Exact dynamic programming requires tabulating the value function for all possible states, which becomes computationally infeasible as state dimensionality grows. This limitation motivates both the approximation methods in RL and the online optimization approach in MPC.
+What fascinated me was how these algorithms, despite their conceptual simplicity, suffer from the "curse of dimensionality", a phrase coined by Richard Bellman himself. Exact dynamic programming requires tabulating the value function for all possible states, which becomes computationally infeasible as state dimensionality grows. This limitation motivates both the approximation methods in RL and the online optimization approach in MPC.
 
 ## Model Predictive Control: Planning in Action
 
@@ -77,7 +77,7 @@ The simplest TD algorithm, TD(0), updates the value function after each step usi
 
 $$V(S_t) \leftarrow V(S_t) + \alpha[R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]$$
 
-The term $\delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$ is the TD error, representing the difference between our prediction and a better estimate based on the actual transition. This bootstrapping—updating estimates based on other estimates—is a key distinction from Monte Carlo methods that must wait until the end of an episode.
+The term $\delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$ is the TD error, representing the difference between our prediction and a better estimate based on the actual transition. This bootstrapping, updating estimates based on other estimates, is a key distinction from Monte Carlo methods that must wait until the end of an episode.
 
 For control, we need to learn about actions, not just states. This led us to Q-learning, an off-policy TD algorithm that directly learns the optimal action-value function:
 
@@ -87,7 +87,7 @@ The elegance of Q-learning lies in its ability to learn the optimal policy while
 
 ## Scaling with Function Approximation
 
-Tabular methods quickly become impractical for large or continuous state spaces. The solution is function approximation—representing value functions or policies with parameterized functions like neural networks. The semi-gradient TD(0) algorithm adapts the tabular version:
+Tabular methods quickly become impractical for large or continuous state spaces. The solution is function approximation, representing value functions or policies with parameterized functions like neural networks. The semi-gradient TD(0) algorithm adapts the tabular version:
 
 $$w \leftarrow w + \alpha[R_{t+1} + \gamma \hat{v}(S_{t+1}, w) - \hat{v}(S_t, w)]\nabla \hat{v}(S_t, w)$$
 
@@ -119,9 +119,9 @@ The most thought-provoking part of the school was exploring how to combine MPC a
 
 The fundamental insight is recognizing MPC and RL as complementary rather than competing approaches. MPC brings model-driven planning with explicit constraint handling, while RL offers data-driven learning focused on closed-loop performance. Both ultimately solve sequential decision-making problems but from different philosophical starting points.
 
-The taxonomy organized combination approaches along two axes: what's used during deployment versus what's used during learning. We can use MPC as an expert actor to generate training data, incorporating its safe, model-informed behavior into the learning process. We can integrate MPC within the deployed policy through various architectural patterns—parameterized, parallel, hierarchical, integrated, or algorithmic. Each offers different tradeoffs between computational complexity, safety guarantees, and flexibility.
+The taxonomy organized combination approaches along two axes: what's used during deployment versus what's used during learning. We can use MPC as an expert actor to generate training data, incorporating its safe, model-informed behavior into the learning process. We can integrate MPC within the deployed policy through various architectural patterns, parameterized, parallel, hierarchical, integrated, or algorithmic. Each offers different tradeoffs between computational complexity, safety guarantees, and flexibility.
 
-The distinction between **aligned learning** and **closed-loop learning** proved particularly important. Aligned learning fits individual MPC components (model, cost, constraints) to better approximate the true environment, maintaining interpretability and physical meaning. Closed-loop learning directly optimizes for what works best in practice, allowing the MPC's internal model and costs to become misaligned with reality if that improves performance. This paradigm shift—from requiring model accuracy to requiring policy optimality—challenges conventional thinking in both control and machine learning.
+The distinction between **aligned learning** and **closed-loop learning** proved particularly important. Aligned learning fits individual MPC components (model, cost, constraints) to better approximate the true environment, maintaining interpretability and physical meaning. Closed-loop learning directly optimizes for what works best in practice, allowing the MPC's internal model and costs to become misaligned with reality if that improves performance. This paradigm shift, from requiring model accuracy to requiring policy optimality, challenges conventional thinking in both control and machine learning.
 
 ## Practical Implementation: The SAC-ZOP and SAC-FOP Algorithms
 
@@ -150,15 +150,15 @@ The **exact Q-loss** defines a loss function directly from the MPC optimal contr
 
 **Sobolev training** enriches the training data with sensitivity information $\frac{\partial u}{\partial x}$ computed from the MPC, allowing the network to learn not just the policy but also its Jacobian. This can significantly improve performance near training points. Data augmentation using NLP sensitivities addresses the expense of generating MPC solutions by leveraging the implicit function theorem to create synthetic training examples around each solved problem.
 
-The challenge of distribution mismatch—where the network encounters states during deployment that differ from training states—can be addressed through **DAgger** (Dataset Aggregation). This iterative approach collects data by rolling out the learned policy, queries the MPC for correct actions at the encountered states, and retrains on the aggregated dataset. Over iterations, the learned policy sees its own state distribution, closing the covariate shift gap.
+The challenge of distribution mismatch, where the network encounters states during deployment that differ from training states, can be addressed through **DAgger** (Dataset Aggregation). This iterative approach collects data by rolling out the learned policy, queries the MPC for correct actions at the encountered states, and retrains on the aggregated dataset. Over iterations, the learned policy sees its own state distribution, closing the covariate shift gap.
 
-Verification and safety remain critical concerns. For linear systems, we can sometimes guarantee that neural network controllers maintain stability by constraining the weights of the final layer to ensure the closed-loop system remains stable near equilibrium. For nonlinear systems, safety filters provide a practical solution—the MPC projects the neural network's proposed action onto the feasible set defined by constraints and dynamics predictions, ensuring safety at the cost of potentially suboptimal actions.
+Verification and safety remain critical concerns. For linear systems, we can sometimes guarantee that neural network controllers maintain stability by constraining the weights of the final layer to ensure the closed-loop system remains stable near equilibrium. For nonlinear systems, safety filters provide a practical solution, the MPC projects the neural network's proposed action onto the feasible set defined by constraints and dynamics predictions, ensuring safety at the cost of potentially suboptimal actions.
 
 ## The Theoretical Foundations: Why Does It Work?
 
 Sebastien Gros's theoretical lecture provided the deepest insights into why learning over MPC is justified and when it's most beneficial. The key theoretical result addresses a fundamental question: can a simplified MPC formulation with limited model fidelity still produce optimal policies?
 
-The answer, surprisingly, is yes—under certain conditions. The MPC can be understood as defining an approximation to the optimal Q-function of the true MDP. For a fully parameterized MPC that allows adjusting the cost function $L_\theta$, constraints $h_\theta$, and model $f_\theta$, there exists a parameterization $\theta$ such that:
+The answer, surprisingly, is yes, under certain conditions. The MPC can be understood as defining an approximation to the optimal Q-function of the true MDP. For a fully parameterized MPC that allows adjusting the cost function $L_\theta$, constraints $h_\theta$, and model $f_\theta$, there exists a parameterization $\theta$ such that:
 
 $$Q^{MPC}_\theta(s,a) = Q^*(s,a)$$
 
@@ -188,11 +188,11 @@ This unified view treats state estimation as part of the decision-making pipelin
 
 ## Optimization and Numerical Methods
 
-Understanding the optimization machinery underlying MPC proved essential. The course covered how continuous-time optimal control problems are discretized using numerical integration methods. The choice matters—higher-order Runge-Kutta methods like RK4 achieve much better accuracy than simple Euler integration for the same computational cost. These methods transform continuous dynamics into discrete-time models suitable for optimization.
+Understanding the optimization machinery underlying MPC proved essential. The course covered how continuous-time optimal control problems are discretized using numerical integration methods. The choice matters, higher-order Runge-Kutta methods like RK4 achieve much better accuracy than simple Euler integration for the same computational cost. These methods transform continuous dynamics into discrete-time models suitable for optimization.
 
 The resulting nonlinear programs (NLPs) are solved using Sequential Quadratic Programming (SQP) or interior point methods. SQP linearizes the KKT optimality conditions at each iteration, solving a sequence of quadratic programs that progressively approach the solution. Interior point methods smooth the complementarity conditions using logarithmic barriers, converting inequalities into smooth equality constraints at the cost of introducing a barrier parameter that must be driven to zero.
 
-The sensitivity analysis—computing how solutions change with parameters—enables differentiation through MPC for gradient-based learning. The implicit function theorem provides:
+The sensitivity analysis, computing how solutions change with parameters, enables differentiation through MPC for gradient-based learning. The implicit function theorem provides:
 
 $$\frac{\partial z^*}{\partial p} = -M^{-1}r$$
 
@@ -210,7 +210,7 @@ The question of generalization is subtle. MPC naturally generalizes to new setpo
 
 ## Reflections and Future Directions
 
-This fall school transformed my understanding of sequential decision-making. The separation between control and machine learning communities seemed artificial by the end—both solve MDPs but emphasize different aspects and make different computational tradeoffs.
+This fall school transformed my understanding of sequential decision-making. The separation between control and machine learning communities seemed artificial by the end, both solve MDPs but emphasize different aspects and make different computational tradeoffs.
 
 The paradigm shift from model fitting to policy learning represents a fundamental rethinking of model-based control. We're not trying to build the most accurate simulator; we're trying to build the best decision-maker. The model, cost, and constraints are all part of a holistic representation whose purpose is producing good actions, not necessarily accurate predictions.
 
@@ -224,7 +224,7 @@ Looking forward, several directions seem particularly promising. Belief state MP
 
 This fall school provided a comprehensive view of where MPC and RL intersect and how their combination can exceed what either achieves alone. The theoretical foundations are solid, the algorithms are maturing, and the software tools are becoming available. Practical applications from energy systems to robotics demonstrate the viability of these approaches.
 
-What resonated most was the intellectual synthesis—recognizing that planning and learning, models and data, optimization and adaptation are not opposing paradigms but complementary tools. The best solutions will likely combine the strengths of both: MPC's structured approach to constraints and physical insight, and RL's ability to learn from experience and optimize closed-loop performance.
+What resonated most was the intellectual synthesis, recognizing that planning and learning, models and data, optimization and adaptation are not opposing paradigms but complementary tools. The best solutions will likely combine the strengths of both: MPC's structured approach to constraints and physical insight, and RL's ability to learn from experience and optimize closed-loop performance.
 
 The field is clearly at an inflection point. The theoretical understanding has reached a level where we can principally design learning algorithms that preserve MPC's strengths while addressing its limitations. The computational tools are mature enough for real deployment. The applications are compelling enough to drive sustained research. The next few years will likely see these ideas move from academic research to practical systems, transforming how we design controllers for complex, uncertain, high-stakes environments.
 
@@ -238,6 +238,7 @@ I'm grateful to the instructors for sharing their deep expertise and to my fello
 - **Duration:** October 6-10, 2025
 - **Topics Covered:** MDPs, Dynamic Programming, Model Predictive Control, Reinforcement Learning, TD Methods, Actor-Critic, Policy Gradients, MPC-RL Synthesis, Imitation Learning
 - <a href="certificates/andng_mpcrl_cert.pdf" target="_blank"> Certificate of participation </a>
+
 
 
 
