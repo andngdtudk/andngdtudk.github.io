@@ -3,11 +3,11 @@
 
 *Copenhagen*, 10th October 2025
 
-In our previous post, we established that systems are more than collections of parts — they are organized wholes that exhibit emergent behaviors through the interactions of their components. But there's a crucial dimension we've only touched upon: **time**. The most interesting and challenging systems are those that evolve, adapt, and change over time. These are **dynamic systems**, and understanding them requires mathematical precision.
+In our previous post, we established that systems are more than collections of parts, they are organized wholes that exhibit emergent behaviors through the interactions of their components. But there's a crucial dimension we've only touched upon: **time**. The most interesting and challenging systems are those that evolve, adapt, and change over time. These are **dynamic systems**, and understanding them requires mathematical precision.
 
 Consider an autonomous vehicle navigating through traffic. Its position, velocity, and internal decision state are constantly changing in response to sensor inputs, other vehicles, and its own learning algorithms. A logistics network continuously adapts routing decisions based on demand fluctuations, capacity constraints, and real-time disruptions. A multi-agent reinforcement learning system evolves its policies through experience, with each agent's behavior influencing others in complex feedback loops.
 
-What unites these examples is that their behavior unfolds over time according to mathematical rules — rules we can model, analyze, and sometimes control. This post dives deep into the mathematical foundations that make such analysis possible.
+What unites these examples is that their behavior unfolds over time according to mathematical rules, rules we can model, analyze, and sometimes control. This post dives deep into the mathematical foundations that make such analysis possible.
 
 ## The State Space: A Mathematical Universe
 
@@ -21,13 +21,13 @@ The **state space** $\mathcal{X}$ is the set of all possible states the system c
 
 $$\mathbf{x}(t) = \begin{bmatrix} \text{position}_x(t) \\ \text{position}_y(t) \\ \text{velocity}_x(t) \\ \text{velocity}_y(t) \\ \text{heading}(t) \end{bmatrix} \in \mathbb{R}^5$$
 
-But for a more sophisticated system — say, a learning agent with internal memory and decision-making processes — the state space might be much higher dimensional and include discrete components representing the agent's current policy parameters, memory states, or decision modes.
+But for a more sophisticated system - say, a learning agent with internal memory and decision-making processes, the state space might be much higher dimensional and include discrete components representing the agent's current policy parameters, memory states, or decision modes.
 
 The power of the state space representation is that it provides a geometric view of system behavior. Every possible system configuration corresponds to a point in this space, and the system's evolution over time traces out a **trajectory** or **orbit** through the state space.
 
 ## System Dynamics: The Rules of Evolution
 
-The evolution of a dynamic system is governed by its **dynamics** — mathematical rules that specify how the state changes over time. We can represent these rules in several ways:
+The evolution of a dynamic system is governed by its **dynamics**, mathematical rules that specify how the state changes over time. We can represent these rules in several ways:
 
 ### Continuous-Time Systems
 
@@ -114,7 +114,7 @@ The $\sin(\theta)$ term makes this system nonlinear and gives it fundamentally d
 
 ## Stability and Equilibria
 
-Understanding the long-term behavior of dynamic systems requires analyzing their **equilibria** — states where the system would remain if left undisturbed.
+Understanding the long-term behavior of dynamic systems requires analyzing their **equilibria** - states where the system would remain if left undisturbed.
 
 ### Equilibrium Points
 
@@ -171,7 +171,7 @@ These concepts are crucial for AI systems. An autonomous vehicle's control syste
 
 ## Phase Portraits and Geometric Intuition
 
-One of the most powerful tools for understanding dynamic systems is the **phase portrait** — a geometric visualization of trajectories in state space.
+One of the most powerful tools for understanding dynamic systems is the **phase portrait** - a geometric visualization of trajectories in state space.
 
 Consider a simple predator-prey system:
 
@@ -232,11 +232,11 @@ Macroscopic traffic models use partial differential equations, but when discreti
 
 ## Looking Forward: Control and Optimization
 
-Understanding dynamic systems is just the beginning. In our next post, we'll explore how to **control** these systems — how to design inputs $\mathbf{u}(t)$ that shape system behavior to achieve desired objectives. We'll cover optimal control theory, model predictive control, and the connections to reinforcement learning.
+Understanding dynamic systems is just the beginning. In our next post, we'll explore how to **control** these systems, how to design inputs $\mathbf{u}(t)$ that shape system behavior to achieve desired objectives. We'll cover optimal control theory, model predictive control, and the connections to reinforcement learning.
 
-The mathematical foundations we've established here — state spaces, dynamics, stability, controllability, and observability — provide the language for formulating and solving control problems. They're the building blocks for everything from autonomous vehicle path planning to multi-agent coordination to adaptive traffic management systems.
+The mathematical foundations we've established here, state spaces, dynamics, stability, controllability, and observability, provide the language for formulating and solving control problems. They're the building blocks for everything from autonomous vehicle path planning to multi-agent coordination to adaptive traffic management systems.
 
-But before we move on to control, it's worth appreciating the profound insight that dynamic systems theory provides: complex, time-evolving behavior can be understood through mathematical precision. The seemingly chaotic dance of traffic, the emergence of coordination in robot swarms, the convergence of learning algorithms — all of these can be analyzed using the tools we've developed here.
+But before we move on to control, it's worth appreciating the profound insight that dynamic systems theory provides: complex, time-evolving behavior can be understood through mathematical precision. The seemingly chaotic dance of traffic, the emergence of coordination in robot swarms, the convergence of learning algorithms, all of these can be analyzed using the tools we've developed here.
 
 This mathematical lens doesn't just help us understand existing systems; it guides us in designing new ones. When we know the mathematical conditions for stability, we can engineer systems that are inherently robust. When we understand controllability, we can ensure our designs are actually steerable. When we grasp observability, we can build systems that are properly instrumented for monitoring and adaptation.
 
