@@ -4,7 +4,7 @@
 
 *Copenhagen*, 31st October 2025
 
-In our previous post, we established the mathematical foundations for understanding how systems evolve over time. We explored state spaces, dynamic equations, stability analysis, and the geometric intuition behind system behavior. But understanding how a system behaves naturally is only half the story. The real power comes when we can **control** that behavior — when we can design inputs that guide the system toward desired outcomes despite uncertainty, disturbances, and complex dynamics.
+In our previous post, we established the mathematical foundations for understanding how systems evolve over time. We explored state spaces, dynamic equations, stability analysis, and the geometric intuition behind system behavior. But understanding how a system behaves naturally is only half the story. The real power comes when we can **control** that behavior, when we can design inputs that guide the system toward desired outcomes despite uncertainty, disturbances, and complex dynamics.
 
 Control theory is the mathematical discipline that addresses this challenge. It provides rigorous frameworks for designing control laws that achieve objectives like stability, optimality, robustness, and adaptability. For AI and mobility systems, these frameworks are essential. An autonomous vehicle must control its trajectory through traffic. A multi-agent system must coordinate individual behaviors to achieve collective goals. A reinforcement learning algorithm must control its policy updates to maximize long-term rewards.
 
@@ -149,7 +149,7 @@ $$\frac{\partial V}{\partial t} + \min_{\mathbf{u}} \left[ L(\mathbf{x}, \mathbf
 
 with terminal condition $V(\mathbf{x}, T) = \Phi(\mathbf{x})$.
 
-Here, $V(\mathbf{x}, t)$ is the **value function** — the minimum cost-to-go from state $\mathbf{x}$ at time $t$.
+Here, $V(\mathbf{x}, t)$ is the **value function** - the minimum cost-to-go from state $\mathbf{x}$ at time $t$.
 
 If $V$ is smooth, the optimal control is:
 $$\mathbf{u}^*(\mathbf{x}, t) = \arg\min_{\mathbf{u}} \left[ L(\mathbf{x}, \mathbf{u}) + \left(\frac{\partial V}{\partial \mathbf{x}}\right)^T \mathbf{f}(\mathbf{x}, \mathbf{u}) \right]$$
@@ -316,9 +316,9 @@ The mathematical frameworks we've explored provide the foundation for understand
 - **Robust control theory** informs the design of AI systems that must perform reliably despite model uncertainty and adversarial inputs
 - **Adaptive control** principles guide how AI systems should update their behaviors based on new experience
 
-In our next post, we'll explore **optimization theory** — the mathematical foundation underlying both classical control design and modern machine learning. We'll see how convex optimization, gradient methods, and constrained optimization connect control theory to the algorithms that power today's intelligent systems.
+In our next post, we'll explore **optimization theory** - the mathematical foundation underlying both classical control design and modern machine learning. We'll see how convex optimization, gradient methods, and constrained optimization connect control theory to the algorithms that power today's intelligent systems.
 
-The journey from classical control to modern AI isn't a replacement of old methods with new ones — it's a deepening understanding of how mathematical principles can be extended, generalized, and combined to address increasingly complex challenges. The autonomous vehicles of tomorrow will use all of these tools: classical control for low-level stability, optimal control for trajectory planning, robust control for handling uncertainty, adaptive control for learning and improvement, and AI for high-level decision-making in complex environments.
+The journey from classical control to modern AI isn't a replacement of old methods with new ones, it's a deepening understanding of how mathematical principles can be extended, generalized, and combined to address increasingly complex challenges. The autonomous vehicles of tomorrow will use all of these tools: classical control for low-level stability, optimal control for trajectory planning, robust control for handling uncertainty, adaptive control for learning and improvement, and AI for high-level decision-making in complex environments.
 
 ---
 
