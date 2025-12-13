@@ -5,7 +5,7 @@
 
 *Copenhagen*, 12th December 2025
 
-In our previous post, we explored control theory, the mathematical framework for designing inputs that guide dynamic systems toward desired behaviors. We saw how optimal control problems, from LQR to MPC to $H \infty$ control, fundamentally involve minimizing cost functions subject to constraints. But we treated optimization itself as a tool, a means to an end. In this post, we dive deeper into optimization theory itself, revealing it as the unifying mathematical language underlying not just control, but also machine learning, operations research, and artificial intelligence.
+In our previous post, we explored control theory, the mathematical framework for designing inputs that guide dynamic systems toward desired behaviors. We saw how optimal control problems, from LQR to MPC to $H_{\infty}$ control, fundamentally involve minimizing cost functions subject to constraints. But we treated optimization itself as a tool, a means to an end. In this post, we dive deeper into optimization theory itself, revealing it as the unifying mathematical language underlying not just control, but also machine learning, operations research, and artificial intelligence.
 
 Every intelligent system, whether classical or AI-based, fundamentally solves optimization problems. An autonomous vehicle optimizes its trajectory through traffic. A neural network optimizes its weights to minimize prediction error. A logistics network optimizes routing decisions to minimize cost while satisfying delivery constraints. A reinforcement learning agent optimizes its policy to maximize long-term rewards. Understanding the mathematical foundations of optimization is essential for anyone working at the intersection of AI, control, and complex systems.
 
@@ -22,13 +22,13 @@ $$g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \quad \text{(inequality constra
 $$h_j(\mathbf{x}) = 0, \quad j = 1, \ldots, p \quad \text{(equality constraints)}$$
 
 where:
-- $\mathbf{x} \in \mathbb{R}^n$ is the **decision variable** or **optimization variable**
-- $f: \mathbb{R}^n \to \mathbb{R}$ is the **objective function** or **cost function**
+- $\mathbf{x} \in \mathbb{R}^n$ is the decision variable or optimization variable
+- $f: \mathbb{R}^n \to \mathbb{R}$ is the objective function or cost function
 - $g_i: \mathbb{R}^n \to \mathbb{R}$ are inequality constraint functions
 - $h_j: \mathbb{R}^n \to \mathbb{R}$ are equality constraint functions
-- $\mathcal{D} \subseteq \mathbb{R}^n$ is the **domain** of the problem
+- $\mathcal{D} \subseteq \mathbb{R}^n$ is the domain of the problem
 
-The **feasible set** is:
+The feasible set is:
 $$\mathcal{F} = \{\mathbf{x} \in \mathcal{D} : g_i(\mathbf{x}) \leq 0, \; h_j(\mathbf{x}) = 0 \; \forall i, j\}$$
 
 A point $\mathbf{x}^*$ is a **global minimum** if $f(\mathbf{x}^*) \leq f(\mathbf{x})$ for all $\mathbf{x} \in \mathcal{F}$.
@@ -56,7 +56,7 @@ Geometrically, this means the line segment connecting any two points in the set 
 **Operations preserving convexity**:
 - Intersection: If $\mathcal{C}_1, \mathcal{C}_2$ are convex, then $\mathcal{C}_1 \cap \mathcal{C}_2$ is convex
 - Affine transformation: If $\mathcal{C}$ is convex, then $\{\mathbf{A}\mathbf{x} + \mathbf{b} : \mathbf{x} \in \mathcal{C}\}$ is convex
-- Cartesian product: If $\mathcal{C}_1, \mathcal{C}_2$ are convex, then $\mathcal{C}_1 \times \mathcf{C}_2$ is convex
+- Cartesian product: If $\mathcal{C}_1, \mathcal{C}_2$ are convex, then $\mathcal{C}_1 \times \mathcal{C}_2$ is convex
 
 ### Convex Functions
 
