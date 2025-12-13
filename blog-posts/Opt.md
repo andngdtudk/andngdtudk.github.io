@@ -1,3 +1,6 @@
+<!-- image: https://andngdtudk.github.io/images/opt.jpg -->
+
+
 # Optimization Theory: The Mathematical Foundation of Intelligent Decision-Making
 
 *Copenhagen*, 12th December 2025
