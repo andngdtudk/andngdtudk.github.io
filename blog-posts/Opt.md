@@ -121,15 +121,15 @@ where $\boldsymbol{\lambda} \in \mathbb{R}^m$ are **Lagrange multipliers** for i
 
 The **Karush-Kuhn-Tucker (KKT) conditions** are necessary for optimality (under constraint qualifications):
 
-1. **Stationarity**: $\nabla_{\mathbf{x}} \mathcal{L}(\mathbf{x}^*, \boldsymbol{\lambda}^*, \boldsymbol{\nu}^*) = \mathbf{0}$
+   1. **Stationarity**: $\nabla_{\mathbf{x}} \mathcal{L}(\mathbf{x}^*, \boldsymbol{\lambda}^*, \boldsymbol{\nu}^*) = \mathbf{0}$
 
-2. **Primal feasibility**: 
+   2. **Primal feasibility**: 
    - $g_i(\mathbf{x}^*) \leq 0$ for all $i$
    - $h_j(\mathbf{x}^*) = 0$ for all $j$
 
-3. **Dual feasibility**: $\lambda_i^* \geq 0$ for all $i$
+   3. **Dual feasibility**: $\lambda_i^* \geq 0$ for all $i$
 
-4. **Complementary slackness**: $\lambda_i^* g_i(\mathbf{x}^*) = 0$ for all $i$
+   4. **Complementary slackness**: $\lambda_i^* g_i(\mathbf{x}^*) = 0$ for all $i$
 
 For **convex optimization problems** (where $f$ and $g_i$ are convex, $h_j$ are affine), the KKT conditions are both necessary and sufficient for global optimality.
 
