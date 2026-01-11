@@ -204,6 +204,27 @@ body {
   font-weight: 500;
 }
 
+
+.blog-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 16px;
+}
+
+.blog-post th,
+.blog-post td {
+  border: 1px solid #d0d0d0;
+  padding: 10px 12px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.blog-post thead th {
+  font-weight: 600;
+  background: #f7f7f7;
+}
+
 /* Responsive disable for drop cap */
 @media (max-width: 768px) {
   .drop-cap {
@@ -390,6 +411,10 @@ a {
     margin: 0;
     line-height: inherit;
     display: inline;
+  }
+  .blog-post table {
+    display: block;
+    overflow-x: auto;
   }
 }
 
