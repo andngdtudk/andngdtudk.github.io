@@ -1,4 +1,4 @@
-<!-- image: https://andngdtudk.github.io/images/chess.jpg -->
+<!-- image: https://andngdtudk.github.io/images/game.jpeg -->
 
 # Game Theory and Multi-Agent Systems: Strategic Decision-Making in Interactive Environments
 
