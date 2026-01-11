@@ -4,7 +4,7 @@
 
 *Copenhagen*, 11th January 2026
 
-In our previous posts, we've explored how individual systems evolve, how to control them, and how to optimize their behavior. But a profound shift occurs when multiple decision-makers interact in the same environment. A single autonomous vehicle optimizing its route is an optimization problem. A fleet of autonomous vehicles competing for road space, each optimizing its own objective, is a **game**. The mathematical framework changes fundamentally when decisions are strategic — when what's optimal for one agent depends on what others choose to do.
+In our previous posts, we've explored how individual systems evolve, how to control them, and how to optimize their behavior. But a profound shift occurs when multiple decision-makers interact in the same environment. A single autonomous vehicle optimizing its route is an optimization problem. A fleet of autonomous vehicles competing for road space, each optimizing its own objective, is a **game**. The mathematical framework changes fundamentally when decisions are strategic, when what's optimal for one agent depends on what others choose to do.
 
 Game theory is the mathematical study of strategic interaction among rational decision-makers. It provides the analytical tools for understanding competition, cooperation, and coordination in multi-agent systems. For AI and mobility applications, these concepts are essential. Traffic networks involve thousands of interacting drivers. Autonomous vehicle fleets must coordinate without central control. Multi-agent reinforcement learning systems must learn to cooperate or compete. Supply chains involve strategic decisions by multiple firms. Smart grids coordinate distributed energy resources with conflicting objectives.
 
