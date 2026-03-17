@@ -7,7 +7,7 @@
 
 We've journeyed through the mathematical foundations of intelligent systems: how systems evolve over time, how to control them optimally, how to formulate decision-making as optimization, and how multiple agents interact strategically. Now we arrive at a framework that synthesizes all these ideas: **Markov Decision Processes (MDPs)** and **Reinforcement Learning (RL)**.
 
-An MDP is a mathematical model of sequential decision-making where an agent interacts with a stochastic environment over time. At each step, the agent observes a state, chooses an action, receives a reward, and transitions to a new state. The goal is to learn a policy — a mapping from states to actions — that maximizes cumulative reward over time.
+An MDP is a mathematical model of sequential decision-making where an agent interacts with a stochastic environment over time. At each step, the agent observes a state, chooses an action, receives a reward, and transitions to a new state. The goal is to learn a policy, a mapping from states to actions, that maximizes cumulative reward over time.
 
 This framework is remarkably general. An autonomous vehicle navigating through traffic is solving an MDP where states are positions and velocities, actions are steering and acceleration, and rewards reflect safety and efficiency. A logistics system routing packages is solving an MDP where states are inventory levels and vehicle positions, actions are routing decisions, and rewards reflect costs and service levels. A robot learning to manipulate objects is solving an MDP through trial and error, discovering effective policies from experience.
 
@@ -35,7 +35,7 @@ This means the current state contains all information needed to predict the futu
 
 ### Policies
 
-A **policy** $\pi$ defines the agent's behavior — how it chooses actions based on states.
+A **policy** $\pi$ defines the agent's behavior - how it chooses actions based on states.
 
 **Deterministic policy**: $\pi: \mathcal{S} \to \mathcal{A}$
 $$a = \pi(s)$$
@@ -199,7 +199,7 @@ $$\pi(a|s) = \begin{cases} 1 - \epsilon + \epsilon/|\mathcal{A}| & \text{if } a 
 
 ### Temporal-Difference Learning
 
-**Temporal-Difference (TD) methods** learn from incomplete episodes by bootstrapping — updating value estimates based on other value estimates.
+**Temporal-Difference (TD) methods** learn from incomplete episodes by bootstrapping, updating value estimates based on other value estimates.
 
 **TD(0) for policy evaluation**:
 $$V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]$$
@@ -253,8 +253,8 @@ $$G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^
 $$G_t^{\lambda} = (1 - \lambda) \sum_{n=1}^{\infty} \lambda^{n-1} G_t^{(n)}$$
 
 where $\lambda \in [0,1]$ controls the weighting. Special cases:
-- $\lambda = 0$: TD(0) — one-step TD
-- $\lambda = 1$: Monte Carlo — full episode returns
+- $\lambda = 0$: TD(0) - one-step TD
+- $\lambda = 1$: Monte Carlo - full episode returns
 
 **Eligibility traces** provide an efficient implementation:
 $$e_t(s) = \gamma \lambda e_{t-1}(s) + \mathbb{1}[S_t = s]$$
@@ -370,7 +370,7 @@ $$\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta}) = \mathbb{E}_{\pi_{\boldsy
 This doesn't introduce bias (the baseline term integrates to zero) but reduces variance. A common choice is $b(s) = V^{\pi_{\boldsymbol{\theta}}}(s)$, giving:
 $$\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta}) = \mathbb{E}_{\pi_{\boldsymbol{\theta}}}\left[\sum_{t=0}^{\infty} \nabla_{\boldsymbol{\theta}} \log \pi_{\boldsymbol{\theta}}(a_t | s_t) \, A^{\pi_{\boldsymbol{\theta}}}(s_t, a_t)\right]$$
 
-where $A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s)$ is the **advantage function** — how much better action $a$ is than average.
+where $A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s)$ is the **advantage function** - how much better action $a$ is than average.
 
 ### Actor-Critic Methods
 
@@ -595,7 +595,7 @@ Extending RL to multiple interacting agents connects back to game theory.
 Each agent learns independently, treating others as part of the environment:
 $Q_i(s, a_i) \leftarrow Q_i(s, a_i) + \alpha [r_i + \gamma \max_{a_i'} Q_i(s', a_i') - Q_i(s, a_i)]$
 
-**Problem**: Non-stationarity — as others learn, the environment changes, violating Markov property and convergence guarantees.
+**Problem**: Non-stationarity - as others learn, the environment changes, violating Markov property and convergence guarantees.
 
 ### Nash Q-Learning
 
@@ -626,7 +626,7 @@ where $g_{\psi}$ is a mixing network that enforces monotonicity: $\frac{\partial
 
 ## Sample Efficiency and Data Requirements
 
-A major challenge in RL is **sample efficiency** — how much experience is needed to learn?
+A major challenge in RL is **sample efficiency** - how much experience is needed to learn?
 
 **Sample complexity**: Number of environment interactions to achieve $\epsilon$-optimal policy.
 
@@ -689,7 +689,7 @@ This is optimal up to logarithmic factors.
 - Multi-agent RL for coordination in traffic
 
 **Challenges**:
-- Safety — cannot learn purely through trial-and-error
+- Safety, cannot learn purely through trial-and-error
 - Sim-to-real transfer
 - Distribution shift between training and deployment
 - Interpretability and verification
@@ -812,7 +812,7 @@ In our next post, we'll explore **model-based reinforcement learning and plannin
 - Model predictive control bridges classical control and modern RL
 - Imagination-based planning enables reasoning about future consequences
 
-Model-based methods represent a synthesis of everything we've learned: they use the dynamic systems perspective to model evolution, the optimization framework to plan actions, the control theory toolkit for trajectory optimization, and the RL paradigm for learning from experience. They also connect to how humans think — we build mental models of the world and use them to imagine and evaluate possible futures before acting.
+Model-based methods represent a synthesis of everything we've learned: they use the dynamic systems perspective to model evolution, the optimization framework to plan actions, the control theory toolkit for trajectory optimization, and the RL paradigm for learning from experience. They also connect to how humans think. We build mental models of the world and use them to imagine and evaluate possible futures before acting.
 
 The journey from MDPs to modern deep RL shows how mathematical foundations enable practical breakthroughs. The Bellman equations, first derived in the 1950s, underpin algorithms that now control robots, optimize logistics, and play complex games. As we move toward increasingly capable AI systems, these mathematical principles continue to guide algorithm design, provide theoretical guarantees, and reveal connections between seemingly different approaches.
 
