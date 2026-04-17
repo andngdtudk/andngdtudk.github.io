@@ -4,9 +4,9 @@
 
 *Munich*, 17th April 2026
 
-In our previous post, we explored how reinforcement learning enables agents to learn optimal behavior through trial and error, without requiring explicit models of the environment. Model-free methods like Q-learning and policy gradients have achieved remarkable successes, from playing Atari games to controlling robots. But they share a fundamental limitation: they are **sample inefficient**. Learning purely from experience requires enormous amounts of interaction with the environment — often millions of trials to master tasks that humans can learn from just a few examples.
+In our previous post, we explored how reinforcement learning enables agents to learn optimal behavior through trial and error, without requiring explicit models of the environment. Model-free methods like Q-learning and policy gradients have achieved remarkable successes, from playing Atari games to controlling robots. But they share a fundamental limitation: they are **sample inefficient**. Learning purely from experience requires enormous amounts of interaction with the environment, often millions of trials to master tasks that humans can learn from just a few examples.
 
-The key to human-like sample efficiency lies in **mental simulation**. When you consider crossing a busy street, you don't need to actually step into traffic multiple times to learn it's dangerous. You imagine possible futures — "if I step out now, that car will hit me" — using your internal model of how the world works. This is the essence of **model-based reinforcement learning**: learning a model of the environment's dynamics and using it to simulate and plan before acting.
+The key to human-like sample efficiency lies in **mental simulation**. When you consider crossing a busy street, you don't need to actually step into traffic multiple times to learn it's dangerous. You imagine possible futures, "if I step out now, that car will hit me", using your internal model of how the world works. This is the essence of **model-based reinforcement learning**: learning a model of the environment's dynamics and using it to simulate and plan before acting.
 
 Model-based RL represents a synthesis of everything we've covered: it uses system identification from control theory to learn dynamics, employs optimization methods for trajectory planning, leverages the MDP framework for value estimation, and when combined with tree search, achieves superhuman performance in complex domains like chess and Go. This post explores the mathematical foundations and algorithms that make model-based RL so powerful.
 
@@ -116,7 +116,7 @@ where $h_t$ is a deterministic hidden state and $z_t$ is a stochastic latent sta
 
 ## Planning with Learned Models
 
-Once we have a model, we can use it for planning — computing optimal action sequences.
+Once we have a model, we can use it for planning - computing optimal action sequences.
 
 ### Model Predictive Control (MPC)
 
@@ -300,7 +300,7 @@ AlphaZero achieved:
 - **Shogi**: Defeated champion program Elmo after 2 hours
 - **Go**: Defeated AlphaGo Lee (which beat world champion Lee Sedol) after 8 hours
 
-Starting only with game rules — no human knowledge, opening books, or endgame tables.
+Starting only with game rules - no human knowledge, opening books, or endgame tables.
 
 ## MuZero: Model-Based RL Without Knowing the Rules
 
@@ -328,7 +328,7 @@ where $u_{t+k}$ are actual observed rewards and $z_{t+k}$ are $n$-step bootstrap
 
 ### Results
 
-MuZero matched AlphaZero on Go, chess, shogi, and achieved state-of-the-art on Atari — learning both rules and strategy simultaneously.
+MuZero matched AlphaZero on Go, chess, shogi, and achieved state-of-the-art on Atari - learning both rules and strategy simultaneously.
 
 ## World Models: Learning to Dream
 
@@ -358,7 +358,7 @@ Agent is trained entirely in imagination after initial random data collection!
 
 ### Results
 
-Solved CarRacing environment without seeing real frames during training — only dreamed simulations.
+Solved CarRacing environment without seeing real frames during training - only dreamed simulations.
 
 ## Dyna-2: Combining Real and Simulated Experience
 
@@ -552,7 +552,7 @@ In our next post, we'll explore how **Transformers and sequence models** are rev
 - Foundation models pretrained on massive data enable few-shot adaptation
 - Transformers unify perception, planning, and control
 
-This represents the frontier where classical methods meet modern deep learning — where the mathematical foundations we've built meet the empirical power of large-scale learning. The result is AI systems that can plan, adapt, and generalize in ways that approach human-like flexibility.
+This represents the frontier where classical methods meet modern deep learning, where the mathematical foundations we've built meet the empirical power of large-scale learning. The result is AI systems that can plan, adapt, and generalize in ways that approach human-like flexibility.
 
 ---
 
