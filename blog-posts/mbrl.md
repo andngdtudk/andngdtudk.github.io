@@ -1,6 +1,6 @@
 <!-- image: https://andngdtudk.github.io/images/go.jpg -->
 
-# Model-Based RL and Planning: Learning to Simulate and Search
+# Model-Based Reinforcement Learning and Planning: Learning to Simulate and Search
 
 *Munich*, 17th April 2026
 
