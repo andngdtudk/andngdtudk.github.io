@@ -1,4 +1,4 @@
-const posts = ['mbrl.md'
+const posts = ['mbrl.md',
   'Rl.md',
   'game.md',
   'Opt.md',
