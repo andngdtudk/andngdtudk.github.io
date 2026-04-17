@@ -1,4 +1,4 @@
-<!-- image: https://andngdtudk.github.io/images/go.jpeg -->
+<!-- image: https://andngdtudk.github.io/images/go.jpg -->
 
 # Model-Based RL and Planning: Learning to Simulate and Search
 
