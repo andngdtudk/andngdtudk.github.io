@@ -1,4 +1,4 @@
-<!-- image: https://andngdtudk.github.io/images/nlp.PNG -->
+<!-- image: https://andngdtudk.github.io/images/nlp2.webp -->
 
 # Transformers and Sequence Models: The Future of Decision-Making AI
 
