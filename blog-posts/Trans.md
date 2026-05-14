@@ -76,7 +76,15 @@ We can represent this as a sequence of tokens:
 $$[\mathbf{s}_0, \mathbf{a}_0, r_1, \mathbf{s}_1, \mathbf{a}_1, r_2, \ldots]$$
 
 **Language modeling objective**: Predict next token given previous tokens:
-$$p(\tau) = \prod_{t=0}^T p(s_t | s_{<t}, a_{<t}, r_{\leq t}) \cdot p(a_t | s_{\leq t}, a_{<t}, r_{\leq t}) \cdot p(r_{t+1} | s_{\leq t}, a_{\leq t})$$
+$$
+p(\tau) = \prod_{t=0}^{T}
+p(s_t \mid s_{<t}, a_{<t}, r_{\leq t})
+\cdot
+p(a_t \mid s_{\leq t}, a_{<t}, r_{\leq t})
+\cdot
+p(r_{t+1} \mid s_{\leq t}, a_{\leq t})
+$$
+
 
 If we can model this distribution accurately, we can:
 - **Imitate**: Sample actions from $p(a_t | \text{history})$
@@ -122,7 +130,22 @@ At test time, specify a desired return $\hat{R}_0 = R_{\text{target}}$ and sampl
 **Dataset**: Collect trajectories using any policy (including suboptimal ones).
 
 **Loss**: Maximize log-likelihood of actions in trajectories:
-$$\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \mathcal{D}}\left[\sum_{t=0}^T \log p_{\theta}(a_t | \hat{R}_{\geq t}, s_{\geq t}, a_{<t})\right]$$
+$$
+\mathcal{L}(\theta)
+=
+\mathbb{E}_{\tau \sim \mathcal{D}}
+\left[
+\sum_{t=0}^{T}
+\log p_{\theta}
+\left(
+a_t
+\mid
+\hat{R}_{\geq t},
+s_{\leq t},
+a_{<t}
+\right)
+\right]
+$$
 
 No Q-functions, no advantage estimation, no policy gradients, just language modeling loss!
 
@@ -164,7 +187,33 @@ DT matched or exceeded TD-learning methods on offline RL benchmarks (D4RL) with:
 ### Architecture
 
 Model the entire trajectory distribution:
-$$p(\tau) = \prod_{t=0}^T p(s_t | s_{<t}, a_{<t}, r_{<t}) \cdot p(a_t | s_{\leq t}, a_{<t}, r_{<t}) \cdot p(r_t | s_{\leq t}, a_{<t})$$
+$$
+p(\tau)
+=
+\prod_{t=0}^{T}
+p\left(
+s_t
+\mid
+s_{<t},
+a_{<t},
+r_{<t}
+\right)
+\cdot
+p\left(
+a_t
+\mid
+s_{\leq t},
+a_{<t},
+r_{<t}
+\right)
+\cdot
+p\left(
+r_t
+\mid
+s_{\leq t},
+a_{<t}
+\right)
+$$
 
 A single autoregressive Transformer models transitions, actions, and rewards jointly.
 
@@ -613,6 +662,7 @@ We've now explored the full stack of modern decision-making AI:
 - Modern architectures (Transformers, sequence modeling)
 
 In our final posts, we'll explore:
+- **Graph Neural Networks for structured intelligence**: Learning relational dynamics in transportation networks, multi-agent systems, and physical infrastructure
 - **Diffusion models for planning**: How generative models enable flexible trajectory optimization
 - **Agentic AI and embodied intelligence**: Putting everything together for real-world systems
 - **The future of mobility**: How these technologies will transform transportation and logistics
