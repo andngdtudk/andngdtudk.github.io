@@ -4,11 +4,11 @@
 
 *Munich*, 14th May 2026
 
-In 2017, the paper "Attention Is All You Need" introduced the Transformer architecture, sparking a revolution in natural language processing. Models like GPT and BERT demonstrated unprecedented abilities to understand and generate text by learning from massive datasets. By 2020, language models had become so capable that they could write coherent essays, answer questions, and even write code — all by predicting the next token in a sequence.
+In 2017, the paper "Attention Is All You Need" introduced the Transformer architecture, sparking a revolution in natural language processing. Models like GPT and BERT demonstrated unprecedented abilities to understand and generate text by learning from massive datasets. By 2020, language models had become so capable that they could write coherent essays, answer questions, and even write code, all by predicting the next token in a sequence.
 
-But here's a profound insight: **decision-making is sequence modeling**. When an agent interacts with an environment, it generates a sequence: state, action, reward, state, action, reward... Just as language models predict the next word given context, decision-making agents predict the next action given history. This connection is not merely analogous — it's fundamental. And it suggests that the same architectures and training methods that revolutionized NLP might also transform reinforcement learning and planning.
+But here's a profound insight: **decision-making is sequence modeling**. When an agent interacts with an environment, it generates a sequence: state, action, reward, state, action, reward... Just as language models predict the next word given context, decision-making agents predict the next action given history. This connection is not merely analogous; it is fundamental. And it suggests that the same architectures and training methods that revolutionized NLP might also transform reinforcement learning and planning.
 
-This is exactly what's happening. Transformers are now being applied to sequential decision-making with remarkable success. Decision Transformers reframe RL as conditional sequence modeling. Trajectory Transformers learn world models in sequence space. Gato demonstrates a single model that can play Atari, caption images, stack blocks with a robot arm, and chat — all by treating everything as a sequence prediction problem. This post explores how Transformers and sequence models are reshaping the landscape of decision-making AI.
+This is exactly what's happening. Transformers are now being applied to sequential decision-making with remarkable success. Decision Transformers reframe RL as conditional sequence modeling. Trajectory Transformers learn world models in sequence space. Gato demonstrates a single model that can play Atari, caption images, stack blocks with a robot arm, and chat, all by treating everything as a sequence prediction problem. This post explores how Transformers and sequence models are reshaping the landscape of decision-making AI.
 
 ## The Transformer Architecture: A Brief Review
 
@@ -96,7 +96,7 @@ This requires:
 Sequence modeling reframes this as:
 $$\max_{\theta} \mathbb{E}_{\tau \sim \mathcal{D}}[\log p_{\theta}(\tau)]$$
 
-This is **supervised learning** on trajectory data! No TD errors, no policy gradients, no exploration strategies — just predict the next token.
+This is **supervised learning** on trajectory data. No TD errors, no policy gradients, no exploration strategies, just predict the next token.
 
 **Key question**: How do we ensure the model learns good behaviors, not just any behaviors?
 
@@ -124,7 +124,7 @@ At test time, specify a desired return $\hat{R}_0 = R_{\text{target}}$ and sampl
 **Loss**: Maximize log-likelihood of actions in trajectories:
 $$\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \mathcal{D}}\left[\sum_{t=0}^T \log p_{\theta}(a_t | \hat{R}_{\geq t}, s_{\geq t}, a_{<t})\right]$$
 
-No Q-functions, no advantage estimation, no policy gradients — just language modeling loss!
+No Q-functions, no advantage estimation, no policy gradients, just language modeling loss!
 
 ### Why This Works
 
@@ -136,7 +136,7 @@ No Q-functions, no advantage estimation, no policy gradients — just language m
 
 A conditional model can learn: "When I want high return from this state, take actions like those in the good segments."
 
-This is **trajectory stitching** — combining sub-optimal experiences to construct optimal behavior.
+This is trajectory stitching, combining sub-optimal experiences to construct optimal behavior.
 
 **Credit assignment via attention**: Attention mechanism naturally handles long-range dependencies, assigning credit across time steps.
 
