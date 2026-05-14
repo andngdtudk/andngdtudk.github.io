@@ -76,14 +76,7 @@ We can represent this as a sequence of tokens:
 $$[\mathbf{s}_0, \mathbf{a}_0, r_1, \mathbf{s}_1, \mathbf{a}_1, r_2, \ldots]$$
 
 **Language modeling objective**: Predict next token given previous tokens:
-$$
-p(\tau) = \prod_{t=0}^{T}
-p(s_t \mid s_{<t}, a_{<t}, r_{\leq t})
-\cdot
-p(a_t \mid s_{\leq t}, a_{<t}, r_{\leq t})
-\cdot
-p(r_{t+1} \mid s_{\leq t}, a_{\leq t})
-$$
+$$ p(\tau) = \prod_{t=0}^{T} p(s_t \mid s_{<t}, a_{<t}, r_{\leq t}) \cdot p(a_t \mid s_{\leq t}, a_{<t}, r_{\leq t}) \cdot p(r_{t+1} \mid s_{\leq t}, a_{\leq t}) $$
 
 
 If we can model this distribution accurately, we can:
