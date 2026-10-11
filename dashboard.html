@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiments · ProLight</title>
+<meta name="description" content="Replay and follow ProLight traffic-control experiments on T-REX.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --surface:#f8fafc; --surface-2:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb;
+  --accent:#04b486; --accent-hover:#06d6a0; --accent-ink:#047857; --on-accent:#0a0a0a;
+  --amber:#d5a65a; --amber-ink:#8a6420; --blue:#6b93b0; --road:#cbd5e1; --map-bg:#f8fafc;
+  --font-primary:"General Sans","Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --radius-card:28px; --radius-button:999px; --page-gutter:8%; --section-padding:110px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+body.dark{
+  --bg:#0a0a0a; --surface:#111111; --surface-2:#161616; --text:#f5f5f5; --muted:#a1a1aa; --border:#27272a;
+  --accent-ink:#04b486; --amber-ink:#d5a65a; --road:#33363d; --map-bg:#0e0e0e;
+}
+@media (max-width:900px){ :root{ --page-gutter:6%; --section-padding:72px; } }
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font-primary);background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,select,input{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* nav — mirrors the website; replace with your site header if you have one */
+.pl-nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--page-gutter);background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.pl-logo{display:block;height:20px;width:auto}
+.pl-logo .w{fill:var(--text)} .pl-logo .e{fill:var(--accent)}
+.pl-nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;align-items:center}
+.pl-nav ul a{text-decoration:none;color:var(--muted);font-size:15px}
+.pl-nav ul a:hover,.pl-nav ul a[aria-current="page"]{color:var(--text)}
+.pl-nav ul a[aria-current="page"]{box-shadow:0 1px 0 var(--accent)}
+.pl-icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);display:grid;place-items:center;cursor:pointer}
+.pl-icon-btn:hover{border-color:var(--accent)}
+.pl-menu-btn{display:none}
+@media (max-width:900px){
+  .pl-menu-btn{display:grid}
+  .pl-nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;padding:22px var(--page-gutter);background:var(--bg);border-bottom:1px solid var(--border)}
+  .pl-nav.open ul{display:flex}
+}
+
+.pl-dash{padding:56px var(--page-gutter) var(--section-padding)}
+.pl-overline{font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 14px}
+.pl-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:28px}
+.pl-head h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:500;letter-spacing:-.05em;line-height:1;margin:0}
+.pl-head p{color:var(--muted);max-width:640px;margin:16px 0 0;font-size:17px}
+.pl-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:flex-end}
+.pl-status{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:var(--radius-button);border:1px solid var(--border);font-size:14px;font-weight:500;white-space:nowrap}
+.pl-dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.pl-status[data-state="live"] .pl-dot{background:var(--accent);animation:pl-pulse 1.8s infinite}
+.pl-status[data-state="replay"] .pl-dot{background:var(--text)}
+.pl-status[data-state="failed"] .pl-dot,.pl-status[data-state="error"] .pl-dot{background:var(--amber)}
+.pl-status[data-state="demo"]{border-color:color-mix(in srgb,var(--amber) 60%,transparent);color:var(--amber-ink)}
+.pl-status[data-state="demo"] .pl-dot{background:var(--amber)}
+@keyframes pl-pulse{0%{box-shadow:0 0 0 0 rgba(4,180,134,.55)}70%{box-shadow:0 0 0 9px rgba(4,180,134,0)}100%{box-shadow:0 0 0 0 rgba(4,180,134,0)}}
+.pl-select{position:relative}
+.pl-select select{appearance:none;height:44px;min-width:260px;max-width:400px;padding:0 44px 0 18px;border-radius:var(--radius-button);border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:500;font-size:14px;cursor:pointer}
+.pl-select::after{content:"";position:absolute;right:20px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.pl-note{margin:0 0 20px;font-size:14px;color:var(--muted)}
+.pl-note strong{color:var(--text);font-weight:500}
+
+/* player */
+.pl-player{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius-button);background:var(--surface);margin-bottom:20px}
+.pl-play{width:44px;height:44px;border-radius:50%;border:0;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;cursor:pointer}
+.pl-play:hover{background:var(--accent-hover)}
+.pl-play[disabled]{opacity:.4;cursor:default}
+.pl-ghost{height:36px;padding:0 14px;border-radius:var(--radius-button);border:1px solid var(--border);background:transparent;color:var(--text);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.pl-ghost:hover{border-color:var(--accent)}
+.pl-ghost[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-ink)}
+.pl-ghost[hidden]{display:none}
+.pl-scrub{position:relative;height:36px;display:flex;align-items:center}
+.pl-scrub input{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--track,var(--border));cursor:pointer;margin:0}
+.pl-scrub input::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--text);border:3px solid var(--surface)}
+.pl-scrub input::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--text);border:3px solid var(--surface)}
+.pl-time{font-size:14px;color:var(--muted);white-space:nowrap}
+.pl-time b{color:var(--text);font-weight:500}
+.pl-speed{height:36px;border-radius:var(--radius-button);border:1px solid var(--border);background:transparent;color:var(--text);padding:0 12px;font-size:13px;font-weight:500}
+
+.pl-stage{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;margin-bottom:24px}
+.pl-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);position:relative;overflow:hidden}
+.pl-panel-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 16px;padding:22px 28px 0}
+.pl-panel-head h2{font-size:18px;font-weight:500;letter-spacing:-.01em;margin:0}
+.pl-sub{font-size:13px;color:var(--muted)}
+.pl-maps{display:grid;gap:1px;background:var(--border);height:clamp(380px,48vw,620px)}
+.pl-maps[data-n="1"]{grid-template-columns:1fr}
+.pl-maps[data-n="2"]{grid-template-columns:1fr 1fr}
+.pl-maps[data-n="3"]{grid-template-columns:1fr 1fr 1fr}
+.pl-map{position:relative;background:var(--map-bg);min-width:0}
+.pl-map canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pl-map-label{position:absolute;left:18px;top:16px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;background:color-mix(in srgb,var(--map-bg) 80%,transparent);padding:4px 10px;border-radius:10px}
+.pl-map-label i{width:16px;height:0;border-top:2px solid var(--c,var(--accent))}
+.pl-map-label i.dash{border-top-style:dashed}
+.pl-map-label span{color:var(--muted);font-weight:400}
+.pl-map-note{position:absolute;left:18px;bottom:14px;font-size:12px;color:var(--muted)}
+.pl-legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--muted);align-items:center;padding:14px 28px 20px}
+.pl-legend span{display:inline-flex;align-items:center;gap:8px}
+.pl-flow{width:28px;height:3px;border-radius:2px;background:var(--accent)}
+.pl-cong{width:28px;height:3px;border-radius:2px;background:var(--amber)}
+.pl-sig{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.pl-qh{width:14px;height:14px;border-radius:50%;border:2px solid color-mix(in srgb,var(--amber) 70%,transparent)}
+.pl-inc{width:12px;height:12px;border-radius:50%;border:2px solid var(--amber)}
+.pl-empty{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:40px;color:var(--muted);font-size:15px;z-index:2;background:var(--surface)}
+.pl-empty.show{display:grid}
+
+.pl-rail{display:flex;flex-direction:column}
+.pl-group{padding:20px 28px 6px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--border)}
+.pl-group b{display:block;color:var(--text);font-weight:500;font-size:15px}
+.pl-metric{padding:16px 28px;border-bottom:1px solid var(--border)}
+.pl-metric-label{font-size:14px;color:var(--muted)}
+.pl-metric-value{font-size:34px;font-weight:500;letter-spacing:-.04em;line-height:1.1;margin-top:2px}
+.pl-metric-value small{font-size:15px;font-weight:400;letter-spacing:0;color:var(--muted);margin-left:6px}
+.pl-metric-foot{font-size:13px;color:var(--muted);margin-top:4px}
+.pl-metric[data-alert="true"] .pl-metric-value{color:var(--amber-ink)}
+.pl-progress{height:4px;border-radius:2px;background:var(--border);margin-top:10px;overflow:hidden}
+.pl-progress i{display:block;height:100%;width:0;background:var(--accent)}
+.pl-final{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pl-final .pl-metric{border-right:1px solid var(--border)}
+.pl-final .pl-metric:nth-child(2n){border-right:none}
+.pl-final .pl-metric-value{font-size:26px}
+.pl-final-note{padding:12px 28px 4px;font-size:12px;color:var(--muted)}
+.pl-rail-foot{margin-top:auto;padding:18px 28px 24px}
+.pl-btn{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:var(--radius-button);font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);text-decoration:none}
+.pl-btn:hover{border-color:var(--accent)}
+
+.pl-lower{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;margin-bottom:24px}
+.pl-tabs{display:flex;gap:4px;padding:4px;border:1px solid var(--border);border-radius:var(--radius-button)}
+.pl-tabs button{border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:500;padding:7px 14px;border-radius:var(--radius-button);cursor:pointer}
+.pl-tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+.pl-tabs button[disabled]{opacity:.35;cursor:default}
+.pl-chart-wrap{position:relative;height:320px;margin:8px 12px 0;cursor:crosshair}
+.pl-chart-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.pl-compare{display:flex;flex-wrap:wrap;gap:8px;padding:6px 28px 24px;align-items:center;font-size:13px;color:var(--muted)}
+.pl-chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:var(--radius-button);border:1px solid var(--border);background:transparent;color:var(--text);font-size:13px;font-weight:500;cursor:pointer}
+.pl-chip i{width:16px;height:0;border-top:2px dashed var(--c,var(--muted))}
+.pl-chip[aria-pressed="true"]{border-color:var(--c)}
+.pl-tip{position:absolute;pointer-events:none;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;min-width:170px;opacity:0;transition:opacity .15s;z-index:3}
+.pl-log{list-style:none;margin:0;padding:8px 0 16px;max-height:380px;overflow:auto}
+.pl-log li{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:12px 28px;border-bottom:1px solid var(--border);font-size:14px}
+.pl-log li:last-child{border-bottom:none}
+.pl-log li[data-future="true"]{opacity:.45}
+.pl-log time{color:var(--muted)}
+.pl-log .k{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.pl-log li[data-kind^="incident"] .k{color:var(--amber-ink)}
+
+.pl-cmp{margin-bottom:24px}
+.pl-cmp[hidden]{display:none}
+.pl-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:20px}
+.pl-table{width:100%;border-collapse:collapse;font-size:14px}
+.pl-table th{text-align:left;font-weight:500;color:var(--muted);padding:14px 20px;border-bottom:1px solid var(--border);white-space:nowrap}
+.pl-table td{padding:14px 20px;border-bottom:1px solid var(--border)}
+.pl-table tr:last-child td{border-bottom:none}
+.pl-table td.v{font-variant-numeric:tabular-nums}
+.pl-table .best{font-weight:600;color:var(--text)}
+.pl-runs{margin-top:72px}
+.pl-runs h2,.pl-cmp h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;letter-spacing:-.05em;margin:0 0 20px}
+.pl-runs .pl-table{min-width:860px}
+.pl-runs tbody tr{cursor:pointer}
+.pl-runs tbody tr:hover,.pl-runs tbody tr[aria-selected="true"]{background:var(--surface)}
+.pl-runs tbody tr[aria-selected="true"] td:first-child{box-shadow:inset 2px 0 0 var(--accent)}
+.pl-badge{display:inline-flex;align-items:center;gap:7px;font-size:13px}
+.pl-badge i{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.pl-badge[data-s="running"] i{background:var(--accent)} .pl-badge[data-s="failed"] i{background:var(--amber)} .pl-badge[data-s="finished"] i{background:var(--text)}
+
+.pl-foot{background:var(--accent);color:var(--on-accent);padding:56px var(--page-gutter);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;font-size:14px}
+.pl-foot .pl-logo .w,.pl-foot .pl-logo .e{fill:#fff}
+.pl-foot .pl-logo{height:26px}
+.pl-foot button{background:none;border:0;color:var(--on-accent);font-size:14px;text-decoration:underline;cursor:pointer;padding:0}
+dialog.pl-dialog{border:1px solid var(--border);border-radius:24px;background:var(--surface-2);color:var(--text);padding:28px;max-width:420px;width:calc(100% - 40px)}
+dialog.pl-dialog::backdrop{background:rgba(0,0,0,.55)}
+.pl-dialog h2{margin:0 0 8px;font-size:22px;font-weight:500;letter-spacing:-.03em}
+.pl-dialog p{margin:0 0 18px;color:var(--muted);font-size:14px}
+.pl-dialog input{width:100%;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);padding:0 14px;font-size:15px;margin-bottom:14px}
+.pl-dialog .row{display:flex;gap:10px;justify-content:flex-end}
+.pl-primary{height:40px;padding:0 18px;border-radius:var(--radius-button);border:0;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:14px;cursor:pointer}
+
+@media (max-width:1100px){ .pl-stage,.pl-lower{grid-template-columns:1fr} .pl-maps[data-n="3"]{grid-template-columns:1fr} .pl-maps[data-n="3"],.pl-maps[data-n="2"]{height:auto} .pl-maps[data-n="2"] .pl-map,.pl-maps[data-n="3"] .pl-map{height:340px} }
+@media (max-width:900px){ .pl-head{grid-template-columns:1fr} .pl-controls{justify-content:flex-start} .pl-select{flex:1 1 240px} .pl-select select{min-width:0;width:100%} .pl-maps[data-n="2"]{grid-template-columns:1fr} .pl-player{display:flex;flex-wrap:wrap;border-radius:24px} .pl-player .pl-scrub{flex:1 1 55%} #pl-restart{display:none} .pl-player .pl-time{flex:1 1 auto} }
+@media (max-width:560px){ .pl-metric{padding:14px 20px} .pl-panel-head{padding:18px 20px 0} .pl-legend{padding:12px 20px 18px} .pl-log li{padding:12px 20px} .pl-compare{padding:6px 20px 20px} .pl-group{padding:18px 20px 6px} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body class="dark">
+
+<header class="pl-nav" id="pl-nav">
+  <a href="/" aria-label="ProLight home"><svg class="pl-logo" role="img" aria-label="ProLight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3120 338"><g class="w" transform="translate(0.000000,338.000000) scale(0.100000,-0.100000)"><path d="M786 3168 c-7 -21 -96 -553 -96 -571 0 -15 105 -17 1478 -19 l1477
+-3 67 -32 c394 -186 268 -838 -193 -1005 l-64 -23 -1240 -5 c-1350 -6 -1254
+-2 -1401 -62 -213 -88 -403 -293 -474 -511 -15 -48 -138 -730 -133 -739 5 -10
+651 -9 657 0 4 6 126 692 126 707 0 2 541 6 1203 8 1313 3 1260 1 1472 62 429
+124 811 502 930 920 179 628 -108 1138 -710 1262 -108 22 -3093 33 -3099 11z
+M5180 3176 c0 -3 -117 -671 -260 -1484 -143 -813 -260 -1484 -260 -1490 0 -9
+86 -12 333 -12 l333 0 63 358 c35 196 65 360 68 365 6 11 1408 9 1476 -3 142
+-23 135 -17 655 -552 l162 -168 500 0 c275 0 500 4 499 8 0 4 -168 180 -373
+392 l-373 384 96 37 c529 200 883 696 884 1239 2 462 -271 795 -739 901 l-99
+23 -1482 3 c-816 2 -1483 1 -1483 -1z m2830 -613 c395 -137 350 -758 -72 -988
+-123 -67 -85 -65 -1290 -65 -598 0 -1088 2 -1088 6 0 11 181 1040 186 1057 5
+17 58 17 1102 15 l1097 -3 65 -22z M10680 3155 c-894 -144 -1594 -951 -1557
+-1795 26 -585 391 -1007 985 -1142 116 -26 1408 -41 1627 -18 1168 120 1987
+1394 1502 2335 -158 304 -441 513 -827 608 -110 27 -1574 37 -1730 12z m1495
+-598 c317 -91 491 -343 489 -707 -3 -473 -321 -903 -769 -1036 -89 -27 -1439
+-34 -1553 -9 -437 97 -632 589 -435 1096 133 342 463 618 798 668 121 18 1402
+8 1470 -12z"/></g><g class="e" transform="translate(0.000000,338.000000) scale(0.100000,-0.100000)"><path d="M13960 3171 c0 -5 -79 -456 -176 -1002 -175 -983 -177 -996 -178
+-1144 -2 -409 217 -692 624 -803 l95 -27 986 -3 987 -3 21 118 c12 65 37 200
+55 301 l32 182 -926 0 c-1005 0 -982 -1 -1055 54 -81 62 -135 185 -135 308 0
+46 57 395 170 1031 94 528 170 969 170 979 0 17 -18 18 -335 18 -186 0 -335
+-4 -335 -9z M17165 3158 c-10 -49 -95 -547 -95 -562 0 -14 29 -16 270 -16 210
+0 270 -3 269 -12 0 -7 -71 -409 -157 -893 l-158 -880 -274 -5 -275 -5 -51
+-295 -50 -295 875 -3 c481 -1 876 0 879 3 5 5 102 551 102 577 0 16 -21 18
+-268 20 l-269 3 153 860 c84 473 156 875 159 892 l6 33 272 2 271 3 51 293
+c28 161 49 295 46 297 -2 3 -397 5 -877 5 l-874 0 -5 -22z M20665 3169 c-776
+-60 -1481 -670 -1644 -1420 -162 -749 215 -1360 943 -1532 90 -21 105 -21
+1319 -24 876 -3 1227 -1 1227 7 0 12 277 1600 285 1638 l5 22 -625 0 c-344 0
+-625 -4 -625 -8 0 -4 -22 -137 -50 -296 -27 -159 -50 -290 -50 -292 0 -2 130
+-4 288 -4 l288 0 -42 -232 c-24 -128 -43 -234 -44 -235 -2 -13 -1664 -1 -1725
+12 -339 71 -558 408 -515 795 50 454 371 840 791 952 l84 22 1178 3 c647 2
+1177 5 1177 6 0 1 23 133 50 292 27 160 50 293 50 298 0 9 -2236 6 -2365 -4z
+M23375 3168 c-3 -7 -119 -668 -260 -1468 -140 -800 -258 -1467 -261 -1483 l-6
+-27 336 0 c185 0 336 2 336 5 0 7 199 1137 205 1163 l5 22 1260 0 c693 0 1260
+-3 1260 -6 0 -12 -201 -1149 -206 -1166 -5 -17 15 -18 330 -18 l336 0 5 22
+c12 56 515 2935 515 2951 0 16 -21 17 -332 15 l-332 -3 -103 -585 c-56 -322
+-105 -591 -108 -597 -4 -13 -2504 -21 -2516 -8 -3 2 41 264 98 582 56 318 102
+586 103 596 0 22 -657 27 -665 5z M27571 3128 c-19 -95 -91 -518 -91 -533 0
+-13 90 -15 690 -15 l690 0 -5 -22 c-7 -31 -415 -2348 -415 -2359 0 -5 148 -9
+333 -9 l333 0 210 1193 210 1192 691 3 691 2 6 28 c13 63 96 547 96 559 0 11
+-305 13 -1714 13 l-1715 0 -10 -52z"/></g></svg></a>
+  <ul id="pl-menu">
+    <li><a href="/#about">About</a></li><li><a href="/#technology">Technology</a></li><li><a href="/#network">Network</a></li>
+    <li><a href="/#research">Research</a></li><li><a href="/#news">News</a></li><li><a href="/#team">Team</a></li>
+    <li><a href="/dashboard.html" aria-current="page">Experiments</a></li>
+  </ul>
+  <div style="display:flex;gap:10px">
+    <button class="pl-icon-btn" id="pl-theme" type="button" aria-label="Switch light or dark theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+    <button class="pl-icon-btn pl-menu-btn" id="pl-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pl-menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main class="pl-dash" id="prolight-dashboard">
+  <div class="pl-head">
+    <div>
+      <p class="pl-overline">Research dashboard</p>
+      <h1>Experiments</h1>
+      <p>Replay T-REX experiments step by step, compare methods on the same incident, and follow long runs while they are still going.</p>
+    </div>
+    <div class="pl-controls">
+      <span class="pl-status" id="pl-status" data-state="connecting" role="status" aria-live="polite"><span class="pl-dot"></span><span id="pl-status-text">Connecting</span></span>
+      <label class="pl-select"><span class="sr">Run</span><select id="pl-run"></select></label>
+    </div>
+  </div>
+  <p class="pl-note" id="pl-note"><strong>Simulation output.</strong> Live indicators are raw values from the simulator. Final results use the definitions in our papers; runs shown here may not yet be peer reviewed.</p>
+
+  <div class="pl-player" role="group" aria-label="Replay controls">
+    <button class="pl-play" id="pl-play" type="button" aria-label="Play replay"><svg id="pl-play-ico" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+    <button class="pl-ghost" id="pl-restart" type="button">Restart</button>
+    <div class="pl-scrub"><input type="range" id="pl-scrub" min="0" max="3600" step="1" value="0" aria-label="Simulation time"></div>
+    <span class="pl-time num" id="pl-time"><b>00:00:00</b> / 01:00:00</span>
+    <div style="display:flex;gap:8px;align-items:center">
+      <label class="sr" for="pl-speed">Replay speed</label>
+      <select class="pl-speed" id="pl-speed"><option value="10">10×</option><option value="30">30×</option><option value="60" selected>60×</option><option value="120">120×</option><option value="300">300×</option></select>
+      <button class="pl-ghost" id="pl-live" type="button" aria-pressed="true" hidden>Follow live</button>
+    </div>
+  </div>
+
+  <section class="pl-stage" aria-label="Network and indicators">
+    <div class="pl-panel">
+      <div class="pl-maps" id="pl-maps" data-n="1"></div>
+      <div class="pl-empty" id="pl-empty"></div>
+      <div class="pl-legend" id="pl-legend"><span><i class="pl-flow"></i>Traffic flow (about one dot per vehicle)</span><span><i class="pl-cong"></i>Congested road</span><span><i class="pl-sig"></i>Signal agent</span><span><i class="pl-qh"></i>Queue at signal</span><span><i class="pl-inc"></i>Incident</span></div>
+    </div>
+    <aside class="pl-panel pl-rail" aria-label="Indicators for the selected run">
+      <div class="pl-group"><b>Live indicators</b>At the replay position</div>
+      <div class="pl-metric"><div class="pl-metric-label">Queued at signals</div><div class="pl-metric-value num" id="m-queue">—<small>veh</small></div><div class="pl-metric-foot" id="m-queue-foot">Vehicles waiting within 200 m of a stop line</div></div>
+      <div class="pl-metric"><div class="pl-metric-label">Vehicles in network</div><div class="pl-metric-value num" id="m-veh">—</div><div class="pl-metric-foot num" id="m-arr">Completed trips —</div></div>
+      <div class="pl-metric" id="m-inc-wrap"><div class="pl-metric-label">Incidents</div><div class="pl-metric-value num" id="m-inc">—</div><div class="pl-metric-foot" id="m-inc-foot">—</div></div>
+      <div class="pl-metric"><div class="pl-metric-label">Run progress</div><div class="pl-metric-value num" id="m-prog">—</div><div class="pl-progress"><i id="m-prog-bar"></i></div><div class="pl-metric-foot num" id="m-prog-foot">—</div></div>
+      <div id="pl-final-wrap" hidden>
+        <div class="pl-group"><b>Final results</b>Paper definitions, from tripinfo after the run</div>
+        <div class="pl-final">
+          <div class="pl-metric"><div class="pl-metric-label">Network ATT</div><div class="pl-metric-value num" id="f-att">—</div></div>
+          <div class="pl-metric"><div class="pl-metric-label">Traveller ATT</div><div class="pl-metric-value num" id="f-tatt">—</div></div>
+          <div class="pl-metric"><div class="pl-metric-label">Throughput</div><div class="pl-metric-value num" id="f-thru">—</div></div>
+          <div class="pl-metric"><div class="pl-metric-label">Network AWT</div><div class="pl-metric-value num" id="f-awt">—</div></div>
+        </div>
+      </div>
+      <div class="pl-rail-foot"><button class="pl-btn" id="pl-copy" type="button">Copy link to this view</button></div>
+    </aside>
+  </section>
+
+  <section class="pl-lower" aria-label="Time series and events">
+    <div class="pl-panel">
+      <div class="pl-panel-head">
+        <h2 id="pl-chart-title">Queued at signals</h2>
+        <div class="pl-tabs" role="tablist" aria-label="Indicator">
+          <button role="tab" data-metric="queue_total" aria-selected="true">Queued</button>
+          <button role="tab" data-metric="wait_total" aria-selected="false">Waiting</button>
+          <button role="tab" data-metric="vehicles" aria-selected="false">In network</button>
+        </div>
+      </div>
+      <div class="pl-chart-wrap" id="pl-chart-wrap"><canvas id="pl-chart" role="img" aria-label="Indicator over simulation time; click to jump"></canvas><div class="pl-tip" id="pl-tip"></div></div>
+      <div class="pl-compare" id="pl-compare"></div>
+    </div>
+    <div class="pl-panel">
+      <div class="pl-panel-head"><h2>Events</h2><span class="pl-sub" id="pl-log-count"></span></div>
+      <ul class="pl-log" id="pl-log"></ul>
+    </div>
+  </section>
+
+  <section class="pl-cmp" id="pl-cmp" hidden aria-labelledby="pl-cmp-title">
+    <h2 id="pl-cmp-title">Side by side</h2>
+    <div class="pl-table-wrap"><table class="pl-table"><thead id="pl-cmp-head"></thead><tbody id="pl-cmp-body"></tbody></table></div>
+  </section>
+
+  <section class="pl-runs" aria-labelledby="pl-runs-title">
+    <h2 id="pl-runs-title">Runs</h2>
+    <div class="pl-table-wrap"><table class="pl-table">
+      <thead><tr><th>Method</th><th>Network</th><th>Scenario</th><th>Seed</th><th>Status</th><th>Network ATT</th><th>Throughput</th><th>Started</th></tr></thead>
+      <tbody id="pl-runs-body"></tbody></table></div>
+  </section>
+</main>
+
+<footer class="pl-foot">
+  <svg class="pl-logo" role="img" aria-label="ProLight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3120 338"><g class="w" transform="translate(0.000000,338.000000) scale(0.100000,-0.100000)"><path d="M786 3168 c-7 -21 -96 -553 -96 -571 0 -15 105 -17 1478 -19 l1477
+-3 67 -32 c394 -186 268 -838 -193 -1005 l-64 -23 -1240 -5 c-1350 -6 -1254
+-2 -1401 -62 -213 -88 -403 -293 -474 -511 -15 -48 -138 -730 -133 -739 5 -10
+651 -9 657 0 4 6 126 692 126 707 0 2 541 6 1203 8 1313 3 1260 1 1472 62 429
+124 811 502 930 920 179 628 -108 1138 -710 1262 -108 22 -3093 33 -3099 11z
+M5180 3176 c0 -3 -117 -671 -260 -1484 -143 -813 -260 -1484 -260 -1490 0 -9
+86 -12 333 -12 l333 0 63 358 c35 196 65 360 68 365 6 11 1408 9 1476 -3 142
+-23 135 -17 655 -552 l162 -168 500 0 c275 0 500 4 499 8 0 4 -168 180 -373
+392 l-373 384 96 37 c529 200 883 696 884 1239 2 462 -271 795 -739 901 l-99
+23 -1482 3 c-816 2 -1483 1 -1483 -1z m2830 -613 c395 -137 350 -758 -72 -988
+-123 -67 -85 -65 -1290 -65 -598 0 -1088 2 -1088 6 0 11 181 1040 186 1057 5
+17 58 17 1102 15 l1097 -3 65 -22z M10680 3155 c-894 -144 -1594 -951 -1557
+-1795 26 -585 391 -1007 985 -1142 116 -26 1408 -41 1627 -18 1168 120 1987
+1394 1502 2335 -158 304 -441 513 -827 608 -110 27 -1574 37 -1730 12z m1495
+-598 c317 -91 491 -343 489 -707 -3 -473 -321 -903 -769 -1036 -89 -27 -1439
+-34 -1553 -9 -437 97 -632 589 -435 1096 133 342 463 618 798 668 121 18 1402
+8 1470 -12z"/></g><g class="e" transform="translate(0.000000,338.000000) scale(0.100000,-0.100000)"><path d="M13960 3171 c0 -5 -79 -456 -176 -1002 -175 -983 -177 -996 -178
+-1144 -2 -409 217 -692 624 -803 l95 -27 986 -3 987 -3 21 118 c12 65 37 200
+55 301 l32 182 -926 0 c-1005 0 -982 -1 -1055 54 -81 62 -135 185 -135 308 0
+46 57 395 170 1031 94 528 170 969 170 979 0 17 -18 18 -335 18 -186 0 -335
+-4 -335 -9z M17165 3158 c-10 -49 -95 -547 -95 -562 0 -14 29 -16 270 -16 210
+0 270 -3 269 -12 0 -7 -71 -409 -157 -893 l-158 -880 -274 -5 -275 -5 -51
+-295 -50 -295 875 -3 c481 -1 876 0 879 3 5 5 102 551 102 577 0 16 -21 18
+-268 20 l-269 3 153 860 c84 473 156 875 159 892 l6 33 272 2 271 3 51 293
+c28 161 49 295 46 297 -2 3 -397 5 -877 5 l-874 0 -5 -22z M20665 3169 c-776
+-60 -1481 -670 -1644 -1420 -162 -749 215 -1360 943 -1532 90 -21 105 -21
+1319 -24 876 -3 1227 -1 1227 7 0 12 277 1600 285 1638 l5 22 -625 0 c-344 0
+-625 -4 -625 -8 0 -4 -22 -137 -50 -296 -27 -159 -50 -290 -50 -292 0 -2 130
+-4 288 -4 l288 0 -42 -232 c-24 -128 -43 -234 -44 -235 -2 -13 -1664 -1 -1725
+12 -339 71 -558 408 -515 795 50 454 371 840 791 952 l84 22 1178 3 c647 2
+1177 5 1177 6 0 1 23 133 50 292 27 160 50 293 50 298 0 9 -2236 6 -2365 -4z
+M23375 3168 c-3 -7 -119 -668 -260 -1468 -140 -800 -258 -1467 -261 -1483 l-6
+-27 336 0 c185 0 336 2 336 5 0 7 199 1137 205 1163 l5 22 1260 0 c693 0 1260
+-3 1260 -6 0 -12 -201 -1149 -206 -1166 -5 -17 15 -18 330 -18 l336 0 5 22
+c12 56 515 2935 515 2951 0 16 -21 17 -332 15 l-332 -3 -103 -585 c-56 -322
+-105 -591 -108 -597 -4 -13 -2504 -21 -2516 -8 -3 2 41 264 98 582 56 318 102
+586 103 596 0 22 -657 27 -665 5z M27571 3128 c-19 -95 -91 -518 -91 -533 0
+-13 90 -15 690 -15 l690 0 -5 -22 c-7 -31 -415 -2348 -415 -2359 0 -5 148 -9
+333 -9 l333 0 210 1193 210 1192 691 3 691 2 6 28 c13 63 96 547 96 559 0 11
+-305 13 -1714 13 l-1715 0 -10 -52z"/></g></svg>
+  <span>© ProLight · <span id="pl-auth-state"></span> <button type="button" id="pl-auth-btn">Team sign-in</button></span>
+</footer>
+
+<dialog class="pl-dialog" id="pl-auth-dialog">
+  <form method="dialog" id="pl-auth-form">
+    <h2>Team sign-in</h2>
+    <p id="pl-auth-msg">Team members can see private and running experiments. Enter your work e-mail and we will send a sign-in link.</p>
+    <label class="sr" for="pl-email">E-mail</label>
+    <input type="email" id="pl-email" required placeholder="name@dtu.dk" autocomplete="email">
+    <div class="row"><button class="pl-ghost" value="cancel" type="button" id="pl-auth-cancel">Cancel</button><button class="pl-primary" id="pl-auth-send" type="submit">Send sign-in link</button></div>
+  </form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* =====================================================================================
+   CONFIGURATION. Leave empty for demo mode (synthetic data).
+   The anon / publishable key is safe to publish: row-level security (schema_v2.sql)
+   only exposes public runs, plus all runs to signed-in team members.
+   ===================================================================================== */
+const PROLIGHT_DASHBOARD = {
+  supabaseUrl: "https://lbrjstfzdivhfhmtahop.supabase.co",
+  supabaseAnonKey: "sb_publishable_gcRTOu0RgzcEwh3aQXCOJQ_KiY6krT6",
+  themeStorageKey: "prolight-theme"
+};
+
+(() => {
+"use strict";
+const $ = (id) => document.getElementById(id);
+const nf0 = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 0 });
+const nf1 = new Intl.NumberFormat("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const css = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const CHART = {
+  queue_total: { title: "Queued at signals", unit: "veh", fmt: (v) => nf0.format(v) },
+  wait_total: { title: "Waiting time at signals", unit: "veh·s", fmt: (v) => nf0.format(v) },
+  vehicles: { title: "Vehicles in network", unit: "veh", fmt: (v) => nf0.format(v) }
+};
+const RUN_COLORS = ["--accent", "--blue", "--text"];
+
+/* ---------------------------------------------------------------- theme & menu */
+try { if (localStorage.getItem(PROLIGHT_DASHBOARD.themeStorageKey) === "light") document.body.classList.remove("dark"); } catch (e) {}
+$("pl-theme").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  try { localStorage.setItem(PROLIGHT_DASHBOARD.themeStorageKey, document.body.classList.contains("dark") ? "dark" : "light"); } catch (e) {}
+  maps.forEach((m) => (m.baseDirty = true)); requestDraw();
+});
+$("pl-menu-btn").addEventListener("click", () => { const o = $("pl-nav").classList.toggle("open"); $("pl-menu-btn").setAttribute("aria-expanded", String(o)); });
+
+/* ---------------------------------------------------------------- helpers */
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+function hms(sec) { if (sec == null || isNaN(sec)) return "—"; sec = Math.max(0, Math.round(sec)); return [Math.floor(sec / 3600), Math.floor(sec % 3600 / 60), sec % 60].map((x) => String(x).padStart(2, "0")).join(":"); }
+function dur(sec) { sec = Math.max(0, sec); const h = Math.floor(sec / 3600), m = Math.round(sec % 3600 / 60); return h ? `${h} h ${m} min` : `${m} min`; }
+function rel(iso) { if (!iso) return "—"; const d = (Date.now() - new Date(iso).getTime()) / 1000; if (d < 90) return "just now"; if (d < 3600) return `${Math.round(d / 60)} min ago`; if (d < 86400) return `${Math.round(d / 3600)} h ago`; return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function rgb(h) { h = h.replace("#", ""); if (h.length === 3) h = [...h].map((c) => c + c).join(""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); }
+function mix(a, b, t) { const A = rgb(a), B = rgb(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",")})`; }
+const runName = (r) => r ? (r.label || r.method || "Run") : "";
+const scen = (r) => `${r.scenario || "—"} · seed ${r.sumo_seed ?? "—"}`;
+
+/* ======================================================================== data sources */
+class SupabaseSource {
+  constructor(url, key) { this.sb = window.supabase.createClient(url, key); this.mode = "live"; this.netCache = new Map(); }
+  async listRuns() { const { data, error } = await this.sb.from("runs").select("*").order("started_at", { ascending: false }).limit(60); if (error) throw error; return data; }
+  async loadNetwork(id) {
+    if (!id) return null; if (this.netCache.has(id)) return this.netCache.get(id);
+    const { data, error } = await this.sb.from("networks").select("id,geojson,edge_order,edge_order_ref").eq("id", id).maybeSingle();
+    if (error) throw error; const net = data ? { ...data.geojson, edge_order: data.edge_order, edge_order_ref: data.edge_order_ref } : null;
+    this.netCache.set(id, net); return net;
+  }
+  async loadIntervals(id) {
+    let all = [], from = 0; const page = 1000;
+    for (;;) {
+      const { data, error } = await this.sb.from("intervals").select("k,t,wall_at,decision_s,queue_total,wait_total,vehicles,arrived_cum,incident_active,signals,edges").eq("run_id", id).order("k").range(from, from + page - 1);
+      if (error) throw error; all = all.concat(data); if (data.length < page) break; from += page;
+    }
+    return all;
+  }
+  async loadEvents(id) { const { data, error } = await this.sb.from("events").select("kind,t,data").eq("run_id", id).order("t"); if (error) throw error; return data.map(normEvent); }
+  subscribe(id, h) {
+    const ch = this.sb.channel(`run-${id}`)
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "intervals", filter: `run_id=eq.${id}` }, (p) => h.onInterval(p.new))
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "events", filter: `run_id=eq.${id}` }, (p) => h.onEvent(normEvent(p.new)))
+      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "runs", filter: `id=eq.${id}` }, (p) => h.onRun(p.new))
+      .subscribe((s) => h.onConnection && h.onConnection(s));
+    return () => this.sb.removeChannel(ch);
+  }
+  subscribeRuns(cb) { const ch = this.sb.channel("runs-list").on("postgres_changes", { event: "*", schema: "public", table: "runs" }, () => cb()).subscribe(); return () => this.sb.removeChannel(ch); }
+  async session() { const { data } = await this.sb.auth.getSession(); return data.session; }
+  onAuth(cb) { this.sb.auth.onAuthStateChange((_e, s) => cb(s)); }
+  async signIn(email) { const { error } = await this.sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.href.split("#")[0] } }); if (error) throw error; }
+  async signOut() { await this.sb.auth.signOut(); }
+}
+function normEvent(e) { return { kind: e.kind, t: e.t, ...(e.data || {}) }; }
+/* Rows from the importer carry objects with null fields (e.g. edges: {speed:null,…}); treat them as absent. */
+function normIv(iv) {
+  const x = { ...iv };
+  if (!x.edges || !Array.isArray(x.edges.speed) || !Array.isArray(x.edges.count)) x.edges = null;
+  if (!x.signals || !Array.isArray(x.signals.q)) x.signals = null;
+  return x;
+}
+
+/* Demo: a 4×4 signalised grid shaped like the T-REX Grid 4×4 network (16 signals, 80 directed edges). */
+class DemoSource {
+  constructor() {
+    this.mode = "demo"; this.net = this.buildNet();
+    const now = Date.now();
+    const base = { network: "grid4x4", sumo_seed: 0, total_decisions: 350, control_interval: 10, end_time: 3600, signal_ids: this.signals.map((s) => s.id), source: "recorder", public: true };
+    this.runs = [
+      { ...base, id: "demo-a", method: "Method A", scenario: "E2", status: "running", started_at: new Date(now - 3 * 3600e3).toISOString(), profile: 0 },
+      { ...base, id: "demo-b", method: "Baseline B", scenario: "E2", status: "finished", started_at: new Date(now - 26 * 3600e3).toISOString(), profile: .45 },
+      { ...base, id: "demo-c", method: "Baseline C", scenario: "E2", status: "finished", started_at: new Date(now - 27 * 3600e3).toISOString(), profile: .8 },
+      { ...base, id: "demo-d", method: "Baseline B", scenario: "E3", status: "finished", source: "import", started_at: new Date(now - 9 * 86400e3).toISOString(), profile: .45 }
+    ];
+    this.liveK = 150; this.cache = new Map(); this.listeners = new Set();
+    for (const r of this.runs) if (r.status === "finished") r.final = this.final(r);
+    this.timer = setInterval(() => this.tick(), 1600);
+  }
+  rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+  buildNet() {
+    const L = "ABCD", P = [300, 600, 900, 1200], nodes = {}, feats = [], order = [];
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) nodes[`${L[i]}${j}`] = [P[i], P[j]];
+    for (let k = 0; k < 4; k++) { nodes[`left${k}`] = [0, P[k]]; nodes[`right${k}`] = [1500, P[k]]; nodes[`bottom${k}`] = [P[k], 0]; nodes[`top${k}`] = [P[k], 1500]; }
+    const pairs = [];
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { if (i < 3) pairs.push([`${L[i]}${j}`, `${L[i + 1]}${j}`]); if (j < 3) pairs.push([`${L[i]}${j}`, `${L[i]}${j + 1}`]); }
+    for (let k = 0; k < 4; k++) pairs.push([`left${k}`, `A${k}`], [`D${k}`, `right${k}`], [`bottom${k}`, `${L[k]}0`], [`${L[k]}3`, `top${k}`]);
+    const addEdge = (a, b) => {
+      const [x1, y1] = nodes[a], [x2, y2] = nodes[b], len = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / len, uy = (y2 - y1) / len;
+      const off = 6, nx = uy * off, ny = -ux * off, sh = (n) => /\d$/.test(n) && n.length === 2 ? 16 : 0;
+      const id = `${a}${b}`; order.push(id);
+      feats.push({ type: "Feature", properties: { id, from: a, to: b, lanes: 3, speed: 13.89, length: len }, geometry: { type: "LineString", coordinates: [[x1 + ux * sh(a) + nx, y1 + uy * sh(a) + ny], [x2 - ux * sh(b) + nx, y2 - uy * sh(b) + ny]] } });
+    };
+    for (const [a, b] of pairs) { addEdge(a, b); addEdge(b, a); }
+    this.signals = Object.keys(nodes).filter((n) => /^[A-D]\d$/.test(n)).map((id) => ({ id, c: nodes[id] }));
+    this.signals.forEach((s) => feats.push({ type: "Feature", properties: { id: s.id, type: "traffic_light" }, geometry: { type: "Point", coordinates: s.c } }));
+    this.incEdge = "B1C1";
+    return { type: "FeatureCollection", properties: { network_id: "grid4x4", flipY: true }, features: feats, edge_order: order, edge_order_ref: "grid4x4@demo" };
+  }
+  incidents(run) {
+    return run.scenario === "E3"
+      ? [{ incident_id: "inc0", edge: "C2C1", lanes: [0, 1], pos: 140, start_time: 1680, duration_time: 600 }]
+      : [{ incident_id: "inc0", edge: this.incEdge, lanes: [0, 1], pos: 150, start_time: 1060, duration_time: 540 },
+         { incident_id: "inc1", edge: "C3C2", lanes: [2], pos: 210, start_time: 2768, duration_time: 420 }];
+  }
+  interval(run, k) {
+    /* Magnitudes follow the recorded Grid 4x4 runs: 0-5 vehicles per road, 0-3 queued per signal (up to ~8 near an incident). */
+    const t = 111 + k * 10, r = this.rng(k * 97 + run.id.charCodeAt(5) * 7919);
+    const feats = this.net.features, byId = Object.fromEntries(feats.map((f) => [f.properties.id, f]));
+    const demand = .7 + .3 * Math.sin(Math.PI * t / 3600);
+    const field = this.incidents(run).map((inc) => {
+      const g = byId[inc.edge].geometry.coordinates, p = [(g[0][0] + g[1][0]) / 2, (g[0][1] + g[1][1]) / 2];
+      const since = t - inc.start_time, after = t - (inc.start_time + inc.duration_time);
+      let a = since >= 0 ? Math.min(1, since / 300) : 0;
+      if (after > 0) a *= Math.exp(-after / (160 + 380 * run.profile));
+      a *= (inc.lanes.length / 3) * (1.2 + .6 * run.profile);
+      return { inc, p, a, reach: 90 + Math.min(Math.max(since, 0), 600) * (.1 + .16 * run.profile) };
+    });
+    const speed = [], count = [], occ = [];
+    for (const id of this.net.edge_order) {
+      const g = byId[id].geometry.coordinates, mx = (g[0][0] + g[1][0]) / 2, my = (g[0][1] + g[1][1]) / 2;
+      let c = 0; for (const f of field) c = Math.max(c, (f.inc.edge === id ? 1 : .9) * f.a * Math.exp(-Math.hypot(mx - f.p[0], my - f.p[1]) / f.reach));
+      c = clamp(c, 0, 1);
+      const sp = 13.89 * clamp(.96 - .78 * c + (r() - .5) * .1, .05, 1.04), n = Math.max(0, Math.round(demand * (.6 + r() * 2.2) + 6 * c));
+      speed.push(+sp.toFixed(3)); count.push(n); occ.push(+clamp(n * 7.5 / (280 * 3), 0, 1).toFixed(3));
+    }
+    const q = this.signals.map((s) => { let sum = 0; for (const f of feats) if (f.properties.to === s.id) { const i = this.net.edge_order.indexOf(f.properties.id); sum += count[i] * clamp(1 - speed[i] / 13.89, 0, 1); } return Math.round(sum * .9 + (r() < .35 * demand ? 1 : 0)); });
+    const qt = q.reduce((a, b) => a + b, 0), act = this.incidents(run).filter((i) => t >= i.start_time && t <= i.start_time + i.duration_time).length;
+    const imported = run.source === "import";
+    return { k, t, wall_at: imported ? null : 1791715060 + k * (run.method === "Method A" ? 70 : 0.01), decision_s: imported ? null : run.method === "Method A" ? +(68.6 + r() * 3).toFixed(1) : 0,
+      queue_total: qt, wait_total: imported && run.method === "Method A" ? null : Math.round(qt * (40 + 25 * r())),
+      vehicles: imported ? null : count.reduce((a, b) => a + b, 0) + act * 2, arrived_cum: imported ? null : Math.round(k * 4.15 * (1 - .02 * run.profile)), incident_active: act,
+      signals: { q, mq: q.map((v) => Math.ceil(v / 2)), p: q.map((v) => v - 1), ph: imported ? null : q.map((_, i) => (k + i) % 8) },
+      edges: imported ? { speed: null, count: null, occ: null } : { speed, count, occ } };
+  }
+  final(run) { const p = run.profile; return { network_att: +(158 + 22 * p).toFixed(1), traveller_att: +(161 + 25 * p).toFixed(1), throughput: Math.round(1452 - 34 * p), network_awt: +(21 + 9 * p).toFixed(1) }; }
+  intervalsFor(run) { const n = run.status === "running" ? this.liveK : run.total_decisions; const key = `${run.id}:${n}`; if (!this.cache.has(key)) { const out = []; for (let k = 0; k < n; k++) out.push(this.interval(run, k)); this.cache.set(key, out); } return this.cache.get(key); }
+  eventsFor(run, tMax) {  /* incident_start / incident_end carry the scheduled moment as t, as the recorder does */
+    const ev = [{ kind: "run_start", t: 0 }];
+    for (const i of this.incidents(run)) { ev.push({ kind: "incident_scheduled", t: 0, ...i }, { kind: "incident_start", t: i.start_time, ...i }, { kind: "incident_end", t: i.start_time + i.duration_time, ...i }); }
+    if (run.status !== "running") ev.push({ kind: "episode_end", t: 3601 });
+    return ev.filter((e) => e.kind === "incident_scheduled" || e.t <= tMax);
+  }
+  async listRuns() { return this.runs.map(({ profile, ...r }) => ({ ...r, progress_k: r.status === "running" ? this.liveK : r.total_decisions, last_update_at: r.status === "running" ? new Date(Date.now() - 20e3).toISOString() : r.started_at })); }
+  async loadNetwork() { return this.net; }
+  async loadIntervals(id) { return this.intervalsFor(this.runs.find((r) => r.id === id)).map((x) => ({ ...x })); }
+  async loadEvents(id) { const r = this.runs.find((x) => x.id === id); return this.eventsFor(r, r.status === "running" ? 111 + (this.liveK - 1) * 10 : 3601); }
+  tick() {
+    const run = this.runs[0]; if (this.liveK >= run.total_decisions) return;
+    const rec = this.interval(run, this.liveK); this.liveK++;
+    for (const l of this.listeners) if (l.id === run.id) {
+      l.h.onInterval(rec);
+      for (const e of this.eventsFor(run, rec.t)) if (e.kind !== "incident_scheduled" && e.t > rec.t - 10 && e.t <= rec.t) l.h.onEvent({ ...e });
+      l.h.onRun({ progress_k: this.liveK, last_update_at: new Date().toISOString() });
+    }
+  }
+  subscribe(id, h) { const l = { id, h }; this.listeners.add(l); setTimeout(() => h.onConnection && h.onConnection("SUBSCRIBED")); return () => this.listeners.delete(l); }
+  subscribeRuns() { return () => {}; }
+  async session() { return null; } onAuth() {} async signIn() { throw new Error("Sign-in is not available in demo mode."); } async signOut() {}
+}
+
+/* ======================================================================== state */
+const S = { src: null, runs: [], primary: null, compare: [], data: new Map(), t: 0, playing: false, speed: 60, follow: true, metric: "queue_total", hover: null, unsub: null, lastUi: 0 };
+const maps = [];
+
+function runData(id) { return S.data.get(id); }
+function selected() { return [S.primary, ...S.compare].filter(Boolean); }
+function isLive(r) { return r && r.status === "running"; }
+function maxT(r) { const d = runData(r.id); const iv = d?.intervals; if (isLive(r)) return iv?.length ? iv[iv.length - 1].t : 0; return r.end_time || (iv?.length ? iv[iv.length - 1].t : 3600); }
+
+function setStatus(s, txt) { $("pl-status").dataset.state = s; $("pl-status-text").textContent = txt; }
+function refreshStatus() {
+  const r = S.primary;
+  if (S.src.mode === "demo") return setStatus("demo", "Demo data");
+  if (!r) return setStatus("connecting", "No runs");
+  if (r.status === "failed") return setStatus("failed", "Run failed");
+  if (isLive(r)) {
+    const age = r.last_update_at ? (Date.now() - new Date(r.last_update_at).getTime()) / 1000 : null;
+    const ds = (runData(r.id)?.intervals || []).map((x) => x.decision_s).filter((x) => x > 0).sort((a, b) => a - b);
+    const limit = Math.max(900, 5 * (ds.length ? ds[Math.floor(ds.length / 2)] : 0));
+    if (age != null && age > limit) return setStatus("failed", `No update since ${rel(r.last_update_at)}`);
+    return setStatus("live", `Live · updated ${rel(r.last_update_at)}`);
+  }
+  setStatus("replay", "Replay");
+}
+
+/* ======================================================================== loading */
+async function init() {
+  const c = PROLIGHT_DASHBOARD;
+  S.src = c.supabaseUrl && c.supabaseAnonKey && window.supabase ? new SupabaseSource(c.supabaseUrl, c.supabaseAnonKey) : new DemoSource();
+  if (S.src.mode === "demo") $("pl-note").innerHTML = "<strong>Demo data.</strong> Synthetic values on a 4×4 grid, for previewing the dashboard. They are not experimental results.";
+  S.src.onAuth(() => refreshRuns().then(updateAuthUi));
+  updateAuthUi();
+  try {
+    await refreshRuns();
+    const q = new URLSearchParams(location.search);
+    const first = S.runs.find((r) => r.id === q.get("run")) || S.runs.find(isLive) || S.runs[0];
+    if (!first) return showEmpty("No runs to show yet. Runs appear here once the sync process uploads them and they are marked public, or after a team member signs in.");
+    await openRun(first.id, (q.get("compare") || "").split(",").filter(Boolean), q.get("t") != null ? +q.get("t") : null);
+    S.src.subscribeRuns(() => refreshRuns());
+  } catch (e) { console.error(e); setStatus("error", "Connection failed"); showEmpty(`Could not load runs: ${esc(e.message || e)}. Check the Supabase URL and key, and that schema_v2.sql was applied.`); }
+  requestAnimationFrame(loop);
+}
+function showEmpty(msg) { $("pl-empty").innerHTML = msg; $("pl-empty").classList.add("show"); }
+
+async function refreshRuns() {
+  S.runs = await S.src.listRuns();
+  for (const r of selected()) { const n = S.runs.find((x) => x.id === r.id); if (n) Object.assign(r, n); }
+  $("pl-run").innerHTML = S.runs.map((r) => `<option value="${esc(r.id)}">${esc(runName(r))} · ${esc(r.network || "")} ${esc(scen(r))}${isLive(r) ? " · live" : ""}</option>`).join("");
+  if (S.primary) $("pl-run").value = S.primary.id;
+  renderRuns(); renderCompareChips(); refreshStatus();
+}
+
+async function ensureData(r) {
+  if (S.data.has(r.id)) return S.data.get(r.id);
+  const [intervals, events, network] = await Promise.all([S.src.loadIntervals(r.id), S.src.loadEvents(r.id), S.src.loadNetwork(r.network)]);
+  const d = { intervals: intervals.map(normIv), events: events.sort((a, b) => (a.t ?? -1) - (b.t ?? -1)), network }; S.data.set(r.id, d); return d;
+}
+
+async function openRun(id, compareIds = [], t = null) {
+  if (S.unsub) { S.unsub(); S.unsub = null; }
+  S.primary = S.runs.find((r) => r.id === id); if (!S.primary) return;
+  S.compare = compareIds.map((c) => S.runs.find((r) => r.id === c)).filter((r) => r && r.id !== id && peerOf(r)).slice(0, 2);
+  $("pl-run").value = id; $("pl-empty").classList.remove("show");
+  await Promise.all(selected().map(ensureData));
+  S.playing = false; S.follow = isLive(S.primary);
+  const inc = scheduled(runData(id).events).sort((x, y) => x.start_time - y.start_time)[0];
+  S.t = t != null ? t : S.follow ? maxT(S.primary) : inc ? Math.min(inc.start_time + 360, maxT(S.primary)) : 0;
+  if (isLive(S.primary)) subscribeLive(S.primary);
+  buildMaps(); renderAll(); refreshStatus(); syncUrl();
+}
+
+function subscribeLive(r) {
+  S.unsub = S.src.subscribe(r.id, {
+    onInterval: (raw) => { const iv = normIv(raw); const d = runData(r.id); if (d.intervals.length && iv.k <= d.intervals[d.intervals.length - 1].k) return; d.intervals.push(iv); if (S.follow) S.t = iv.t; renderAll(); },
+    onEvent: (e) => { runData(r.id).events.push(e); renderLog(); },
+    onRun: (u) => { Object.assign(r, u); refreshStatus(); renderRail(); renderRuns(); if (!isLive(r)) { S.follow = false; renderPlayer(); } },
+    onConnection: (s) => { if (s === "CHANNEL_ERROR" || s === "TIMED_OUT") setStatus("error", "Reconnecting"); else refreshStatus(); }
+  });
+}
+const peerOf = (r) => S.primary && r.network === S.primary.network && r.scenario === S.primary.scenario && r.sumo_seed === S.primary.sumo_seed;
+function syncUrl() {
+  const u = new URL(location.href); u.searchParams.set("run", S.primary.id);
+  if (S.compare.length) u.searchParams.set("compare", S.compare.map((r) => r.id).join(",")); else u.searchParams.delete("compare");
+  if (!S.follow) u.searchParams.set("t", String(Math.round(S.t))); else u.searchParams.delete("t");
+  history.replaceState(null, "", u);
+}
+
+/* ======================================================================== state at time t */
+function scheduled(events) { return events.filter((e) => e.kind === "incident_scheduled"); }
+function stateAt(r, t) {
+  const iv = runData(r.id)?.intervals || []; if (!iv.length) return null;
+  if (t <= iv[0].t) return { ...iv[0], frac: 0 };
+  let lo = 0, hi = iv.length - 1;
+  if (t >= iv[hi].t) return { ...iv[hi] };
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (iv[m].t <= t) lo = m; else hi = m; }
+  const a = iv[lo], b = iv[hi], f = (t - a.t) / ((b.t - a.t) || 1);
+  const L = (x, y) => (x == null || y == null ? (x ?? y) : x + (y - x) * f);
+  const LA = (x, y) => (x && y ? x.map((v, i) => L(v, y[i])) : x || y);
+  return { k: a.k, t, queue_total: L(a.queue_total, b.queue_total), wait_total: L(a.wait_total, b.wait_total), vehicles: L(a.vehicles, b.vehicles), arrived_cum: L(a.arrived_cum, b.arrived_cum),
+    incident_active: a.incident_active, signals: a.signals && b.signals ? { q: LA(a.signals.q, b.signals.q) } : a.signals,
+    edges: a.edges && b.edges ? { speed: LA(a.edges.speed, b.edges.speed), count: LA(a.edges.count, b.edges.count) } : null };
+}
+function activeIncidents(r, t) { return scheduled(runData(r.id)?.events || []).filter((i) => t >= i.start_time && t <= i.start_time + i.duration_time); }
+
+/* ======================================================================== maps */
+function buildMaps() {
+  const box = $("pl-maps"); box.innerHTML = ""; maps.length = 0; box.dataset.n = String(selected().length);
+  selected().forEach((r, i) => {
+    const el = document.createElement("div"); el.className = "pl-map";
+    el.innerHTML = `<canvas aria-label="${esc(runName(r))}: road network at the replay position"></canvas><div class="pl-map-label" style="--c:var(${RUN_COLORS[i]})"><i class="${i ? "dash" : ""}"></i>${esc(runName(r))}<span class="num" data-q></span></div><div class="pl-map-note" data-note></div>`;
+    box.appendChild(el);
+    const m = { run: r, el, cv: el.querySelector("canvas"), q: el.querySelector("[data-q]"), note: el.querySelector("[data-note]"), geo: null, w: 0, h: 0, particles: [], baseDirty: true, base: document.createElement("canvas") };
+    maps.push(m); new ResizeObserver(() => { m.geo = null; requestDraw(); }).observe(el);
+  });
+  const anyFlow = selected().some((r) => runData(r.id)?.intervals?.some((x) => x.edges));
+  $("pl-legend").querySelector(".pl-flow").parentElement.style.display = anyFlow ? "" : "none";
+}
+
+function prepare(m) {
+  const net = runData(m.run.id)?.network; if (!net) return false;
+  const r = m.cv.getBoundingClientRect(); if (!r.width || !r.height) return false;
+  if (m.geo && m.w === r.width && m.h === r.height) return true;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2); m.w = r.width; m.h = r.height; m.dpr = dpr;
+  m.cv.width = Math.round(r.width * dpr); m.cv.height = Math.round(r.height * dpr); m.base.width = m.cv.width; m.base.height = m.cv.height;
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  const feats = net.features || [];
+  for (const f of feats) { const cs = f.geometry.type === "Point" ? [f.geometry.coordinates] : f.geometry.coordinates; for (const c of cs) { x0 = Math.min(x0, c[0]); x1 = Math.max(x1, c[0]); y0 = Math.min(y0, c[1]); y1 = Math.max(y1, c[1]); } }
+  const pad = 34, top = 52, s = Math.min((r.width - 2 * pad) / ((x1 - x0) || 1), (r.height - pad - top) / ((y1 - y0) || 1));
+  const ox = (r.width - (x1 - x0) * s) / 2, oy = top + (r.height - pad - top - (y1 - y0) * s) / 2, flip = net.properties?.flipY !== false;
+  const P = (c) => [ox + (c[0] - x0) * s, flip ? oy + (y1 - c[1]) * s : oy + (c[1] - y0) * s];
+  const byId = Object.fromEntries(feats.filter((f) => f.geometry.type === "LineString").map((f) => [f.properties.id, f]));
+  const order = net.edge_order || net.properties?.edge_order || Object.keys(byId);
+  m.edges = order.map((id) => {
+    const f = byId[id]; if (!f) return null;
+    const pts = f.geometry.coordinates.map(P), cum = [0];
+    for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    return { id, pts, cum, len: cum[cum.length - 1] || 1, to: f.properties.to, vmax: f.properties.speed || 13.89, mlen: f.properties.length || cum[cum.length - 1] / s };
+  });
+  m.edgeById = Object.fromEntries(m.edges.filter(Boolean).map((e) => [e.id, e]));
+  const sigIds = m.run.signal_ids || [];
+  m.signals = feats.filter((f) => f.geometry.type === "Point" && (f.properties.type === "traffic_light" || f.properties.tls)).map((f) => ({ id: f.properties.id, p: P(f.geometry.coordinates), idx: sigIds.indexOf(f.properties.id) }));
+  m.sigIndex = Object.fromEntries(m.signals.map((x) => [x.id, x.idx]));
+  m.particles = m.edges.map(() => []); m.geo = true; m.baseDirty = true; return true;
+}
+function pointAt(e, s) {
+  const d = s * e.len; let i = 1; while (i < e.cum.length - 1 && e.cum[i] < d) i++;
+  const a = e.pts[i - 1], b = e.pts[i], seg = (e.cum[i] - e.cum[i - 1]) || 1, f = (d - e.cum[i - 1]) / seg;
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, b[0] - a[0], b[1] - a[1]];
+}
+function drawBase(m) {
+  const g = m.base.getContext("2d"); g.setTransform(m.dpr, 0, 0, m.dpr, 0, 0); g.clearRect(0, 0, m.w, m.h);
+  g.strokeStyle = css("--road"); g.lineWidth = 2.6; g.lineCap = "round";
+  for (const e of m.edges) { if (!e) continue; g.beginPath(); e.pts.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke(); }
+  m.baseDirty = false;
+}
+function drawMap(m, dt) {
+  if (!prepare(m)) return;
+  if (m.baseDirty) drawBase(m);
+  const ctx = m.cv.getContext("2d"); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, m.cv.width, m.cv.height); ctx.drawImage(m.base, 0, 0);
+  ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+  const st = stateAt(m.run, Math.min(S.t, maxT(m.run))), accent = css("--accent"), amber = css("--amber");
+  ctx.lineCap = "round";
+  const flow = st && st.edges;
+  // congestion overlay
+  m.edges.forEach((e, i) => {
+    if (!e || !st) return;
+    let c = 0;
+    if (flow) c = clamp((0.72 - st.edges.speed[i] / e.vmax) / 0.55, 0, 1);
+    else if (st.signals?.q && e.to in m.sigIndex) { const qi = m.sigIndex[e.to]; c = qi >= 0 ? clamp((st.signals.q[qi] - 1) / 5, 0, 1) : 0; }
+    if (c < 0.04) return;
+    ctx.strokeStyle = amber; ctx.globalAlpha = .18 + .55 * c; ctx.lineWidth = 3 + 2 * c;
+    ctx.beginPath(); e.pts.forEach((p, j) => (j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+  // flow particles
+  if (flow) {
+    m.edges.forEach((e, i) => {
+      if (!e) return;
+      const ratio = clamp(st.edges.speed[i] / e.vmax, 0.02, 1), cong = clamp((0.72 - ratio) / 0.55, 0, 1);
+      const n = st.edges.count[i] || 0, want = n < 0.35 ? 0 : clamp(Math.round(n * clamp(e.len / 120, 0.6, 1.4)), 1, 16);  // about one particle per vehicle
+      const ps = m.particles[i];
+      while (ps.length < want) ps.push(Math.random());
+      while (ps.length > want) ps.pop();
+      const v = (reduceMotion || !S.anim) ? 0 : (10 + 60 * ratio) * dt / e.len;
+      ctx.strokeStyle = cong > 0.05 ? mix(accent, amber, Math.min(1, cong * 1.3)) : accent;
+      ctx.lineWidth = 2.2;
+      const trail = (2 + 7 * ratio) / e.len;
+      ctx.beginPath();
+      for (let k = 0; k < ps.length; k++) {
+        ps[k] += v; if (ps[k] > 1) ps[k] -= 1;
+        const a = pointAt(e, ps[k]), b = pointAt(e, Math.max(0, ps[k] - trail));
+        ctx.moveTo(b[0], b[1]); ctx.lineTo(a[0], a[1]);
+      }
+      ctx.stroke();
+    });
+  }
+  // signals with queue halos
+  for (const s of m.signals) {
+    const q = st?.signals?.q && s.idx >= 0 ? st.signals.q[s.idx] : 0;
+    if (q >= 1.5) { ctx.strokeStyle = amber; ctx.globalAlpha = clamp(.2 + q / 14, .2, .8); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s.p[0], s.p[1], 5 + Math.min(13, 3 * Math.sqrt(q)), 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
+    ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(s.p[0], s.p[1], 3.8, 0, Math.PI * 2); ctx.fill();
+  }
+  // incidents
+  const pulse = reduceMotion ? 0 : (Math.sin(performance.now() / 380) + 1) / 2;
+  for (const inc of activeIncidents(m.run, S.t)) {
+    const e = m.edgeById[inc.edge]; if (!e) continue;
+    const [px, py] = pointAt(e, clamp((inc.pos || 0) / (e.mlen || 1), 0, 1));
+    ctx.strokeStyle = amber; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(px, py, 10, 0, Math.PI * 2); ctx.stroke();
+    ctx.globalAlpha = .4 * (1 - pulse); ctx.beginPath(); ctx.arc(px, py, 10 + pulse * 14, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.moveTo(px - 4, py - 4); ctx.lineTo(px + 4, py + 4); ctx.moveTo(px + 4, py - 4); ctx.lineTo(px - 4, py + 4); ctx.stroke();
+  }
+  m.q.textContent = st && st.queue_total != null ? ` · ${nf0.format(st.queue_total)} queued` : "";
+  m.note.textContent = !flow && st ? "Recorded before flow data was logged: queues only" : (S.t > maxT(m.run) && isLive(m.run) ? "Waiting for this run to reach this time" : "");
+}
+
+/* ======================================================================== chart */
+let chartGeom = null;
+function drawChart() {
+  const cv = $("pl-chart"), r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+  if (!r.width) return;
+  if (cv.width !== Math.round(r.width * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, r.width, r.height);
+  const W = r.width, H = r.height, L = 58, R = 16, T = 16, B = 34, pw = W - L - R, ph = H - T - B, key = S.metric;
+  const series = selected().map((run, i) => ({ run, data: (runData(run.id)?.intervals || []).filter((d) => d[key] != null), color: css(RUN_COLORS[i]), dash: i ? [6, 5] : [], width: i ? 1.8 : 2.4 }));
+  const pts = series.flatMap((s) => s.data);
+  ctx.font = `400 12px ${css("--font-primary")}`; ctx.fillStyle = css("--muted");
+  if (!pts.length) { ctx.fillText("No data for this indicator in the selected runs.", L, T + 20); chartGeom = null; return; }
+  const xMax = Math.max(...selected().map((x) => x.end_time || 3600)), yMaxRaw = Math.max(...pts.map((d) => d[key]));
+  const yMin = 0, yMax = yMaxRaw * 1.12 || 1, X = (v) => L + v / xMax * pw, Y = (v) => T + (yMax - v) / (yMax - yMin) * ph;
+  ctx.fillStyle = css("--amber"); ctx.globalAlpha = .1;
+  for (const inc of scheduled(runData(S.primary.id).events)) ctx.fillRect(X(inc.start_time), T, X(inc.start_time + inc.duration_time) - X(inc.start_time), ph);
+  ctx.globalAlpha = 1; ctx.strokeStyle = css("--border"); ctx.lineWidth = 1; ctx.fillStyle = css("--muted"); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  for (let k = 0; k <= 4; k++) { const v = yMax * k / 4; ctx.beginPath(); ctx.moveTo(L, Y(v)); ctx.lineTo(W - R, Y(v)); ctx.stroke(); ctx.fillText(CHART[key].fmt(v), L - 10, Y(v)); }
+  ctx.textAlign = "center"; ctx.textBaseline = "top";
+  for (let k = 0; k <= 6; k++) ctx.fillText(hms(xMax * k / 6).slice(0, 5), X(xMax * k / 6), T + ph + 10);
+  for (const s of [...series].reverse()) { if (!s.data.length) continue; ctx.strokeStyle = s.color; ctx.lineWidth = s.width; ctx.setLineDash(s.dash); ctx.beginPath(); s.data.forEach((p, j) => (j ? ctx.lineTo(X(p.t), Y(p[key])) : ctx.moveTo(X(p.t), Y(p[key])))); ctx.stroke(); }
+  ctx.setLineDash([]);
+  ctx.strokeStyle = css("--text"); ctx.globalAlpha = .7; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(S.t), T); ctx.lineTo(X(S.t), T + ph); ctx.stroke(); ctx.globalAlpha = 1;
+  if (S.hover != null) { ctx.strokeStyle = css("--muted"); ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(X(S.hover), T); ctx.lineTo(X(S.hover), T + ph); ctx.stroke(); ctx.setLineDash([]); }
+  chartGeom = { L, R, W, pw, xMax, series, key };
+}
+const cw = $("pl-chart-wrap"), tip = $("pl-tip");
+const chartT = (e) => { const r = cw.getBoundingClientRect(), g = chartGeom; return g ? clamp((e.clientX - r.left - g.L) / g.pw * g.xMax, 0, g.xMax) : null; };
+cw.addEventListener("mousemove", (e) => {
+  const g = chartGeom; if (!g) return; const t = chartT(e), r = cw.getBoundingClientRect(), mx = e.clientX - r.left;
+  if (mx < g.L || mx > g.W - g.R) { S.hover = null; tip.style.opacity = 0; requestDraw(); return; }
+  S.hover = t;
+  const rows = g.series.map((s) => { let best = null; for (const p of s.data) if (!best || Math.abs(p.t - t) < Math.abs(best.t - t)) best = p; return best ? `<div><span style="display:inline-block;width:10px;height:2px;background:${s.color};vertical-align:middle;margin-right:6px"></span>${esc(runName(s.run))} <b class="num">${CHART[g.key].fmt(best[g.key])} ${CHART[g.key].unit}</b></div>` : ""; }).join("");
+  tip.innerHTML = `<div class="num" style="color:var(--muted)">Sim time ${hms(t)} · click to jump</div>${rows}`;
+  tip.style.left = `${Math.min(mx + 14, r.width - tip.offsetWidth - 8)}px`; tip.style.top = "12px"; tip.style.opacity = 1; requestDraw();
+});
+cw.addEventListener("mouseleave", () => { S.hover = null; tip.style.opacity = 0; requestDraw(); });
+cw.addEventListener("click", (e) => { const t = chartT(e); if (t != null) seek(t); });
+
+/* ======================================================================== text panels */
+function renderRail() {
+  const r = S.primary, st = stateAt(r, Math.min(S.t, maxT(r))), d = runData(r.id);
+  $("m-queue").innerHTML = `${st?.queue_total != null ? nf0.format(st.queue_total) : "—"}<small>veh</small>`;
+  $("m-veh").textContent = st?.vehicles != null ? nf0.format(st.vehicles) : "—";
+  $("m-arr").textContent = st?.arrived_cum != null ? `Completed trips so far ${nf0.format(st.arrived_cum)}` : "Not recorded for this run";
+  const act = activeIncidents(r, S.t), sch = scheduled(d.events);
+  $("m-inc").textContent = act.length ? `${act.length} active` : (sch.length ? "None now" : "None");
+  $("m-inc-wrap").dataset.alert = act.length ? "true" : "false";
+  if (act.length) { const i = act[0], f = (d.network?.features || []).find((x) => x.properties?.id === i.edge), nl = f?.properties?.lanes; $("m-inc-foot").textContent = `${i.lanes?.length ?? "?"}${nl ? ` of ${nl}` : ""} lane${(i.lanes?.length || 0) === 1 && !nl ? "" : "s"} blocked on ${i.edge}, cleared at ${hms(i.start_time + i.duration_time)}`; }
+  else if (sch.length) { const nx = [...sch].sort((x, y) => x.start_time - y.start_time).find((i) => i.start_time > S.t); $("m-inc-foot").textContent = nx ? `Next at ${hms(nx.start_time)} on ${nx.edge}` : `${sch.length} incident${sch.length > 1 ? "s" : ""} in this run, all cleared`; }
+  else $("m-inc-foot").textContent = "No incidents in this scenario";
+  const tot = r.total_decisions || 350, k = isLive(r) ? (r.progress_k ?? d.intervals.length) : tot;
+  $("m-prog").textContent = `${Math.round(k / tot * 100)}%`; $("m-prog-bar").style.width = `${k / tot * 100}%`;
+  if (isLive(r)) {
+    const ds = d.intervals.map((x) => x.decision_s).filter((x) => x != null).sort((a, b) => a - b), med = ds.length ? ds[Math.floor(ds.length / 2)] : null;
+    $("m-prog-foot").textContent = `Decision ${nf0.format(k)} of ${nf0.format(tot)}` + (med > 0.05 ? ` · about ${dur((tot - k) * med)} left` : "");
+  } else $("m-prog-foot").textContent = r.status === "failed" ? "Run stopped with an error" : `Finished ${rel(r.finished_at || r.started_at)}${r.source === "import" ? " · imported from files" : ""}`;
+  const f = r.final; $("pl-final-wrap").hidden = !f;
+  if (f) { $("f-att").innerHTML = `${nf1.format(f.network_att)}<small>s</small>`; $("f-tatt").innerHTML = `${nf1.format(f.traveller_att)}<small>s</small>`; $("f-thru").innerHTML = `${nf0.format(f.throughput)}<small>veh</small>`; $("f-awt").innerHTML = `${nf1.format(f.network_awt)}<small>s</small>`; }
+}
+function renderLog() {
+  const ev = (runData(S.primary.id)?.events || []).filter((e) => e.kind !== "incident_scheduled").sort((a, b) => a.t - b.t);
+  const lab = { run_start: "Run started", incident_start: "Incident started", incident_end: "Incident cleared", episode_end: "Episode finished", run_failed: "Run failed" };
+  const msg = (e) => e.kind.startsWith("incident") ? `${e.lanes ? e.lanes.length + " lane" + (e.lanes.length > 1 ? "s" : "") : "Lanes"} blocked on ${e.edge}${e.kind === "incident_end" ? " reopened" : ""}` : e.kind === "run_failed" ? (e.error || "Error") : (lab[e.kind] || e.kind);
+  $("pl-log-count").textContent = ev.length ? `${ev.length} events` : "";
+  $("pl-log").innerHTML = ev.length ? ev.map((e) => `<li data-kind="${esc(e.kind)}" data-future="${e.t > S.t}"><time class="num">${hms(e.t)}</time><span>${esc(msg(e))}<span class="k">${esc(lab[e.kind] || e.kind)}</span></span></li>`).join("") : `<li style="display:block;color:var(--muted)">No events recorded.</li>`;
+}
+function renderCompareChips() {
+  const box = $("pl-compare"); if (!S.primary) return;
+  const peers = S.runs.filter((r) => r.id !== S.primary.id && peerOf(r)).slice(0, 4);
+  box.innerHTML = peers.length ? `<span>Compare on the same scenario</span>` + peers.map((r) => { const on = S.compare.some((c) => c.id === r.id), i = S.compare.findIndex((c) => c.id === r.id); return `<button class="pl-chip" type="button" data-id="${esc(r.id)}" aria-pressed="${on}" style="--c:var(${on ? RUN_COLORS[i + 1] : "--muted"})"><i></i>${esc(runName(r))}</button>`; }).join("") : `<span>No other runs on this scenario and seed yet.</span>`;
+}
+$("pl-compare").addEventListener("click", async (e) => {
+  const b = e.target.closest(".pl-chip"); if (!b) return; const r = S.runs.find((x) => x.id === b.dataset.id);
+  const i = S.compare.findIndex((c) => c.id === r.id);
+  if (i >= 0) S.compare.splice(i, 1); else { if (S.compare.length >= 2) S.compare.shift(); b.disabled = true; await ensureData(r); S.compare.push(r); }
+  buildMaps(); renderAll(); syncUrl();
+});
+function renderCmp() {
+  const runs = selected(); $("pl-cmp").hidden = runs.length < 2; if (runs.length < 2) return;
+  $("pl-cmp-head").innerHTML = `<tr><th>At ${hms(S.t)}</th>${runs.map((r, i) => `<th><span style="display:inline-block;width:14px;border-top:2px ${i ? "dashed" : "solid"} var(${RUN_COLORS[i]});vertical-align:middle;margin-right:8px"></span>${esc(runName(r))}</th>`).join("")}</tr>`;
+  const row = (label, vals, fmt, lowerBetter) => { const nums = vals.filter((v) => v != null), best = nums.length > 1 ? (lowerBetter ? Math.min(...nums) : Math.max(...nums)) : null; return `<tr><td>${label}</td>${vals.map((v) => `<td class="v${v != null && v === best ? " best" : ""}">${v == null ? "—" : fmt(v)}</td>`).join("")}</tr>`; };
+  const st = runs.map((r) => stateAt(r, Math.min(S.t, maxT(r))));
+  let html = row("Queued at signals", st.map((s) => s?.queue_total != null ? Math.round(s.queue_total) : null), (v) => `${nf0.format(v)} veh`, true);
+  html += row("Vehicles in network", st.map((s) => s?.vehicles != null ? Math.round(s.vehicles) : null), (v) => nf0.format(v), true);
+  if (runs.some((r) => r.final)) {
+    html += `<tr><td colspan="${runs.length + 1}" style="color:var(--muted);font-size:13px">Final results · paper definitions</td></tr>`;
+    html += row("Network ATT", runs.map((r) => r.final?.network_att ?? null), (v) => `${nf1.format(v)} s`, true);
+    html += row("Traveller ATT", runs.map((r) => r.final?.traveller_att ?? null), (v) => `${nf1.format(v)} s`, true);
+    html += row("Throughput", runs.map((r) => r.final?.throughput ?? null), (v) => `${nf0.format(v)} veh`, false);
+    html += row("Network AWT", runs.map((r) => r.final?.network_awt ?? null), (v) => `${nf1.format(v)} s`, true);
+  }
+  $("pl-cmp-body").innerHTML = html;
+}
+function renderRuns() {
+  const b = $("pl-runs-body");
+  b.innerHTML = S.runs.length ? S.runs.map((r) => `<tr tabindex="0" data-id="${esc(r.id)}" aria-selected="${S.primary?.id === r.id}"><td>${esc(runName(r))}</td><td>${esc(r.network || "—")}</td><td>${esc(r.scenario || "—")}</td><td class="v">${r.sumo_seed ?? "—"}</td>
+    <td><span class="pl-badge" data-s="${esc(r.status)}"><i></i>${r.status === "running" ? "Running" : r.status === "failed" ? "Failed" : "Finished"}</span></td>
+    <td class="v">${r.final ? nf1.format(r.final.network_att) + " s" : "—"}</td><td class="v">${r.final ? nf0.format(r.final.throughput) : "—"}</td><td>${rel(r.started_at)}</td></tr>`).join("") : `<tr><td colspan="8" style="color:var(--muted)">No runs yet.</td></tr>`;
+}
+$("pl-runs-body").addEventListener("click", (e) => { const tr = e.target.closest("tr[data-id]"); if (tr) openRun(tr.dataset.id); });
+$("pl-runs-body").addEventListener("keydown", (e) => { if (e.key === "Enter") { const tr = e.target.closest("tr[data-id]"); if (tr) openRun(tr.dataset.id); } });
+$("pl-run").addEventListener("change", (e) => openRun(e.target.value));
+
+/* ======================================================================== player */
+function renderPlayer() {
+  const end = Math.max(...selected().map((r) => r.end_time || 3600)), live = isLive(S.primary), reach = maxT(S.primary);
+  const sc = $("pl-scrub"); sc.max = String(end); sc.value = String(Math.round(S.t));
+  const a = scheduled(runData(S.primary.id)?.events || []), am = css("--amber"), bd = css("--border"), tx = css("--muted");
+  const stops = [`${tx} 0%`, `${tx} ${reach / end * 100}%`, `${bd} ${reach / end * 100}%`, `${bd} 100%`];
+  let bg = `linear-gradient(90deg, ${stops.join(",")})`;
+  if (a.length) { bg = a.map((i) => { const s = i.start_time / end * 100, e = (i.start_time + i.duration_time) / end * 100; return `linear-gradient(90deg, transparent ${s}%, ${am} ${s}%, ${am} ${e}%, transparent ${e}%)`; }).join(", ") + ", " + bg; sc.style.setProperty("--track", "none"); }
+  sc.style.background = bg; sc.style.backgroundSize = "100% 100%";
+  $("pl-time").innerHTML = `<b>${hms(S.t)}</b> / ${hms(end)}`;
+  $("pl-live").hidden = !live; $("pl-live").setAttribute("aria-pressed", String(S.follow));
+  $("pl-play").setAttribute("aria-label", S.playing ? "Pause replay" : "Play replay");
+  $("pl-play-ico").innerHTML = S.playing ? '<path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/>' : '<path d="M4 2.5v11l9-5.5z"/>';
+}
+function seek(t) { S.follow = false; S.t = clamp(t, 0, Math.max(...selected().map((r) => r.end_time || 3600))); renderAll(); syncUrl(); }
+$("pl-scrub").addEventListener("input", (e) => seek(+e.target.value));
+$("pl-play").addEventListener("click", () => { if (!S.playing && S.t >= maxT(S.primary) - 1) S.t = 0; S.playing = !S.playing; S.follow = false; renderPlayer(); });
+$("pl-restart").addEventListener("click", () => seek(0));
+$("pl-speed").addEventListener("change", (e) => (S.speed = +e.target.value));
+$("pl-live").addEventListener("click", () => { S.follow = !S.follow; S.playing = false; if (S.follow) S.t = maxT(S.primary); renderAll(); syncUrl(); });
+$("pl-copy").addEventListener("click", async () => { syncUrl(); try { await navigator.clipboard.writeText(location.href); $("pl-copy").textContent = "Link copied"; } catch (e) { $("pl-copy").textContent = "Copy the address bar"; } setTimeout(() => ($("pl-copy").textContent = "Copy link to this view"), 1800); });
+document.querySelectorAll(".pl-tabs button").forEach((b) => b.addEventListener("click", () => {
+  if (b.disabled) return; S.metric = b.dataset.metric;
+  document.querySelectorAll(".pl-tabs button").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+  $("pl-chart-title").textContent = CHART[S.metric].title; requestDraw();
+}));
+function renderTabs() { document.querySelectorAll(".pl-tabs button").forEach((b) => { const has = selected().some((r) => (runData(r.id)?.intervals || []).some((x) => x[b.dataset.metric] != null)); b.disabled = !has; }); }
+
+/* ======================================================================== auth */
+async function updateAuthUi() {
+  const s = await S.src.session();
+  $("pl-auth-state").textContent = s ? `Signed in as ${s.user.email}` : "";
+  $("pl-auth-btn").textContent = s ? "Sign out" : "Team sign-in";
+}
+$("pl-auth-btn").addEventListener("click", async () => {
+  if (await S.src.session()) { await S.src.signOut(); updateAuthUi(); refreshRuns(); return; }
+  $("pl-auth-msg").textContent = S.src.mode === "demo" ? "Sign-in becomes available once the dashboard is connected to its database." : "Team members can see private and running experiments. Enter your work e-mail and we will send a sign-in link.";
+  $("pl-auth-dialog").showModal();
+});
+$("pl-auth-cancel").addEventListener("click", () => $("pl-auth-dialog").close());
+$("pl-auth-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try { await S.src.signIn($("pl-email").value.trim()); $("pl-auth-msg").textContent = "Sign-in link sent. Open it on this device to continue."; $("pl-auth-send").disabled = true; }
+  catch (err) { $("pl-auth-msg").textContent = err.message || "Sign-in failed. Check the address and try again."; }
+});
+
+/* ======================================================================== loop */
+function renderAll() { renderPlayer(); renderRail(); renderLog(); renderCompareChips(); renderCmp(); renderRuns(); renderTabs(); requestDraw(); }
+let drawReq = false; function requestDraw() { drawReq = true; }
+let last = performance.now();
+function loop(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now;
+  S.anim = !reduceMotion;
+  if (S.primary) {
+    if (S.playing) {
+      const end = Math.max(...selected().map((r) => (isLive(r) ? maxT(r) : r.end_time || 3600)));
+      S.t = Math.min(end, S.t + dt * S.speed); drawReq = true; if (S.t >= end) { S.playing = false; renderAll(); syncUrl(); }
+    }
+    const uiDue = now - S.lastUi > 220;
+    if ((S.playing || drawReq) && uiDue) { S.lastUi = now; renderPlayer(); renderRail(); renderCmp(); if (S.playing) { renderLog(); } }
+    if (S.anim || drawReq) { maps.forEach((m) => drawMap(m, dt)); drawChart(); drawReq = false; }
+  }
+  requestAnimationFrame(loop);
+}
+setInterval(() => { if (S.primary && isLive(S.primary)) refreshStatus(); }, 15000);
+init();
+})();
+</script>
+</body>
+</html>
